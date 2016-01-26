@@ -1,0 +1,21 @@
+Membuat fabric
+--------------
+
+1.  Jalankan file <jboss-fuse>/bin/fuse/bat
+2.  Create fabric
+    ```sh
+    fuse> fabric:create --new-user admin --new-user-password admin --new-user-role admin --zookeeper-password admin --wait-for-provisioning --resolver manualip --manual-ip 127.0.0.1
+    ```
+3.  Remove full profile from fabric server
+    ```sh
+    fuse> fabric:container-remove-profile root jboss-fuse-full
+    ```
+4.  Copy default full profile to app profile
+    ```sh
+    fuse> fabric:profile-copy jboss-fuse-full app-fuse-full
+    fuse> fabric:profile-change-parents app-fuse-full fabric feature-camel feature-cxf mq-client
+    ```
+5.  Remove mq-broker profile from app profile, and replace with mq-client 
+    ```sh
+    fuse> fabric:profile-change-parents app-fuse-full fabric feature-camel feature-cxf mq-client
+    ```
