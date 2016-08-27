@@ -36,7 +36,7 @@ Installasi Standalone
 1.  Buat folder /jboss/jboss-fuse/standalone
 2.  Taruh file instalasi jboss-fuse-full-6.2.1.redhat-084.zip ke dalam folder tersebut
 3.  Unzip file jboss-fuse-full-6.2.1.redhat-084.zip
-4.  Buka file <fuse>/etc/users.properties, buka comment line di bawah untuk mengaktifkan user admin:
+4.  Buka file (fuse)/etc/users.properties, buka comment line di bawah untuk mengaktifkan user admin:
 
 	```
 	admin=admin,admin,manager,viewer,Monitor, Operator, Maintainer, Deployer, Auditor, Administrator, SuperUser
@@ -54,11 +54,11 @@ JBoss Fuse menggunakan OSGI sebagai base teknologi. Framework OSGI yang digunaka
 
 osgi:list - Untuk melihat modul yang sudah terinstall
 
-osgi:install <maven path> - untuk menginstall modul
+osgi:install (maven path) - untuk menginstall modul
 
-osgi:uninstall <id> - untuk menguninstall modul
+osgi:uninstall (id) - untuk menguninstall modul
 
-osgi:update <id> - untuk mengupdate modul
+osgi:update (id) - untuk mengupdate modul
 
 log:tail - melihat log server
 
