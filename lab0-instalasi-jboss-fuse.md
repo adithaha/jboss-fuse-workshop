@@ -64,7 +64,7 @@ log:tail - melihat log server
 
 Akses web console
 =================
-Fuse akan membuka port 8181 untuk http. Web console bisa diakses melalui alamat http://<host>/8181. Berikutnya login dengan user admin/admin
+Fuse akan membuka port 8181 untuk http. Web console bisa diakses melalui alamat http://localhost:8181. Berikutnya login dengan user admin/admin
 
 Koneksi ke fuse dari client
 ===========================
@@ -73,10 +73,11 @@ Untuk akses ke fuse dari klien, bisa dilakukan via ssh dengan port 8101 dengan u
 
 Dari bash console
 
-	```
-	ssh -p 8101 admin@localhost
-	```
 
+
+   	ssh -p 8101 admin@localhost
+
+   
 Jika dari windows, gunakan putty. Set ke host dan port 8181
 
 Untuk keluar dari client, tekan ctrl-d
