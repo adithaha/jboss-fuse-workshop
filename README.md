@@ -1,3 +1,3 @@
 # jboss-fuse-workshop
 
-REST/SOAP with authentication and authorization 
+Workshop untuk JBoss Fuse dalam bahasa Indonesia
