@@ -50,12 +50,16 @@ Installasi Standalone
 Perintah OSGI sederhana
 =======================
 
-JBoss Fuse menggunakan OSGI sebagai base teknologi. Framework OSGI yang digunakan adalah Apache Karaf. Berikut beberapa perintah OSGI sederhana yang bisa dilakukan
+JBoss Fuse menggunakan OSGI sebagai base teknologi. Framework OSGI yang digunakan adalah Apache Karaf. Berikut beberapa perintah OSGI sederhana yang bisa dilakukan.
 
 osgi:list - Untuk melihat modul yang sudah terinstall
+
 osgi:install <maven path> - untuk menginstall modul
+
 osgi:uninstall <id> - untuk menguninstall modul
+
 osgi:update <id> - untuk mengupdate modul
+
 log:tail - melihat log server
 
 Akses web console
@@ -68,9 +72,11 @@ Koneksi ke fuse dari client
 Untuk akses ke fuse dari klien, bisa dilakukan via ssh dengan port 8101 dengan user admin/admin
 
 Dari bash console
+
 	```
 	ssh -p 8101 admin@localhost
 	```
+
 Jika dari windows, gunakan putty. Set ke host dan port 8181
 
 Untuk keluar dari client, tekan ctrl-d
