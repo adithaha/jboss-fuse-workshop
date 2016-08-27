@@ -81,3 +81,8 @@ Dari bash console
 Jika dari windows, gunakan putty. Set ke host dan port 8181
 
 Untuk keluar dari client, tekan ctrl-d
+
+Tips
+====
+
+Penggunakan fuse dengan mode standalone tidak disarankan, selalu gunakan fabric yang akan dibahas pada bagian selanjutnya.
