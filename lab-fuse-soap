@@ -1,0 +1,149 @@
+
+2. Change groupId in pom.xml
+	  <groupId>org.jboss.fuse.workshop</groupId>
+  	<artifactId>fuse-soap</artifactId>
+    In maven-bundle-plugin
+    <Import-Package>*</Import-Package>
+    <Export-Package></Export-Package>
+3. Create java resources in src/main - right click - new - folder
+4. Folder name - java
+5. Create phone model class src/main/java - right click - new - class
+	- package org.jboss.fuse.workshop.soap
+	- Name Phone
+
+package org.jboss.fuse.workshop.soap;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+public class Phone {
+
+	private String phone;
+	private String type;
+	
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+}
+
+6. Create employee model class src/main/java - right click - new - class
+	- package org.jboss.fuse.workshop.soap
+	- Name Employee
+
+package org.jboss.fuse.workshop.soap;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name="employee")
+public class Employee {
+
+	private Integer id;
+	private String name;
+	private String address;
+	private List<Phone> phoneList = new ArrayList<Phone>();
+	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public List<Phone> getPhoneList() {
+		return phoneList;
+	}
+	public void setPhoneList(List<Phone> phoneList) {
+		this.phoneList = phoneList;
+	}
+	
+	
+}
+
+7. Create employee list model class src/main/java - right click - new - class
+	- package org.jboss.fuse.workshop.soap
+	- Name EmployeeList
+
+package org.jboss.fuse.workshop.soap;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name="employeeList")
+public class EmployeeList {
+
+	private List<Employee> employeeList = new ArrayList<Employee>();
+
+	public List<Employee> getEmployeeList() {
+		return employeeList;
+	}
+
+	public void setEmployeeList(List<Employee> employeeList) {
+		this.employeeList = employeeList;
+	}
+	
+	
+	
+}
+
+
+8. Create SOAP service class src/main/java - org.jboss.fuse.workshop.soap - right click - new - interface
+
+package org.jboss.fuse.workshop.soap;
+
+
+public interface EmployeeWS {
+
+	public Employee addEmployee(Employee employee);
+	public Employee getEmployee(Integer id);
+	public EmployeeList getEmployeeAll();
+	
+}
+
+
+
+Components - CXF - cxf:bean:employeeWS
+Routing - Recipient List - simple - direct:${header.operationName}
+
+Routing - Route
+Component - Direct - direct:addEmployee
+Transformation - Convert Body To - org.jboss.fuse.workshop.soap.Employee
+Component - Log - receive request ${body}
+Transformation - Set Property - simple - employee - ${body}
+Transformation - Set Header - constant - CamelSqlRetrieveGeneratedKeys - true
+Component - SQL - sql:insert into employee (name, address) values (:#${body.name}, :#${body.address})?dataSource=dsFis2&outputType=SelectOne
+Transformation - Transform - simple - ${property.employee.setId(${header.CamelSqlGeneratedKeyRows[0][id]})}
+Routing - Split - simple - ${property.employee.phoneList}
+	Component - Log - phone: ${body}
+	Component - SQL - sql:insert into phone (employee_id, phone, type) values (:#${property.employee.id}, :#${body.phone}, :#${body.type})?dataSource=dsFis2&outputType=SelectOne
+Transformation - Set Body - simple - ${property.employee}
+Component - Log - send response ${body}
+
+features:install jdbc 
+features:install camel-sql 
+osgi:install -s mvn:org.postgresql/postgresql/9.4.1212
+osgi:install -s mvn:org.jboss.fuse.workshop/fuse-soap/1.0.0-SNAPSHOT
