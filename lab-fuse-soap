@@ -107,8 +107,35 @@ public class EmployeeList {
 	}
 	
 	
-	
 }
+
+8. Create Transformer class src/main/java - right click - new - class
+	- package org.jboss.fuse.workshop.soap
+	- Name MyTransformer
+
+
+
+package org.jboss.fuse.workshop.soap;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.camel.Body;
+import org.apache.camel.ExchangeProperty;
+
+public class MyTransformer {
+	
+	
+    public void putPhoneList(
+    		@ExchangeProperty(value="employee") Employee employee,
+    		@Body List<Phone> phoneList
+    		) {
+    	
+    	employee.setPhoneList(phoneList);
+    }
+    
+}
+
 
 
 8. Create SOAP service class src/main/java - org.jboss.fuse.workshop.soap - right click - new - interface
@@ -147,3 +174,17 @@ features:install jdbc
 features:install camel-sql 
 osgi:install -s mvn:org.postgresql/postgresql/9.4.1212
 osgi:install -s mvn:org.jboss.fuse.workshop/fuse-soap/1.0.0-SNAPSHOT
+
+
+
+Routing - Route
+Component - Direct - direct:getEmployee
+Transformation - Convert Body To - java.lang.Integer
+Component - Log - receive request ${body}
+Component - SQL - select * from employee where id = :#${body}?dataSource=dsFis2&amp;outputType=SelectOne
+Transformation - Set Property - simple - employee - ${body}
+Component - SQL - select * from phone where employee_id = :#${property.employee.id}?dataSource=dsFis2&amp;outputType=SelectOne
+Component - Bean - putPhoneList - myTransformer
+Transformation - Set Body - simple - ${property.employee}
+Component - Log - send response ${body}
+
