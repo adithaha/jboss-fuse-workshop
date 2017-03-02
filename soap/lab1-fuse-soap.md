@@ -12,7 +12,7 @@
   <name>Workshop:: Fuse SOAP</name>
   ```
     In maven-bundle-plugin add
-    	```
+    ```
 	<plugin>
         <groupId>org.apache.felix</groupId>
         <artifactId>maven-bundle-plugin</artifactId>
