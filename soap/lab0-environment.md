@@ -6,7 +6,7 @@
 2. New
 	- Name: JBossFuse
 	- Type: Linux
-	- Version: Fedora (64-bit)
+	- Version: Fedora (64-bit)	
 3. Memory 3096MB
 4. Use an existing virtual hard disk file JBossFuse.vdi
 5. Create
