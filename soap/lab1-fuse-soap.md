@@ -249,14 +249,23 @@ osgi:install -s mvn:org.jboss.fuse.workshop/fuse-soap/1.0.0-SNAPSHOT
 14. Create getEmployee route. Click Design tab
 
 Routing - Route
+
 Component - Direct - direct:getEmployee
+
 Transformation - Convert Body To - java.lang.Integer
+
 Component - Log - receive request ${body}
+
 Component - SQL - select * from employee where id = :#${body}?dataSource=dsFis2&amp;outputType=SelectOne
+
 Transformation - Set Property - simple - employee - ${body}
+
 Component - SQL - select * from phone where employee_id = :#${property.employee.id}?dataSource=dsFis2&amp;outputType=SelectOne
+
 Component - Bean - putPhoneList - myTransformer
+
 Transformation - Set Body - simple - ${property.employee}
+
 Component - Log - send response ${body}
 
 15. Redeploy into Fuse (assumed fuse is already started)
@@ -271,16 +280,27 @@ osgi:refresh <id>
 16. Create getEmployeeAll route. Click Design tab
 
 Routing - Route
+
 Component - Direct - direct: getEmployeeAll
+
 Component - Log - receive request ${body}
+
 Transformation - Set Property - method - name:employeeList - ref:myTransformer - method:createEmployeeList
+
 Component - SQL - select * from employee?dataSource=dsFis2&outputType=SelectList&outputClass=org.jboss.fis2.demo.soap.Employee
+
 Component - Bean - putEmployeeList - myTransformer
+
 Routing - Split - simple - ${property.employeeList.employeeList}
+
 	Transformation - Set Property - simple - employee - ${body}
+	
 	Component - SQL - sql:select * from phone where employee_id = :#${property.employee.id}?dataSource=dsFis2&outputType=SelectList
+	
 	Component - Bean - putPhoneList - myTransformer	
+	
 Transformation - Set Body - simple - ${property.employeeList}
+
 Component - Log - send response ${body}
 
 
