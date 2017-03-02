@@ -12,12 +12,17 @@
   <name>Workshop:: Fuse SOAP</name>
   ```
     In maven-bundle-plugin add
-    ```
-	<configuration>
+    	```
+	<plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <version>${version.maven-bundle-plugin}</version>
+        <extensions>true</extensions>
+        <configuration>
           <instructions>
             <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-          	<Import-Package>*</Import-Package>
-          	<Export-Package></Export-Package>
+            <Import-Package>*</Import-Package>
+            <Export-Package></Export-Package>
           </instructions>
         </configuration>
 	```
