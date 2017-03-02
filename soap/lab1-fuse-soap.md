@@ -3,14 +3,16 @@
 
 1. File - New - Project.. - type 'fuse' - Fuse Integration Project - fuse-soap - 2.17.0.redhat-630187 - Use Predefined template - JBoss Fuse - Beginner - Content Based Router - Finish
 2. Change groupId in pom.xml
-  
+ ``` 
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.jboss.fuse.workshop</groupId>
   <artifactId>fuse-soap</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <name>Workshop:: Fuse SOAP</name>
+  ```
     In maven-bundle-plugin add
+    ```
 	<configuration>
           <instructions>
             <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
@@ -18,13 +20,14 @@
           	<Export-Package></Export-Package>
           </instructions>
         </configuration>
+	```
 
 3. Create java resources in src/main - right click - new - folder
 4. Folder name - java
 5. Create phone model class src/main/java - right click - new - class
 	- package org.jboss.fuse.workshop.soap
 	- Name Phone
-
+```
 package org.jboss.fuse.workshop.soap;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -48,11 +51,11 @@ public class Phone {
 		this.type = type;
 	}
 }
-
+```
 6. Create employee model class src/main/java - right click - new - class
 	- package org.jboss.fuse.workshop.soap
 	- Name Employee
-
+```
 package org.jboss.fuse.workshop.soap;
 
 import java.util.ArrayList;
@@ -95,11 +98,11 @@ public class Employee {
 	
 	
 }
-
+```
 7. Create employee list model class src/main/java - right click - new - class
 	- package org.jboss.fuse.workshop.soap
 	- Name EmployeeList
-
+```
 package org.jboss.fuse.workshop.soap;
 
 import java.util.ArrayList;
@@ -122,13 +125,13 @@ public class EmployeeList {
 	
 	
 }
-
+```
 8. Create Transformer class src/main/java - right click - new - class
 	- package org.jboss.fuse.workshop.soap
 	- Name MyTransformer
 
 
-
+```
 package org.jboss.fuse.workshop.soap;
 
 import java.util.ArrayList;
@@ -163,11 +166,11 @@ public class MyTransformer {
     }
     
 }
-
+```
 
 
 8. Create SOAP service class src/main/java - org.jboss.fuse.workshop.soap - right click - new - interface
-
+```
 package org.jboss.fuse.workshop.soap;
 
 
@@ -178,11 +181,11 @@ public interface EmployeeWS {
 	public EmployeeList getEmployeeAll();
 	
 }
-
+```
 9. Remove default route src/main/resources - OSGI-INF - blueprint - *.xml
 
 10. Create datasource src/main/resources - OSGI-INF - blueprint - right click - New - Camel XML File - ds-context.xml (OSGI blueprint) - Finish - source
-
+```
 <?xml version="1.0" encoding="UTF-8"?>
 <blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0" xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.0.0">
     <bean class="org.apache.commons.dbcp.BasicDataSource"
@@ -193,10 +196,10 @@ public interface EmployeeWS {
         <property name="password" value="postgres"/>
     </bean>
 </blueprint>
-
+```
 
 11. Create route src/main/resources - OSGI-INF - blueprint - right click - New - Camel XML File - camel-context.xml (OSGI blueprint) - Finish - source
-
+```
 <?xml version="1.0" encoding="UTF-8"?>
 <blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
     xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.0.0"
@@ -215,15 +218,15 @@ public interface EmployeeWS {
         <route id="fuse-soap-service"/>
     </camelContext>
 </blueprint>
-
+```
 12. Create webservice route. Click Design tab
-
+```
 Components - CXF - cxf:bean:employeeWS
 Routing - Recipient List - simple - direct:${header.operationName}
-
+```
 
 12. Create addEmployee route. Click Design tab
-
+```
 Routing - Route
 Component - Direct - direct:addEmployee
 Transformation - Convert Body To - org.jboss.fuse.workshop.soap.Employee
@@ -237,7 +240,7 @@ Routing - Split - simple - ${property.employee.phoneList}
 	Component - SQL - sql:insert into phone (employee_id, phone, type) values (:#${property.employee.id}, :#${body.phone}, :#${body.type})?dataSource=dsFis2&outputType=SelectOne
 Transformation - Set Body - simple - ${property.employee}
 Component - Log - send response ${body}
-
+```
 13. Deploy into Fuse (assumed fuse is already started)
 
 features:install jdbc 
@@ -247,27 +250,18 @@ osgi:install -s mvn:org.jboss.fuse.workshop/fuse-soap/1.0.0-SNAPSHOT
 
 
 14. Create getEmployee route. Click Design tab
-
+```
 Routing - Route
-
 Component - Direct - direct:getEmployee
-
 Transformation - Convert Body To - java.lang.Integer
-
 Component - Log - receive request ${body}
-
 Component - SQL - select * from employee where id = :#${body}?dataSource=dsFis2&amp;outputType=SelectOne
-
 Transformation - Set Property - simple - employee - ${body}
-
 Component - SQL - select * from phone where employee_id = :#${property.employee.id}?dataSource=dsFis2&amp;outputType=SelectOne
-
 Component - Bean - putPhoneList - myTransformer
-
 Transformation - Set Body - simple - ${property.employee}
-
 Component - Log - send response ${body}
-
+```
 15. Redeploy into Fuse (assumed fuse is already started)
 
 osgi:list
