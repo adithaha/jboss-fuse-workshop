@@ -18,6 +18,7 @@
         <artifactId>maven-bundle-plugin</artifactId>
         <version>${version.maven-bundle-plugin}</version>
         <extensions>true</extensions>
+	<! -- copy from here -->
         <configuration>
           <instructions>
             <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
@@ -25,15 +26,21 @@
             <Export-Package></Export-Package>
           </instructions>
         </configuration>
+	<! -- end here -->
 	```
+3. Remove existing test code src/test/java - com.mycompany - right click - delete
+4. Remove existing test code src/test/resources - data - right click - delete
+5. Remove existing camel route Camel Contexts - blueprint.xml - right click - delete
+6. Create new camel route Camel Contexts - right click - New Camel XML File - File Name: rest-context.xml
+
 
 3. Create java resources in src/main - right click - new - folder
 4. Folder name - java
 5. Create phone model class src/main/java - right click - new - class
-	- package org.jboss.fuse.workshop.soap
+	- package org.jboss.fuse.workshop.rest
 	- Name Phone
 ```
-package org.jboss.fuse.workshop.soap;
+package org.jboss.fuse.workshop.rest;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -58,10 +65,10 @@ public class Phone {
 }
 ```
 6. Create employee model class src/main/java - right click - new - class
-	- package org.jboss.fuse.workshop.soap
+	- package org.jboss.fuse.workshop.rest
 	- Name Employee
 ```
-package org.jboss.fuse.workshop.soap;
+package org.jboss.fuse.workshop.rest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -105,10 +112,10 @@ public class Employee {
 }
 ```
 7. Create employee list model class src/main/java - right click - new - class
-	- package org.jboss.fuse.workshop.soap
+	- package org.jboss.fuse.workshop.rest
 	- Name EmployeeList
 ```
-package org.jboss.fuse.workshop.soap;
+package org.jboss.fuse.workshop.rest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -132,12 +139,12 @@ public class EmployeeList {
 }
 ```
 8. Create Transformer class src/main/java - right click - new - class
-	- package org.jboss.fuse.workshop.soap
+	- package org.jboss.fuse.workshop.rest
 	- Name MyTransformer
 
 
 ```
-package org.jboss.fuse.workshop.soap;
+package org.jboss.fuse.workshop.rest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -173,22 +180,6 @@ public class MyTransformer {
 }
 ```
 
-
-8. Create SOAP service class src/main/java - org.jboss.fuse.workshop.soap - right click - new - interface
-```
-package org.jboss.fuse.workshop.soap;
-
-
-public interface EmployeeWS {
-
-	public Employee addEmployee(Employee employee);
-	public Employee getEmployee(Integer id);
-	public EmployeeList getEmployeeAll();
-	
-}
-```
-9. Remove default route src/main/resources - OSGI-INF - blueprint - *.xml
-
 10. Create datasource src/main/resources - OSGI-INF - blueprint - right click - New - Camel XML File - ds-context.xml (OSGI blueprint) - Finish - source
 ```
 <?xml version="1.0" encoding="UTF-8"?>
@@ -203,7 +194,7 @@ public interface EmployeeWS {
 </blueprint>
 ```
 
-11. Create route src/main/resources - OSGI-INF - blueprint - right click - New - Camel XML File - camel-context.xml (OSGI blueprint) - Finish - source
+11. Create route src/main/resources - OSGI-INF - blueprint - right click - New - Camel XML File - rest-context.xml (OSGI blueprint) - Finish - source
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
@@ -224,7 +215,7 @@ public interface EmployeeWS {
     </camelContext>
 </blueprint>
 ```
-12. Create webservice route. Click Design tab
+12. Create rest route. Click Design tab
 ```
 Components - CXF - cxf:bean:employeeWS
 Routing - Recipient List - simple - direct:${header.operationName}
