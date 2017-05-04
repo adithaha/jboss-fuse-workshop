@@ -256,6 +256,7 @@ wiki - new fabric6 profile (sample-fuse-rest)
 parent - jboss-fuse-min
 Deployment - add - mvn:org.postgresql/postgresql/9.4.1212
 Deployment - add - mvn:org.jboss.fuse.workshop/fuse-rest/1.0.0-SNAPSHOT
+Deployment - add - mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.commons-dbcp/1.4_3
 features - add - jdbc
 features - add - camel-sql 
 features - add - fabric-cxf
