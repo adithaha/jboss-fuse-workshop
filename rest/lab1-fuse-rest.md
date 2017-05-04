@@ -234,15 +234,32 @@ Routing - Split - simple - ${property.employee.phoneList}
 Transformation - Set Body - simple - ${property.employee}
 Component - Log - send response ${body}
 ```
-16. Deploy into Fuse (assumed fuse is already started)
+16. Build
+pilih project - klik kanan - run as - mvn clean
+pilih project - klik kanan - run as - mvn install
 
+
+17. Deploy into Fuse (assumed fuse is already started)
+
+Standalone
+----------
 features:install jdbc 
 features:install camel-sql 
 osgi:install -s mvn:org.postgresql/postgresql/9.4.1212
 osgi:install -s mvn:org.jboss.fuse.workshop/fuse-soap/1.0.0-SNAPSHOT
 
+fabric
+-------
+Open browser http://localhost:8181, login
+wiki - new fabric6 profile (sample-fuse-rest)
+parent - jboss-fuse-min
+bundle mvn:org.postgresql/postgresql/9.4.1212
+bundle mvn:org.jboss.fuse.workshop/fuse-rest/1.0.0-SNAPSHOT
+feature jdbc
+feature camel-sql 
 
-17. Create getEmployee route. Click Design tab
+
+18. Create getEmployee route. Click Design tab
 ```
 Routing - Route
 Component - Direct - direct:getEmployee
@@ -255,7 +272,7 @@ Component - Bean - putPhoneList - myTransformer
 Transformation - Set Body - simple - ${property.employee}
 Component - Log - send response ${body}
 ```
-18. Redeploy into Fuse (assumed fuse is already started)
+19. Redeploy into Fuse (assumed fuse is already started)
 
 osgi:list
 
@@ -264,7 +281,7 @@ osgi:list
 osgi:update <id>
 osgi:refresh <id>
 
-19. Create getEmployeeAll route. Click Design tab
+20. Create getEmployeeAll route. Click Design tab
 
 ```
 Routing - Route
