@@ -31,12 +31,9 @@
 3. Remove existing test code src/test/java - com.mycompany - right click - delete
 4. Remove existing test code src/test/resources - data - right click - delete
 5. Remove existing camel route Camel Contexts - blueprint.xml - right click - delete
-6. Create new camel route Camel Contexts - right click - New Camel XML File - File Name: rest-context.xml
-
-
-3. Create java resources in src/main - right click - new - folder
-4. Folder name - java
-5. Create phone model class src/main/java - right click - new - class
+6. Create java resources in src/main - right click - new - folder
+7. Folder name - java
+8. Create phone model class src/main/java - right click - new - class
 	- package org.jboss.fuse.workshop.rest
 	- Name Phone
 ```
@@ -64,7 +61,7 @@ public class Phone {
 	}
 }
 ```
-6. Create employee model class src/main/java - right click - new - class
+9. Create employee model class src/main/java - right click - new - class
 	- package org.jboss.fuse.workshop.rest
 	- Name Employee
 ```
@@ -111,7 +108,7 @@ public class Employee {
 	
 }
 ```
-7. Create employee list model class src/main/java - right click - new - class
+10. Create employee list model class src/main/java - right click - new - class
 	- package org.jboss.fuse.workshop.rest
 	- Name EmployeeList
 ```
@@ -138,7 +135,7 @@ public class EmployeeList {
 	
 }
 ```
-8. Create Transformer class src/main/java - right click - new - class
+11. Create Transformer class src/main/java - right click - new - class
 	- package org.jboss.fuse.workshop.rest
 	- Name MyTransformer
 
@@ -180,7 +177,7 @@ public class MyTransformer {
 }
 ```
 
-10. Create datasource src/main/resources - OSGI-INF - blueprint - right click - New - Camel XML File - ds-context.xml (OSGI blueprint) - Finish - source
+12. Create datasource src/main/resources - OSGI-INF - blueprint - right click - New - Camel XML File - ds-context.xml (OSGI blueprint) - Finish - source
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0" xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.0.0">
@@ -194,7 +191,7 @@ public class MyTransformer {
 </blueprint>
 ```
 
-11. Create route src/main/resources - OSGI-INF - blueprint - right click - New - Camel XML File - rest-context.xml (OSGI blueprint) - Finish - source
+13. Create route src/main/resources - OSGI-INF - blueprint - right click - New - Camel XML File - rest-context.xml (OSGI blueprint) - Finish - source
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
@@ -215,13 +212,13 @@ public class MyTransformer {
     </camelContext>
 </blueprint>
 ```
-12. Create rest route. Click Design tab
+14. Create rest route. Click Design tab
 ```
 Components - CXF - cxf:bean:employeeWS
 Routing - Recipient List - simple - direct:${header.operationName}
 ```
 
-12. Create addEmployee route. Click Design tab
+15. Create addEmployee route. Click Design tab
 ```
 Routing - Route
 Component - Direct - direct:addEmployee
@@ -237,7 +234,7 @@ Routing - Split - simple - ${property.employee.phoneList}
 Transformation - Set Body - simple - ${property.employee}
 Component - Log - send response ${body}
 ```
-13. Deploy into Fuse (assumed fuse is already started)
+16. Deploy into Fuse (assumed fuse is already started)
 
 features:install jdbc 
 features:install camel-sql 
@@ -245,7 +242,7 @@ osgi:install -s mvn:org.postgresql/postgresql/9.4.1212
 osgi:install -s mvn:org.jboss.fuse.workshop/fuse-soap/1.0.0-SNAPSHOT
 
 
-14. Create getEmployee route. Click Design tab
+17. Create getEmployee route. Click Design tab
 ```
 Routing - Route
 Component - Direct - direct:getEmployee
@@ -258,7 +255,7 @@ Component - Bean - putPhoneList - myTransformer
 Transformation - Set Body - simple - ${property.employee}
 Component - Log - send response ${body}
 ```
-15. Redeploy into Fuse (assumed fuse is already started)
+18. Redeploy into Fuse (assumed fuse is already started)
 
 osgi:list
 
@@ -267,7 +264,7 @@ osgi:list
 osgi:update <id>
 osgi:refresh <id>
 
-16. Create getEmployeeAll route. Click Design tab
+19. Create getEmployeeAll route. Click Design tab
 
 ```
 Routing - Route
@@ -284,7 +281,7 @@ Transformation - Set Body - simple - ${property.employeeList}
 Component - Log - send response ${body}
 ```
 
-15. Redeploy into Fuse (assumed fuse is already started)
+20. Redeploy into Fuse (assumed fuse is already started)
 
 osgi:list
 
