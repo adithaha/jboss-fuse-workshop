@@ -254,10 +254,13 @@ fabric
 Open browser http://localhost:8181, login
 wiki - new fabric6 profile (sample-fuse-rest)
 parent - jboss-fuse-min
-bundle mvn:org.postgresql/postgresql/9.4.1212
-bundle mvn:org.jboss.fuse.workshop/fuse-rest/1.0.0-SNAPSHOT
-feature jdbc
-feature camel-sql 
+Deployment - add - mvn:org.postgresql/postgresql/9.4.1212
+Deployment - add - mvn:org.jboss.fuse.workshop/fuse-rest/1.0.0-SNAPSHOT
+features - add - jdbc
+features - add - camel-sql 
+features - add - fabric-cxf
+features - add - cxf
+features - add - camel-cxf
 ```
 
 18. Create getEmployee route. Click Design tab
