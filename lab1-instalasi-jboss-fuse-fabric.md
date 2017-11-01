@@ -12,7 +12,7 @@ Untuk instalasi fabric, install fuse seperti biasa. user tidak perlu diaktifkan,
 1.  Buat folder /jboss/jboss-fuse/fabric (folder tidak boleh ada karakter khusus atau spasi)
 2.  Taruh file instalasi jboss-fuse-full-6.2.1.redhat-084.zip ke dalam folder tersebut
 3.  Unzip file jboss-fuse-full-6.2.1.redhat-084.zip
-4.  Jalankan fuse.sh atau fuse.bat (fuse akan berjalan foreground, jika ditutup maka fuse akan mati)
+4.  Masuk folder jboss-fuse-full-6.2.1.redhat-084/bin Jalankan fuse.sh atau fuse.bat (fuse akan berjalan foreground, jika ditutup maka fuse akan mati)
 5.  Tunggu hingga menyala sempurna
 
 Sampai tahap ini fuse selesai diinstall. Jalankan prosedur berikut untuk membuat fabric
