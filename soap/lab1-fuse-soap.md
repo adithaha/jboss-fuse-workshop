@@ -189,7 +189,9 @@ public interface EmployeeWS {
 ```
 9. Remove default route src/main/resources - OSGI-INF - blueprint - *.xml
 
-10. Create datasource src/main/resources - OSGI-INF - blueprint - right click - New - Camel XML File - ds-context.xml (OSGI blueprint) - Finish - source
+10. Remove test file src/test/java - com.mycompany.BlueprintCBRTest.java
+
+11. Create datasource src/main/resources - OSGI-INF - blueprint - right click - New - Camel XML File - ds-context.xml (OSGI blueprint) - Finish - source
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0" xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.0.0">
@@ -203,7 +205,7 @@ public interface EmployeeWS {
 </blueprint>
 ```
 
-11. Create route src/main/resources - OSGI-INF - blueprint - right click - New - Camel XML File - camel-context.xml (OSGI blueprint) - Finish - source
+12. Create route src/main/resources - OSGI-INF - blueprint - right click - New - Camel XML File - camel-context.xml (OSGI blueprint) - Finish - source
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
@@ -224,13 +226,13 @@ public interface EmployeeWS {
     </camelContext>
 </blueprint>
 ```
-12. Create webservice route. Click Design tab
+13. Create webservice route. Click Design tab
 ```
 Components - CXF - cxf:bean:employeeWS
 Routing - Recipient List - simple - direct:${header.operationName}
 ```
 
-12. Create addEmployee route. Click Design tab
+14. Create addEmployee route. Click Design tab
 ```
 Routing - Route
 Component - Direct - direct:addEmployee
@@ -246,7 +248,7 @@ Routing - Split - simple - ${property.employee.phoneList}
 Transformation - Set Body - simple - ${property.employee}
 Component - Log - send response ${body}
 ```
-13. Deploy into Fuse (assumed fuse is already started)
+15. Deploy into Fuse (assumed fuse is already started)
 
 features:install jdbc 
 features:install camel-sql 
@@ -254,7 +256,7 @@ osgi:install -s mvn:org.postgresql/postgresql/9.4.1212
 osgi:install -s mvn:org.jboss.fuse.workshop/fuse-soap/1.0.0-SNAPSHOT
 
 
-14. Create getEmployee route. Click Design tab
+16. Create getEmployee route. Click Design tab
 ```
 Routing - Route
 Component - Direct - direct:getEmployee
@@ -267,7 +269,7 @@ Component - Bean - putPhoneList - myTransformer
 Transformation - Set Body - simple - ${property.employee}
 Component - Log - send response ${body}
 ```
-15. Redeploy into Fuse (assumed fuse is already started)
+17. Redeploy into Fuse (assumed fuse is already started)
 
 osgi:list
 
@@ -276,7 +278,7 @@ osgi:list
 osgi:update <id>
 osgi:refresh <id>
 
-16. Create getEmployeeAll route. Click Design tab
+18. Create getEmployeeAll route. Click Design tab
 
 ```
 Routing - Route
@@ -293,7 +295,7 @@ Transformation - Set Body - simple - ${property.employeeList}
 Component - Log - send response ${body}
 ```
 
-15. Redeploy into Fuse (assumed fuse is already started)
+19. Redeploy into Fuse (assumed fuse is already started)
 
 osgi:list
 
