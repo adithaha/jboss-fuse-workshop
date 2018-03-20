@@ -240,11 +240,11 @@ Transformation - Convert Body To - org.jboss.fuse.workshop.soap.Employee
 Component - Log - receive request ${body}
 Transformation - Set Property - simple - employee - expression: ${body}
 Transformation - Set Header - constant - CamelSqlRetrieveGeneratedKeys - expression: true
-Component - SQL - sql:insert into employee (name, address) values (:#${body.name}, :#${body.address})?dataSource=dsFis2&outputType=SelectOne
+Component - SQL - sql:insert into employee (name, address) values (:#${body.name}, :#${body.address})?dataSource=dsFis2&amp;outputType=SelectOne
 Transformation - Transform - simple - ${property.employee.setId(${header.CamelSqlGeneratedKeyRows[0][id]})}
 Routing - Split - simple - ${property.employee.phoneList}
 	Component - Log - phone: ${body}
-	Component - SQL - sql:insert into phone (employee_id, phone, type) values (:#${property.employee.id}, :#${body.phone}, :#${body.type})?dataSource=dsFis2&outputType=SelectOne
+	Component - SQL - sql:insert into phone (employee_id, phone, type) values (:#${property.employee.id}, :#${body.phone}, :#${body.type})?dataSource=dsFis2&amp;outputType=SelectOne
 Transformation - Set Body - simple - expression: ${property.employee}
 Component - Log - send response ${body}
 ```
@@ -285,11 +285,11 @@ Routing - Route
 Component - Direct - direct: getEmployeeAll
 Component - Log - receive request ${body}
 Transformation - Set Property - method - name:employeeList - ref:myTransformer - method:createEmployeeList
-Component - SQL - sql:select * from employee?dataSource=dsFis2&outputType=SelectList&outputClass=org.jboss.fis2.demo.soap.Employee
+Component - SQL - sql:select * from employee?dataSource=dsFis2&amp;outputType=SelectList&amp;outputClass=org.jboss.fis2.demo.soap.Employee
 Component - Bean - method: putEmployeeList - ref: myTransformer
 Routing - Split - simple - ${property.employeeList.employeeList}
 	Transformation - Set Property - simple - employee - expression: ${body}	
-	Component - SQL - sql:select * from phone where employee_id = :#${property.employee.id}?dataSource=dsFis2&outputType=SelectList
+	Component - SQL - sql:select * from phone where employee_id = :#${property.employee.id}?dataSource=dsFis2&amp;outputType=SelectList
 	Component - Bean - method: putPhoneList - ref: myTransformer	
 Transformation - Set Body - simple - ${property.employeeList}
 Component - Log - send response ${body}
