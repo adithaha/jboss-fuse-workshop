@@ -220,6 +220,7 @@ public interface EmployeeWS {
             <entry key="loggingFeatureEnabled" value="false"/>
         </cxf:properties>
     </cxf:cxfEndpoint>
+    <bean id="myTransformer" class="org.jboss.fuse.workshop.soap.MyTransformer"/>
     <camelContext id="fuse-soap"
         trace="false" xmlns="http://camel.apache.org/schema/blueprint">
         <route id="fuse-soap-service"/>
