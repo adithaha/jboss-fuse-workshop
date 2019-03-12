@@ -206,7 +206,7 @@ spring.dsEmployee.min-idle=8
 spring.dsEmployee.initial-size=5
 ```
 
-12. Inject datasource into Spring Boot application - src/main/java - org.jboss.fuse.workshop.soap - Appilaction.java
+12. Inject datasource into Spring Boot application - src/main/java - org.jboss.fuse.workshop.soap - Application.java
 
 ```
 	@Bean(name = "dsEmployee")
@@ -216,6 +216,13 @@ spring.dsEmployee.initial-size=5
 	}
 ```
 
+Add import below:
+```
+import javax.sql.DataSource;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Bean;
+```
 9. Remove default route src/main/resources - spring - camel-context.xml
 
 12. Create route src/main/resources - spring - right click - New - Camel XML File - camel-context.xml (Spring) - Finish - source
@@ -238,32 +245,52 @@ spring.dsEmployee.initial-size=5
 </beans>
 
 ```
-13. Create webservice route. Click Design tab
+13. Create webservice route. Click Design tab, drag and drop to Route employeeWS
 ```
-Components - CXF - Properties
+Components - CXF
 	URI: cxf:bean:employeeWS
-Transformation - Remove Header - Properties
+Transformation - Remove Header
 	Header Name: SOAPAction
-Routing - Recipient List - Properties
+Routing - Recipient List
 	Expressions: simple 
 	Expressions: direct:${header.operationName}
 ```
 
-14. Create addEmployee route. Click Design tab
+14. Create addEmployee route. Click Design tab, drag and drop to create new Route
 ```
 Routing - Route
-Component - Direct - direct:addEmployee
-Transformation - Convert Body To - org.jboss.fuse.workshop.soap.Employee
-Component - Log - receive request ${body}
-Transformation - Set Property - simple - employee - expression: ${body}
-Transformation - Set Header - constant - CamelSqlRetrieveGeneratedKeys - expression: true
-Component - SQL - sql:insert into employee (name, address) values (:#${body.name}, :#${body.address})?dataSource=dsFis2&amp;outputType=SelectOne
-Transformation - Transform - simple - ${property.employee.setId(${header.CamelSqlGeneratedKeyRows[0][id]})}
-Routing - Split - simple - ${property.employee.phoneList}
-	Component - Log - phone: ${body}
-	Component - SQL - sql:insert into phone (employee_id, phone, type) values (:#${property.employee.id}, :#${body.phone}, :#${body.type})?dataSource=dsFis2&amp;outputType=SelectOne
-Transformation - Set Body - simple - expression: ${property.employee}
-Component - Log - send response ${body}
+	Id: addEmployee
+Component - Direct
+	Uri: direct:addEmployee
+Transformation - Convert Body To
+	Type: org.jboss.fuse.workshop.soap.Employee
+Component - Log
+	Message: receive request ${body}
+Transformation - Set Property
+	Expression: simple
+	Expression: ${body}
+	Property Name: employee
+Transformation - Set Header
+	Expression: constant 
+	Expression: true
+	Header Name: CamelSqlRetrieveGeneratedKeys
+Component - SQL
+	Uri: sql:insert into employee (name, address) values (:#${body.name}, :#${body.address})?dataSource=dsEmployee&outputType=SelectOne
+Transformation - Transform
+	Expression: simple
+	Expression: ${property.employee.setId(${header.CamelSqlGeneratedKeyRows[0][id]})}
+Routing - Split
+	Expression: simple
+	Expression: ${property.employee.phoneList}
+Component - Log (put inside Split block) 
+	Message: phone: ${body}
+Component - SQL (put inside Split block) 
+	Uri: sql:insert into phone (employee_id, phone, type) values (:#${property.employee.id}, :#${body.phone}, :#${body.type})?dataSource=dsEmployee&outputType=SelectOne
+Transformation - Set Body
+	Expression: simple
+	Expression: ${property.employee}
+Component - Log
+	Message: send response ${body}
 ```
 15. Deploy into Fuse (assumed fuse is already started)
 
