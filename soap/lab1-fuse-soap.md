@@ -1,35 +1,23 @@
 
 ## LAB 1 - Installasi JBoss Fuse dengan fabric
 
-1. File - New - Project.. - type 'fuse' - Fuse Integration Project - fuse-soap - 2.17.0.redhat-630187 - Use Predefined template - JBoss Fuse - Beginner - Content Based Router - Finish
-2. Change groupId in pom.xml
+0. Window - Show View - Other - Terminal - Terminal - Open
+0. Tab terminal - icon terminal - Local Terminal - OK
+
+1. File - New - Project.. - type 'fuse' - Fuse Integration Project - Project-name: fuse-soap - 2.21.0.fuse-710018-redhat-00001 (Fuse 7.1.0 GA) - Simple log using Spring Boot - Spring DSL - Finish - Open Associate Perspective: Yes
+2. Change groupId in pom.xml - fuse-soap - pom.xml
  ``` 
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.jboss.fuse.workshop</groupId>
   <artifactId>fuse-soap</artifactId>
   <version>1.0.0-SNAPSHOT</version>
-  <packaging>bundle</packaging>
   <name>Workshop:: Fuse SOAP</name>
+  <description>Workshop:: Fuse SOAP</name>
   ```
-    In maven-bundle-plugin add
-    ```
-	<plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <version>${version.maven-bundle-plugin}</version>
-        <extensions>true</extensions>
-        <configuration>
-          <instructions>
-            <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-            <Import-Package>*</Import-Package>
-            <Export-Package></Export-Package>
-          </instructions>
-        </configuration>
-	```
+3. Change default package src/main/java - org.mycompany - right click - refactor - rename
+	- New Name: org.jboss.fuse.workshop.soap
 
-3. Create java resources in src/main - right click - new - folder
-4. Folder name - java
-5. Create phone model class src/main/java - right click - new - class
+3. Create phone model class src/main/java - right click - new - class
 	- package org.jboss.fuse.workshop.soap
 	- Name Phone
 ```
@@ -57,7 +45,7 @@ public class Phone {
 	}
 }
 ```
-6. Create employee model class src/main/java - right click - new - class
+6. Create employee model class src/main/java - org.jboss.fuse.workshop.soap - right click - new - class
 	- package org.jboss.fuse.workshop.soap
 	- Name Employee
 ```
@@ -104,7 +92,7 @@ public class Employee {
 	
 }
 ```
-7. Create employee list model class src/main/java - right click - new - class
+7. Create employee list model class src/main/java - org.jboss.fuse.workshop.soap - right click - new - class
 	- package org.jboss.fuse.workshop.soap
 	- Name EmployeeList
 ```
@@ -131,7 +119,7 @@ public class EmployeeList {
 	
 }
 ```
-8. Create Transformer class src/main/java - right click - new - class
+8. Create Transformer class src/main/java - org.jboss.fuse.workshop.soap - right click - new - class
 	- package org.jboss.fuse.workshop.soap
 	- Name MyTransformer
 
@@ -175,6 +163,8 @@ public class MyTransformer {
 
 
 8. Create SOAP service class src/main/java - org.jboss.fuse.workshop.soap - right click - new - interface
+	- package org.jboss.fuse.workshop.soap
+	- Name EmployeeWS
 ```
 package org.jboss.fuse.workshop.soap;
 
@@ -187,9 +177,7 @@ public interface EmployeeWS {
 	
 }
 ```
-9. Remove default route src/main/resources - OSGI-INF - blueprint - *.xml
-
-10. Remove test file src/test/java - com.mycompany.BlueprintCBRTest.java
+9. Remove default route src/main/resources - spring - camel-context.xml
 
 11. Create datasource src/main/resources - OSGI-INF - blueprint - right click - New - Camel XML File - ds-context.xml (OSGI blueprint) - Finish - source
 ```
