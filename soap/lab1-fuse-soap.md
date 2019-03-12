@@ -14,6 +14,21 @@
   <name>Workshop:: Fuse SOAP</name>
   <description>Workshop:: Fuse SOAP</name>
   ```
+  
+   ``` 
+  <dependencies>
+    ...
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-cxf-starter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-sql-starter</artifactId>
+    </dependency>
+  </dependencies>
+  
+  ```
 3. Change default package src/main/java - org.mycompany - right click - refactor - rename
 	- New Name: org.jboss.fuse.workshop.soap
 
@@ -177,30 +192,39 @@ public interface EmployeeWS {
 	
 }
 ```
+
+11. Create datasource - src/main/resources - application.properties - Finish - source - add line below
+```
+spring.dsEmployee.url=jdbc:postgresql://10.1.2.2:30432/fis2demo
+spring.dsEmployee.username=postgres
+spring.dsEmployee.password=postgres
+spring.dsEmployee.driver-class-name=org.postgresql.Driver
+spring.dsEmployee.validation-query=SELECT 1
+spring.dsEmployee.max-active=10
+spring.dsEmployee.max-idle=8
+spring.dsEmployee.min-idle=8
+spring.dsEmployee.initial-size=5
+```
+
+12. Inject datasource into Spring Boot application - src/main/java - org.jboss.fuse.workshop.soap - Appilaction.java
+
+```
+	@Bean(name = "dsEmployee")
+	@ConfigurationProperties(prefix = "spring.dsEmployee")
+	public DataSource mysqlDataSource() {
+		return DataSourceBuilder.create().build();
+	}
+```
+
 9. Remove default route src/main/resources - spring - camel-context.xml
 
-11. Create datasource src/main/resources - OSGI-INF - blueprint - right click - New - Camel XML File - ds-context.xml (OSGI blueprint) - Finish - source
+12. Create route src/main/resources - spring - right click - New - Camel XML File - camel-context.xml (Spring) - Finish - source
 ```
 <?xml version="1.0" encoding="UTF-8"?>
-<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0" xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.0.0">
-    <bean class="org.apache.commons.dbcp.BasicDataSource"
-        destroy-method="close" id="dsFis2">
-        <property name="driverClassName" value="org.postgresql.Driver"/>
-        <property name="url" value="jdbc:postgresql://localhost:5432/fis2demo"/>
-        <property name="username" value="postgres"/>
-        <property name="password" value="postgres"/>
-    </bean>
-</blueprint>
-```
-
-12. Create route src/main/resources - OSGI-INF - blueprint - right click - New - Camel XML File - camel-context.xml (OSGI blueprint) - Finish - source
-```
-<?xml version="1.0" encoding="UTF-8"?>
-<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
-    xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.0.0"
-    xmlns:cxf="http://camel.apache.org/schema/blueprint/cxf"
-    xmlns:cxf-core="http://cxf.apache.org/blueprint/core"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="              http://www.osgi.org/xmlns/blueprint/v1.0.0              http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd              http://camel.apache.org/schema/blueprint/cxf               http://camel.apache.org/schema/blueprint/cxf/camel-cxf.xsd              http://camel.apache.org/schema/blueprint               http://camel.apache.org/schema/blueprint/camel-blueprint.xsd">
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:camel="http://camel.apache.org/schema/spring"
+    xmlns:cxf="http://camel.apache.org/schema/cxf"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd http://camel.apache.org/schema/cxf     http://camel.apache.org/schema/cxf/camel-cxf.xsd">
     <cxf:cxfEndpoint address="/employeeWS" id="employeeWS" serviceClass="org.jboss.fuse.workshop.soap.EmployeeWS">
         <cxf:properties>
             <entry key="dataFormat" value="POJO"/>
@@ -208,17 +232,21 @@ public interface EmployeeWS {
             <entry key="loggingFeatureEnabled" value="false"/>
         </cxf:properties>
     </cxf:cxfEndpoint>
-    <bean id="myTransformer" class="org.jboss.fuse.workshop.soap.MyTransformer"/>
-    <camelContext id="fuse-soap"
-        trace="false" xmlns="http://camel.apache.org/schema/blueprint">
-        <route id="fuse-soap-service"/>
+    <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+        <route id="employeeWS"/>
     </camelContext>
-</blueprint>
+</beans>
+
 ```
 13. Create webservice route. Click Design tab
 ```
-Components - CXF - cxf:bean:employeeWS
-Routing - Recipient List - simple - direct:${header.operationName}
+Components - CXF - Properties
+	URI: cxf:bean:employeeWS
+Transformation - Remove Header - Properties
+	Header Name: SOAPAction
+Routing - Recipient List - Properties
+	Expressions: simple 
+	Expressions: direct:${header.operationName}
 ```
 
 14. Create addEmployee route. Click Design tab
