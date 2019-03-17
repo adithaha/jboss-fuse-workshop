@@ -1,7 +1,7 @@
 
 ## LAB 0 - Environment
 
--- prepare vm --
+### VM Preparation
 1. Install VirtualBox 5.1.x
 2. New
 	- Name: JBossFuse
@@ -12,16 +12,14 @@
 5. Create
 
 
+### Preparing environment
 
-jboss/jboss
-
--- Start postgresql --
+ssh into the machine, user user/pass below: jboss/jboss
+```
+#start postgresql
 $ sudo su
 <password>
 $ docker start postgres94
+```
 
-1. Go into terminal as jboss user
-2. cd ~/workshop-fuse
-3. unzip jboss-fuse-karaf-6.3.0.redhat-187
-4. cd jboss-fuse-6.3.0.redhat-187/bin
-5. ./fuse
+Start JBoss Developer Studio application
