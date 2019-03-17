@@ -11,7 +11,7 @@ Open JBoss Developer Studio application
   <artifactId>fuse-soap</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <name>Workshop:: Fuse SOAP</name>
-  <description>Workshop:: Fuse SOAP</name>
+  <description>Workshop:: Fuse SOAP</description>
   ```
   
    ``` 
@@ -39,8 +39,9 @@ Open JBoss Developer Studio application
   ```
 3. Change default package src/main/java - org.mycompany - right click - refactor - rename
 	- New Name: org.jboss.fuse.workshop.soap
+	- Continue
 
-4. Create phone model class src/main/java - right click - new - class
+4. Create phone model class src/main/java - org.jboss.fuse.workshop.soap - right click - new - class
 	- package org.jboss.fuse.workshop.soap
 	- Name Phone
 ```
@@ -203,7 +204,7 @@ public interface EmployeeWS {
 
 9. Create datasource - src/main/resources - application.properties - Finish - source - add line below
 ```
-spring.dsEmployee.url=jdbc:postgresql://10.1.2.2:30432/fis2demo
+spring.dsEmployee.url=jdbc:postgresql://localhost:5432/fis2demo
 spring.dsEmployee.username=postgres
 spring.dsEmployee.password=postgres
 spring.dsEmployee.driver-class-name=org.postgresql.Driver
@@ -277,8 +278,8 @@ Components - CXF
 Transformation - Remove Header
 	Header Name: SOAPAction
 Routing - Recipient List
-	Expressions: simple 
-	Expressions: direct:${header.operationName}
+	Expression: simple 
+	Expression: direct:${header.operationName}
 ```
 
 15. Create addEmployee route. Click Design tab, drag and drop to create new Route
@@ -320,8 +321,14 @@ Component - Log
 16. Try your application
 ```
 Clean build: right click your fuse-soap project - run as - maven clean
-Build: right click your fuse-soap project - build project
-run application: fuse-soap - src/main/java - org.jboss.fuse.workshop.soap - Application.java (right click) - run as - Java Application
+Build: right click your fuse-soap project - run as - maven build....
+	Goals: clean package
+	Run
+start fuse application: fuse-soap - src/main/java - org.jboss.fuse.workshop.soap - Application.java (right click) - run as - Java Application
+```
+Open browser, go to at http://localhost:8080/cxf
+```
+stop fuse application: go to console tab - click red square on the right
 ```
 
-If those success, you will be able to see available SOAP service at http://localhost:8080/cxf
+
