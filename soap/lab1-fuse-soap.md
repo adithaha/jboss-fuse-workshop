@@ -1,8 +1,5 @@
 
-## LAB 1 - Installasi JBoss Fuse dengan fabric
-
-0. Window - Show View - Other - Terminal - Terminal - Open
-0. Tab terminal - icon terminal - Local Terminal - OK
+## LAB 1 - Create Fuse Soap Integration Project
 
 1. File - New - Project.. - type 'fuse' - Fuse Integration Project - Project-name: fuse-soap - 2.21.0.fuse-710018-redhat-00001 (Fuse 7.1.0 GA) - Simple log using Spring Boot - Spring DSL - Finish - Open Associate Perspective: Yes
 2. Change groupId in pom.xml - fuse-soap - pom.xml
@@ -19,12 +16,21 @@
   <dependencies>
     ...
     <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-jdbc</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-cxf-starter</artifactId>
     </dependency>
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-sql-starter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>9.4.1212</version>
     </dependency>
   </dependencies>
   
@@ -223,6 +229,23 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 ```
+12. Register CXF servlet into Spring Boot application - src/main/java - org.jboss.fuse.workshop.soap - Application.java
+
+```
+	@Bean
+    	ServletRegistrationBean servletRegistrationBeanCXF() {
+        	ServletRegistrationBean servlet = new ServletRegistrationBean(new CXFServlet(), "/cxf/*");
+        	servlet.setName("CXFServlet");
+        	return servlet;
+    	}
+```
+
+Add import below:
+```
+import org.apache.cxf.transport.servlet.CXFServlet;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
+```
+
 9. Remove default route src/main/resources - spring - camel-context.xml
 
 12. Create route src/main/resources - spring - right click - New - Camel XML File - camel-context.xml (Spring) - Finish - source
@@ -292,58 +315,11 @@ Transformation - Set Body
 Component - Log
 	Message: send response ${body}
 ```
-15. Deploy into Fuse (assumed fuse is already started)
-
-features:install jdbc 
-features:install camel-sql 
-osgi:install -s mvn:org.postgresql/postgresql/9.4.1212
-osgi:install -s mvn:org.jboss.fuse.workshop/fuse-soap/1.0.0-SNAPSHOT
-
-
-16. Create getEmployee route. Click Design tab
+15. Try your application
 ```
-Routing - Route
-Component - Direct - direct:getEmployee
-Transformation - Convert Body To - java.lang.Integer
-Component - Log - receive request ${body}
-Component - SQL - sql:select * from employee where id = :#${body}?dataSource=dsFis2&amp;outputType=SelectOne
-Transformation - Set Property - simple - employee - expression: ${body}
-Component - SQL - sql:select * from phone where employee_id = :#${property.employee.id}?dataSource=dsFis2&amp;outputType=SelectOne
-Component - Bean - method: putPhoneList - ref: myTransformer
-Transformation - Set Body - simple - expression: ${property.employee}
-Component - Log - send response ${body}
-```
-17. Redeploy into Fuse (assumed fuse is already started)
-
-osgi:list
-
-#get bundle id
-
-osgi:update <id>
-osgi:refresh <id>
-
-18. Create getEmployeeAll route. Click Design tab
-
-```
-Routing - Route
-Component - Direct - direct: getEmployeeAll
-Component - Log - receive request ${body}
-Transformation - Set Property - method - name:employeeList - ref:myTransformer - method:createEmployeeList
-Component - SQL - sql:select * from employee?dataSource=dsFis2&amp;outputType=SelectList&amp;outputClass=org.jboss.fis2.demo.soap.Employee
-Component - Bean - method: putEmployeeList - ref: myTransformer
-Routing - Split - simple - ${property.employeeList.employeeList}
-	Transformation - Set Property - simple - employee - expression: ${body}	
-	Component - SQL - sql:select * from phone where employee_id = :#${property.employee.id}?dataSource=dsFis2&amp;outputType=SelectList
-	Component - Bean - method: putPhoneList - ref: myTransformer	
-Transformation - Set Body - simple - ${property.employeeList}
-Component - Log - send response ${body}
+Clean build: right click your fuse-soap project - run as - maven clean
+Build: right click your fuse-soap project - build project
+run application: fuse-soap - src/main/java - org.jboss.fuse.workshop.soap - Application.java (right click) - run as - Java Application
 ```
 
-19. Redeploy into Fuse (assumed fuse is already started)
-
-osgi:list
-
-#get bundle id
-
-osgi:update <id>
-osgi:refresh <id>
+If those success, you will be able to see available SOAP service at http://localhost:8080/cxf
