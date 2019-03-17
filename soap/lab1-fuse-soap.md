@@ -1,6 +1,8 @@
 
 ## LAB 1 - Create Fuse Soap Integration Project
 
+Open JBoss Developer Studio application
+
 1. File - New - Project.. - type 'fuse' - Fuse Integration Project - Project-name: fuse-soap - 2.21.0.fuse-710018-redhat-00001 (Fuse 7.1.0 GA) - Simple log using Spring Boot - Spring DSL - Finish - Open Associate Perspective: Yes
 2. Change groupId in pom.xml - fuse-soap - pom.xml
  ``` 
@@ -38,7 +40,7 @@
 3. Change default package src/main/java - org.mycompany - right click - refactor - rename
 	- New Name: org.jboss.fuse.workshop.soap
 
-3. Create phone model class src/main/java - right click - new - class
+4. Create phone model class src/main/java - right click - new - class
 	- package org.jboss.fuse.workshop.soap
 	- Name Phone
 ```
@@ -66,7 +68,7 @@ public class Phone {
 	}
 }
 ```
-6. Create employee model class src/main/java - org.jboss.fuse.workshop.soap - right click - new - class
+5. Create employee model class src/main/java - org.jboss.fuse.workshop.soap - right click - new - class
 	- package org.jboss.fuse.workshop.soap
 	- Name Employee
 ```
@@ -113,7 +115,7 @@ public class Employee {
 	
 }
 ```
-7. Create employee list model class src/main/java - org.jboss.fuse.workshop.soap - right click - new - class
+6. Create employee list model class src/main/java - org.jboss.fuse.workshop.soap - right click - new - class
 	- package org.jboss.fuse.workshop.soap
 	- Name EmployeeList
 ```
@@ -140,7 +142,7 @@ public class EmployeeList {
 	
 }
 ```
-8. Create Transformer class src/main/java - org.jboss.fuse.workshop.soap - right click - new - class
+7. Create Transformer class src/main/java - org.jboss.fuse.workshop.soap - right click - new - class
 	- package org.jboss.fuse.workshop.soap
 	- Name MyTransformer
 
@@ -199,7 +201,7 @@ public interface EmployeeWS {
 }
 ```
 
-11. Create datasource - src/main/resources - application.properties - Finish - source - add line below
+9. Create datasource - src/main/resources - application.properties - Finish - source - add line below
 ```
 spring.dsEmployee.url=jdbc:postgresql://10.1.2.2:30432/fis2demo
 spring.dsEmployee.username=postgres
@@ -212,7 +214,7 @@ spring.dsEmployee.min-idle=8
 spring.dsEmployee.initial-size=5
 ```
 
-12. Inject datasource into Spring Boot application - src/main/java - org.jboss.fuse.workshop.soap - Application.java
+10. Inject datasource into Spring Boot application - src/main/java - org.jboss.fuse.workshop.soap - Application.java
 
 ```
 	@Bean(name = "dsEmployee")
@@ -229,7 +231,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 ```
-12. Register CXF servlet into Spring Boot application - src/main/java - org.jboss.fuse.workshop.soap - Application.java
+11. Register CXF servlet into Spring Boot application - src/main/java - org.jboss.fuse.workshop.soap - Application.java
 
 ```
 	@Bean
@@ -246,9 +248,9 @@ import org.apache.cxf.transport.servlet.CXFServlet;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 ```
 
-9. Remove default route src/main/resources - spring - camel-context.xml
+12. Remove default route src/main/resources - spring - camel-context.xml
 
-12. Create route src/main/resources - spring - right click - New - Camel XML File - camel-context.xml (Spring) - Finish - source
+13. Create route src/main/resources - spring - right click - New - Camel XML File - camel-context.xml (Spring) - Finish - source
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -268,7 +270,7 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 </beans>
 
 ```
-13. Create webservice route. Click Design tab, drag and drop to Route employeeWS
+14. Create webservice route. Click Design tab, drag and drop to Route employeeWS
 ```
 Components - CXF
 	URI: cxf:bean:employeeWS
@@ -279,7 +281,7 @@ Routing - Recipient List
 	Expressions: direct:${header.operationName}
 ```
 
-14. Create addEmployee route. Click Design tab, drag and drop to create new Route
+15. Create addEmployee route. Click Design tab, drag and drop to create new Route
 ```
 Routing - Route
 	Id: addEmployee
@@ -315,7 +317,7 @@ Transformation - Set Body
 Component - Log
 	Message: send response ${body}
 ```
-15. Try your application
+16. Try your application
 ```
 Clean build: right click your fuse-soap project - run as - maven clean
 Build: right click your fuse-soap project - build project
