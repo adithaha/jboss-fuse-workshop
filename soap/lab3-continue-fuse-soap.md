@@ -1,27 +1,48 @@
 
 ## LAB 3 - Continue Fuse SOAP
 
-16. Create getEmployee route. Click Design tab
+1. Create getEmployee route. Click Design tab, drag and drop to create new Route
 ```
 Routing - Route
-Component - Direct - direct:getEmployee
-Transformation - Convert Body To - java.lang.Integer
-Component - Log - receive request ${body}
-Component - SQL - sql:select * from employee where id = :#${body}?dataSource=dsFis2&amp;outputType=SelectOne
-Transformation - Set Property - simple - employee - expression: ${body}
-Component - SQL - sql:select * from phone where employee_id = :#${property.employee.id}?dataSource=dsFis2&amp;outputType=SelectOne
-Component - Bean - method: putPhoneList - ref: myTransformer
-Transformation - Set Body - simple - expression: ${property.employee}
-Component - Log - send response ${body}
+	ID: addEmployee
+Component - Direct
+	URI: direct:getEmployee
+Transformation - Convert Body To
+	Type: Java.lang.Integer
+Component - Log
+	Message: receive request ${body}
+Component - SQL
+	URI: sql:select * from employee where id = :#${body}?dataSource=dsEmployee&outputType=SelectOne
+Transformation - Set Property
+	Expression: simple
+	Expression: ${body}
+	Property Name: employee
+Component - SQL
+	URI: sql:select * from phone where employee_id = :#${property.employee.id}?dataSource=dsEmployee&outputType=SelectOne
+Component - Bean
+	Method: putPhoneList
+	Ref: myTransformer
+Transformation - Set Body
+	Expression: simple
+	Expression: ${property.employee}
+Component - Log
+	Message: send response ${body}
 ```
 
-18. Create getEmployeeAll route. Click Design tab
+18. Create getEmployeeAll route. Click Design tab drag and drop to create new Route
 
 ```
 Routing - Route
-Component - Direct - direct: getEmployeeAll
-Component - Log - receive request ${body}
-Transformation - Set Property - method - name:employeeList - ref:myTransformer - method:createEmployeeList
+	ID: getEmployeeAll
+Component - Direct
+	URI: direct: getEmployeeAll
+Component - Log
+	Message: receive request ${body}
+Transformation - Set Property
+	Expression: method
+	Method: createEmployeeList
+	Ref: myTransformer
+	Property Name: EmployeeList
 Component - SQL - sql:select * from employee?dataSource=dsFis2&amp;outputType=SelectList&amp;outputClass=org.jboss.fis2.demo.soap.Employee
 Component - Bean - method: putEmployeeList - ref: myTransformer
 Routing - Split - simple - ${property.employeeList.employeeList}
