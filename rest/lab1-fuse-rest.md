@@ -1,194 +1,123 @@
 
-## LAB 1 - Installasi JBoss Fuse dengan fabric
+## LAB 1 - Create Fuse Soap Integration Project
 
-1. File - New - Project.. - type 'fuse' - Fuse Integration Project - fuse-soap - 2.17.0.redhat-630187 - Use Predefined template - JBoss Fuse - Beginner - Content Based Router - Finish
-2. Change groupId in pom.xml
+Open JBoss Developer Studio application
+
+1. File - New - Project.. - type 'fuse' - Fuse Integration Project - Project-name: fuse-rest - 2.21.0.fuse-710018-redhat-00001 (Fuse 7.1.0 GA) - Simple log using Spring Boot - Spring DSL - Finish - Open Associate Perspective: Yes
+2. Change groupId in pom.xml - fuse-soap - pom.xml
  ``` 
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.jboss.fuse.workshop</groupId>
   <artifactId>fuse-rest</artifactId>
   <version>1.0.0-SNAPSHOT</version>
-  <packaging>bundle</packaging>
   <name>Workshop:: Fuse REST</name>
+  <description>Workshop:: Fuse REST</description>
   ```
-    In maven-bundle-plugin add
-    ```
-	<plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <version>${version.maven-bundle-plugin}</version>
-        <extensions>true</extensions>
-	<! -- copy from here -->
-        <configuration>
-          <instructions>
-            <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-            <Import-Package>*</Import-Package>
-            <Export-Package></Export-Package>
-          </instructions>
-        </configuration>
-	<! -- end here -->
-	```
-3. Remove existing test code src/test/java - com.mycompany - right click - delete
-4. Remove existing test code src/test/resources - data - right click - delete
-5. Remove existing camel route Camel Contexts - blueprint.xml - right click - delete
-6. Create java resources in src/main - right click - new - folder
-7. Folder name - java
-8. Create phone model class src/main/java - right click - new - class
-	- package org.jboss.fuse.workshop.rest
-	- Name Phone
+  
+   ``` 
+  <dependencies>
+    ...
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-cxf-starter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-amqp</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-jaxb-starter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-jbossdatagrid</artifactId>
+      <version>6.5.1.Final-redhat-1</version>
+      <exclusions>
+      	<exclusion>
+          <groupId>org.infinispan</groupId>
+          <artifactId>infinispan-embedded</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.infinispan</groupId>
+          <artifactId>infinispan-query-dsl</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.infinispan</groupId>
+          <artifactId>infinispan-commons</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-rt-frontend-jaxrs</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.jackson</groupId>
+      <artifactId>jackson-jaxrs</artifactId>
+    </dependency>
+  </dependencies>
+  
+  ```
+3. Change default package src/main/java - org.mycompany - right click - refactor - rename
+	- New Name: org.jboss.fuse.workshop.rest
+	- Continue
+
+4. Put wsdl into fuse-rest. Go to previous application fuse-soap, download http://localhost:8080/cxf/employeeWS?wsdl, put into fuse-rest - src/main/resources/demo-soap/wsdl/employeeWS.wsdl
+
+4. Generate java class for corresponding wsdl - fuse-rest - pom.xml
 ```
-package org.jboss.fuse.workshop.rest;
-
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement
-public class Phone {
-
-	private String phone;
-	private String type;
-	
-	public String getPhone() {
-		return phone;
-	}
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
-	}
-}
-```
-9. Create employee model class src/main/java - right click - new - class
-	- package org.jboss.fuse.workshop.rest
-	- Name Employee
-```
-package org.jboss.fuse.workshop.rest;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement(name="employee")
-public class Employee {
-
-	private Integer id;
-	private String name;
-	private String address;
-	private List<Phone> phoneList = new ArrayList<Phone>();
-	
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
-	public List<Phone> getPhoneList() {
-		return phoneList;
-	}
-	public void setPhoneList(List<Phone> phoneList) {
-		this.phoneList = phoneList;
-	}
-	
-	
-}
-```
-10. Create employee list model class src/main/java - right click - new - class
-	- package org.jboss.fuse.workshop.rest
-	- Name EmployeeList
-```
-package org.jboss.fuse.workshop.rest;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement(name="employeeList")
-public class EmployeeList {
-
-	private List<Employee> employeeList = new ArrayList<Employee>();
-
-	public List<Employee> getEmployeeList() {
-		return employeeList;
-	}
-
-	public void setEmployeeList(List<Employee> employeeList) {
-		this.employeeList = employeeList;
-	}
-	
-	
-}
-```
-11. Create Transformer class src/main/java - right click - new - class
-	- package org.jboss.fuse.workshop.rest
-	- Name MyTransformer
-
-
-```
-package org.jboss.fuse.workshop.rest;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.camel.Body;
-import org.apache.camel.ExchangeProperty;
-
-public class MyTransformer {
-	
-	
-    public void putPhoneList(
-    		@ExchangeProperty(value="employee") Employee employee,
-    		@Body List<Phone> phoneList
-    		) {
-    	
-    	employee.setPhoneList(phoneList);
-    }
-
-    public EmployeeList createEmployeeList(
-    		) {
-    	EmployeeList eList = new EmployeeList();
-    	return eList;
-    }
-    
-    public void putEmployeeList(
-    		@ExchangeProperty(value="employeeList") EmployeeList employeelist,
-    		@Body List<Employee> employeeL
-    		
-    		) {
-    	employeelist.setEmployeeList(employeeL);
-    }
-    
-}
+<build>
+    ...
+    <plugins>
+      ...
+      <plugin>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-codegen-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>generate-sources</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>wsdl2java</goal>
+            </goals>
+            <configuration>
+              <sourceRoot>${basedir}/target/generated/src/main/java</sourceRoot>
+              <defaultOptions>
+                <frontEnd>jaxws21</frontEnd>
+              </defaultOptions>
+              <wsdlOptions>
+                <wsdlOption>
+                  <wsdl>${basedir}/src/main/resources/demo-soap/wsdl/employeeWS.wsdl</wsdl>
+                  <extraargs>
+                    <extraarg>-b</extraarg>
+                    <extraarg>${basedir}/jaxb-bindings.xml</extraarg>
+                  </extraargs>
+                </wsdlOption>
+              </wsdlOptions>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
 ```
 
-12. Create datasource src/main/resources - OSGI-INF - blueprint - right click - New - Camel XML File - ds-context.xml (OSGI blueprint) - Finish - source
+12. Create json mapper class fuse-rest - src/main/resources - spring - right click - New - XML File - json.xml - Finish - source
 ```
 <?xml version="1.0" encoding="UTF-8"?>
-<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0" xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.0.0">
-    <bean class="org.apache.commons.dbcp.BasicDataSource"
-        destroy-method="close" id="dsFis2">
-        <property name="driverClassName" value="org.postgresql.Driver"/>
-        <property name="url" value="jdbc:postgresql://localhost:5432/fis2demo"/>
-        <property name="username" value="postgres"/>
-        <property name="password" value="postgres"/>
-    </bean>
-</blueprint>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="jacksonObjectMapper" class="org.codehaus.jackson.map.ObjectMapper">
+	    <property name="serializationInclusion" value="NON_NULL"/>
+	</bean>
+	
+	<bean id="jsonProvider" class="org.codehaus.jackson.jaxrs.JacksonJsonProvider">
+	    <property name="mapper" ref="jacksonObjectMapper"/>
+	</bean>
+
+</beans>
 ```
 
 13. Create route src/main/resources - OSGI-INF - blueprint - right click - New - Camel XML File - rest-context.xml (OSGI blueprint) - Finish - source
