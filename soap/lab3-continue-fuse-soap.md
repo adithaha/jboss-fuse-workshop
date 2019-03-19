@@ -29,7 +29,7 @@ Component - Log
 	Message: send response ${body}
 ```
 
-18. Create getEmployeeAll route. Click Design tab drag and drop to create new Route
+2. Create getEmployeeAll route. Click Design tab drag and drop to create new Route
 
 ```
 Routing - Route
@@ -53,4 +53,4 @@ Transformation - Set Body - simple - ${property.employeeList}
 Component - Log - send response ${body}
 ```
 
-19. Redeploy into openshift
+3. Redeploy into openshift
