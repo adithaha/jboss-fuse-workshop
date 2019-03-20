@@ -265,6 +265,7 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
             <entry key="loggingFeatureEnabled" value="false"/>
         </cxf:properties>
     </cxf:cxfEndpoint>
+    <bean class="org.jboss.fuse.workshop.soap.MyTransformer" id="myTransformer"/>
     <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
         <route id="employeeWS"/>
     </camelContext>
