@@ -57,10 +57,16 @@ Routing - Split
 	Expression: simple
 	Expression: ${body}
 	Property Name: employee
-	Component - SQL - sql:select * from phone where employee_id = :#${property.employee.id}?dataSource=dsFis2&amp;outputType=SelectList
-	Component - Bean - method: putPhoneList - ref: myTransformer	
-Transformation - Set Body - simple - ${property.employeeList}
-Component - Log - send response ${body}
+(inside split) 	Component - SQL
+	URI: sql:select * from phone where employee_id = :#${property.employee.id}?dataSource=dsFis2&amp;outputType=SelectList
+(inside split) 	Component - Bean
+	Method: putPhoneList
+	Ref: myTransformer	
+Transformation - Set Body
+	Expression: simple
+	Expression: ${property.employeeList}
+Component - Log
+	Message: send response ${body}
 ```
 
 3. Redeploy into openshift
