@@ -46,7 +46,7 @@ Transformation - Set Property
 	Ref: myTransformer
 	Property Name: employeeList
 Component - SQL
-	URI: sql:select * from employee?dataSource=dsFis2&amp;outputType=SelectList&outputClass=org.jboss.fis2.demo.soap.Employee
+	URI: sql:select * from employee?dataSource=dsEmployee&outputType=SelectList&outputClass=org.jboss.fuse.workshop.soap.Employee
 Component - Bean
 	Method: putEmployeeList
 	Ref: myTransformer
@@ -57,8 +57,8 @@ Routing - Split
 	Expression: simple
 	Expression: ${body}
 	Property Name: employee
-(inside split) 	Component - SQL
-	URI: sql:select * from phone where employee_id = :#${property.employee.id}?dataSource=dsFis2&amp;outputType=SelectList
+(inside split) 	Component - SQLsql:select
+	URI:  sql:select * from phone where employee_id = :#${property.employee.id}?dataSource=dsEmployee&outputType=SelectList
 (inside split) 	Component - Bean
 	Method: putPhoneList
 	Ref: myTransformer	
