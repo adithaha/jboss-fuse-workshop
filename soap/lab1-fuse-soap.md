@@ -29,7 +29,7 @@ Open JBoss Developer Studio application
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-jaxb-starter</artifactId>
     </dependency>
-    <<dependency>
+    <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-sql-starter</artifactId>
     </dependency>
