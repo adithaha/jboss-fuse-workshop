@@ -23,3 +23,9 @@ $ docker start postgres94
 ```
 
 Start JBoss Developer Studio application
+
+### Import database table
+
+```
+$ psql -h localhost postgres -f ddl.sql postgres
+```
