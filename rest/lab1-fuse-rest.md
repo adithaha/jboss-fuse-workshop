@@ -23,47 +23,44 @@ Open JBoss Developer Studio application
     </dependency>
     <dependency>
       <groupId>org.apache.camel</groupId>
-      <artifactId>camel-amqp</artifactId>
+      <artifactId>camel-servlet-starter</artifactId>
     </dependency>
     <dependency>
       <groupId>org.apache.camel</groupId>
-      <artifactId>camel-jaxb-starter</artifactId>
+      <artifactId>camel-jackson-starter</artifactId>
     </dependency>
     <dependency>
       <groupId>org.apache.camel</groupId>
-      <artifactId>camel-jbossdatagrid</artifactId>
-      <version>6.5.1.Final-redhat-1</version>
-      <exclusions>
-      	<exclusion>
-          <groupId>org.infinispan</groupId>
-          <artifactId>infinispan-embedded</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.infinispan</groupId>
-          <artifactId>infinispan-query-dsl</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.infinispan</groupId>
-          <artifactId>infinispan-commons</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.cxf</groupId>
-      <artifactId>cxf-rt-frontend-jaxrs</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.codehaus.jackson</groupId>
-      <artifactId>jackson-jaxrs</artifactId>
+      <artifactId>camel-swagger-java-starter</artifactId>
     </dependency>
   </dependencies>
   
   ```
+
+3. Create jaxb binding to generate classes from wsdl - fuse-rest - right click - New - Other... - XML file - Next
+	- Location: fuse-rest
+	- File name: jaxb-bindings.xml
+	- Finish
+```	
+<jaxb:bindings version="2.0"
+               xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" 
+               xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+               xmlns:xs="http://www.w3.org/2001/XMLSchema"
+				xmlns:annox="http://annox.dev.java.net">
+    <jaxb:bindings>
+        <jaxb:globalBindings generateElementProperty="false">
+        	<xjc:simple />
+        	<!-- <xjc:serializable uid="1" /> -->
+        </jaxb:globalBindings>
+    </jaxb:bindings>
+</jaxb:bindings>
+ ```
 3. Change default package src/main/java - org.mycompany - right click - refactor - rename
 	- New Name: org.jboss.fuse.workshop.rest
+	- OK
 	- Continue
 
-4. Put wsdl into fuse-rest. Go to previous application fuse-soap, download http://localhost:8080/cxf/employeeWS?wsdl, put into fuse-rest - src/main/resources/demo-soap/wsdl/employeeWS.wsdl
+4. Put wsdl into fuse-rest. Go to previous application fuse-soap, download http://localhost:8080/cxf/employeeWS?wsdl, put into fuse-rest - src/main/resources/employeeWS.wsdl
 
 4. Generate java class for corresponding wsdl - fuse-rest - pom.xml
 ```
@@ -88,7 +85,7 @@ Open JBoss Developer Studio application
               </defaultOptions>
               <wsdlOptions>
                 <wsdlOption>
-                  <wsdl>${basedir}/src/main/resources/demo-soap/wsdl/employeeWS.wsdl</wsdl>
+                  <wsdl>${basedir}/src/main/resources/employeeWS.wsdl</wsdl>
                   <extraargs>
                     <extraarg>-b</extraarg>
                     <extraarg>${basedir}/jaxb-bindings.xml</extraarg>
@@ -100,6 +97,16 @@ Open JBoss Developer Studio application
         </executions>
       </plugin>
 ```
+
+12. Generate java classes from WSDL
+```
+- fuse-rest - right click - Run as - Maven clean
+- fuse-rest - right click - Run as - Maven generate-sources
+
+Check if classes already generated in target/generated/src/main/java directory
+```
+
+
 
 12. Create json mapper class fuse-rest - src/main/resources - spring - right click - New - XML File - json.xml - Finish - source
 ```
