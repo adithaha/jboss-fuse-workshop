@@ -1,4 +1,4 @@
-CREATE DATABASE fis2demo
+CREATE DATABASE dsEmployee
   WITH OWNER = postgres
        ENCODING = 'UTF8'
        TABLESPACE = pg_default
@@ -6,6 +6,7 @@ CREATE DATABASE fis2demo
        LC_CTYPE = 'en_US.utf8'
        CONNECTION LIMIT = -1;
 
+\c dsEmployee;
 
 CREATE TABLE employee
 (
