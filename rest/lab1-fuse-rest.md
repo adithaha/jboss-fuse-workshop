@@ -106,69 +106,114 @@ Open JBoss Developer Studio application
 Check if classes already generated in target/generated/src/main/java directory
 ```
 
+12. Remove default route src/main/resources - spring - camel-context.xml
 
-
-12. Create json mapper class fuse-rest - src/main/resources - spring - right click - New - XML File - json.xml - Finish - source
+13. Create route src/main/resources - spring - right click - New - Camel XML File - camel-context.xml (Spring) - Finish - source
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-
-
-    <bean id="jacksonObjectMapper" class="org.codehaus.jackson.map.ObjectMapper">
-	    <property name="serializationInclusion" value="NON_NULL"/>
-	</bean>
-	
-	<bean id="jsonProvider" class="org.codehaus.jackson.jaxrs.JacksonJsonProvider">
-	    <property name="mapper" ref="jacksonObjectMapper"/>
-	</bean>
-
+    xmlns:camel="http://camel.apache.org/schema/spring"
+    xmlns:cxf="http://camel.apache.org/schema/cxf"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd http://camel.apache.org/schema/cxf     http://camel.apache.org/schema/cxf/camel-cxf.xsd">
+    <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+    </camelContext>
 </beans>
-```
 
-13. Create route src/main/resources - OSGI-INF - blueprint - right click - New - Camel XML File - rest-context.xml (OSGI blueprint) - Finish - source
+```
+13. configure backend soap endpoint src/main/resources - spring - right click - New - Camel XML File - camel-context.xml (Spring) - Finish - source
 ```
 <?xml version="1.0" encoding="UTF-8"?>
-<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
-    xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.0.0"
-    xmlns:cxf="http://camel.apache.org/schema/blueprint/cxf"
-    xmlns:cxf-core="http://cxf.apache.org/blueprint/core"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="              http://www.osgi.org/xmlns/blueprint/v1.0.0              http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd              http://camel.apache.org/schema/blueprint/cxf               http://camel.apache.org/schema/blueprint/cxf/camel-cxf.xsd              http://camel.apache.org/schema/blueprint               http://camel.apache.org/schema/blueprint/camel-blueprint.xsd">
-    <cxf:cxfEndpoint address="/employeeWS" id="employeeWS" serviceClass="org.jboss.fuse.workshop.soap.EmployeeWS">
+<beans>
+   ...
+    <cxf:cxfEndpoint address="${url.employeeWS}"
+        id="employeeWS" serviceClass="org.jboss.fuse.workshop.soap.EmployeeWSPortType">
         <cxf:properties>
             <entry key="dataFormat" value="POJO"/>
             <entry key="faultStackTraceEnabled" value="true"/>
             <entry key="loggingFeatureEnabled" value="false"/>
         </cxf:properties>
     </cxf:cxfEndpoint>
-    <camelContext id="fuse-soap"
-        trace="false" xmlns="http://camel.apache.org/schema/blueprint">
-        <route id="fuse-soap-service"/>
+    <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
     </camelContext>
-</blueprint>
-```
-14. Create rest route. Click Design tab
-```
-Components - CXF - cxf:bean:employeeWS
-Routing - Recipient List - simple - direct:${header.operationName}
+    ...
+</beans>
+
 ```
 
-15. Create addEmployee route. Click Design tab
+13. configure API definition in camel-context.xml
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+   ...
+    <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+        <dataFormats>
+            <json id="json" include="NON_NULL" library="Jackson"/>
+        </dataFormats>
+        <restConfiguration apiContextPath="api-docs" bindingMode="json"
+            component="servlet" contextPath="/camel" enableCORS="true">
+            <!-- we want json output in pretty mode -->
+            <dataFormatProperty key="prettyPrint" value="true"/>
+            <apiProperty key="cors" value="true"/>
+            <apiProperty key="api.version" value="1.0.0"/>
+            <apiProperty key="api.title" value="Red Hat Fuse - REST"/>
+            <apiProperty key="api.description" value="Red Hat Fuse - REST"/>
+            <apiProperty key="api.contact.name" value="Red Hat"/>
+        </restConfiguration>
+    </camelContext>
+    ...
+</beans>
+
+```
+
+14. Create rest DSL in camel-context.xml
+```
+   <camelContext>
+   	...
+	</restConfiguration>
+        <rest path="/employeeRS">
+            <get outType="org.jboss.fuse.workshop.soap.EmployeeList" uri="/create-new-customer">
+                <description>getEmployeeAll</description>
+                <to uri="direct:getEmployeeAll"/>
+            </get>
+        </rest>
+   </camelContext>
+```
+
+15. Create getEmployeeAll route. Click Design tab
 ```
 Routing - Route
-Component - Direct - direct:addEmployee
-Transformation - Convert Body To - org.jboss.fuse.workshop.soap.Employee
-Component - Log - receive request ${body}
-Transformation - Set Property - simple - employee - ${body}
-Transformation - Set Header - constant - CamelSqlRetrieveGeneratedKeys - true
-Component - SQL - sql:insert into employee (name, address) values (:#${body.name}, :#${body.address})?dataSource=dsFis2&outputType=SelectOne
-Transformation - Transform - simple - ${property.employee.setId(${header.CamelSqlGeneratedKeyRows[0][id]})}
-Routing - Split - simple - ${property.employee.phoneList}
-	Component - Log - phone: ${body}
-	Component - SQL - sql:insert into phone (employee_id, phone, type) values (:#${property.employee.id}, :#${body.phone}, :#${body.type})?dataSource=dsFis2&outputType=SelectOne
-Transformation - Set Body - simple - ${property.employee}
-Component - Log - send response ${body}
+	Id: getEmployeeAll
+Component - Direct
+	Uri: direct:addEmployee
+Transformation - Convert Body To
+	Type: org.jboss.fuse.workshop.soap.Employee
+Component - Log
+	Message: receive request ${body}
+Transformation - Set Property
+	Expression: simple
+	Expression: ${body}
+	Property Name: employee
+Transformation - Set Header
+	Expression: constant 
+	Expression: true
+	Header Name: CamelSqlRetrieveGeneratedKeys
+Component - SQL
+	Uri: sql:insert into employee (name, address) values (:#${body.name}, :#${body.address})?dataSource=dsEmployee&outputType=SelectOne
+Transformation - Transform
+	Expression: simple
+	Expression: ${property.employee.setId(${header.CamelSqlGeneratedKeyRows[0][id]})}
+Routing - Split
+	Expression: simple
+	Expression: ${property.employee.phoneList}
+Component - Log (put inside Split block) 
+	Message: phone: ${body}
+Component - SQL (put inside Split block) 
+	Uri: sql:insert into phone (employee_id, phone, type) values (:#${property.employee.id}, :#${body.phone}, :#${body.type})?dataSource=dsEmployee&outputType=SelectOne
+Transformation - Set Body
+	Expression: simple
+	Expression: ${property.employee}
+Component - Log
+	Message: send response ${body}
 ```
 16. Build
 pilih project - klik kanan - run as - mvn clean
