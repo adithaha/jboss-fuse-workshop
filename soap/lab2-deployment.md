@@ -9,11 +9,11 @@ $ cd <workspace-dir>
 ```
 2. Login into openshift
 ```
-$ oc login -u <user> https://
+$ oc login -u <user> https://openshift.com
 ```
 3. Create new OpenShift application
 ```
-$ oc new-app fuse7-java-openshift:1.1 --code . --name=fuse-soap --strategy=source
+$ oc new-app fuse7-java-openshift:1.1 --code=. --name=fuse-soap --strategy=source
 ```
 4. Open application port 8080 in service
 ```
