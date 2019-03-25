@@ -1,26 +1,68 @@
 
 ## LAB 2 - Deployment
 
-1. Login into openshift
+### Configure deployment
+
+1. Go to workspace directory
+```
+$ cd <workspace-dir>
+```
+2. Login into openshift
 ```
 $ oc login -u <user> https://
-$ oc new-project <user>-fuse-workshop
+```
+3. Create new OpenShift application
+```
+$ oc new-app fuse7-java-openshift:1.1 --code . --name=fuse-soap --strategy=source
+```
+4. Open application port 8080 in service
+```
+$ oc edit svc/fuse-soap
+...
+spec:
+  ...
+  ports:
+  ...
+  - name: 8080-tcp
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+...
+```
+5. Create route from external to service port 8080
+```
+$ oc expose service fuse-soap --name=fuse-soap --port=8080
 ```
 
-### Deploy with S2I Binary
+6. Open jolokia access so the application can be monitored using fuse console. Add name: jolokia to existing port 8778.
+```
+$ oc edit dc/fuse-soap
+...
+spec:
+  ...
+  template:
+    ...
+    spec:
+      containers:
+      - image: xxx
+        ...
+        ports:
+        - containerPort: 8778
+          name: jolokia
+          protocol: TCP
+...
+```
 
-2. Create new application on ocp
+### Deploy using source code from local client
+Source code: local
+Build: OpenShift server
 ```
-$ oc new-app blabla
+$ oc start-build fuse-soap --from-dir=fuse-soap --follow
 ```
 
-3. Start build on ocp
+### Deploy using jar from local client
+Source code: local
+Build: local
 ```
-$ oc start build blabla
+$ oc start-build fuse-soap --from-file=target/fuse-soap-1.0.0-SNAPSHOT.jar --follow
 ```
-4. Expose 8080 port yaml
-5. Service expose 8080
-6. Route expose 8080
-7. Expose management port 8778
-8. Try rebuild
-
