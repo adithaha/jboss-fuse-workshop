@@ -1,5 +1,5 @@
 
-## LAB 1 - Create Fuse Soap Integration Project
+## LAB 1 - Create Fuse REST Integration Project
 
 Open JBoss Developer Studio application
 
@@ -58,7 +58,7 @@ Open JBoss Developer Studio application
 Check if classes already generated in target/generated/src/main/java directory
 ```
 
-4. Configure API documentation, replace <restConfiguration> tag in rest-springboot-context with below
+5. Configure API documentation, replace <restConfiguration> tag in rest-springboot-context with below
 
 ```
 	<restConfiguration apiContextPath="api-docs" bindingMode="json"
@@ -72,7 +72,7 @@ Check if classes already generated in target/generated/src/main/java directory
         </restConfiguration>
         
 ```
-4. Method with empty parameter is not configured correctly. getEmployeeAll service uri must be changed in <rest> tag
+6. Method with empty parameter is not configured correctly. getEmployeeAll service uri must be changed in <rest> tag
 From:
 ```
 uri="/employeeall/{arg0}">
@@ -82,7 +82,7 @@ To:
 uri="/employeeall">
 ```
 
-4. since getEmployeeAll doesn't have any parameter, its body need to be set to null before sending to soap backend. Go to design.
+7. since getEmployeeAll doesn't have any parameter, its body need to be set to null before sending to soap backend. Go to design.
 ```
 In route getEmployeeAll, insert below between _log3 and cxf
 Transformation - Set Body
@@ -90,13 +90,13 @@ Transformation - Set Body
 	- Expression: null
 ```
 
-4. Configure Spring Boot to read generated camel xml - src/main/java - org.jboss.fuse.workshop.rest - Application.java
+8. Configure Spring Boot to read generated camel xml - src/main/java - org.jboss.fuse.workshop.rest - Application.java
 ```
 @ImportResource({"classpath:spring/rest-springboot-context.xml"})
 ```
 
 
-4. Change port so not conflicting with fuse-soap - src/main/resources - application.properties - Finish - source - add line below
+9. Change port so not conflicting with fuse-soap - src/main/resources - application.properties - Finish - source - add line below
 
 change management port from 8081 to 8091:
 ```
@@ -107,7 +107,7 @@ configure http port to 8090:
 server.port=8090
 ```
 
-12. Try your application
+10. Try your application
 ```
 Clean build: right click your fuse-soap project - run as - maven clean
 Build: right click your fuse-soap project - run as - maven build....
