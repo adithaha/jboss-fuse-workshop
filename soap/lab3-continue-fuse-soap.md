@@ -14,13 +14,13 @@ Transformation - Convert Body To
 Component - Log
 	Message: receive request ${body}
 Component - SQL
-	URI: sql:select * from employee where id = :#${body}?dataSource=dsEmployee&outputType=SelectOne
+	URI: sql:select * from employee where id = :#${body}?dataSource=dsEmployee&outputType=SelectOne&outputClass=org.jboss.fuse.workshop.soap.Employee
 Transformation - Set Property
 	Expression: simple
 	Expression: ${body}
 	Property Name: employee
 Component - SQL
-	URI: sql:select * from phone where employee_id = :#${property.employee.id}?dataSource=dsEmployee&outputType=SelectOne
+	URI: sql:select * from phone where employee_id = :#${property.employee.id}?dataSource=dsEmployee&outputType=SelectList&outputClass=org.jboss.fuse.workshop.soap.Phone
 Component - Bean
 	Method: putPhoneList
 	Ref: myTransformer
