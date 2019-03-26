@@ -58,7 +58,7 @@ Open JBoss Developer Studio application
 Check if classes already generated in target/generated/src/main/java directory
 ```
 
-5. Configure API documentation, replace <restConfiguration> tag in rest-springboot-context with below
+5. Configure API documentation, replace <restConfiguration> tag in rest-springboot-context.xml with below
 
 ```
 	<restConfiguration apiContextPath="api-docs" bindingMode="json"
@@ -72,7 +72,19 @@ Check if classes already generated in target/generated/src/main/java directory
         </restConfiguration>
         
 ```
-6. Method with empty parameter is not configured correctly. getEmployeeAll service uri must be changed in <rest> tag
+6. For easy configuration, put SOAP address on application.properties - src/main/resources - application.properties - Finish - source
+```
+...
+url.employeeWS=http://localhost:8080/cxf/employeeWS
+...
+```
+
+7. Configure camel context to get SOAP address from properties - rest-springboot-context. For each cxf endpoint, replace http://localhost:8080/cxf/employeeWS to {{url.employeeWS}} 
+```
+Uri: cxf://{{url.employeeWS}}...
+```
+
+8. Method with empty parameter is not configured correctly. getEmployeeAll service uri must be changed in <rest> tag
 From:
 ```
 uri="/employeeall/{arg0}">
@@ -82,7 +94,7 @@ To:
 uri="/employeeall">
 ```
 
-7. since getEmployeeAll doesn't have any parameter, its body need to be set to null before sending to soap backend. Go to design.
+9. since getEmployeeAll doesn't have any parameter, its body need to be set to null before sending to soap backend. Go to design.
 ```
 In route getEmployeeAll, insert below between _log3 and cxf
 Transformation - Set Body
@@ -90,13 +102,13 @@ Transformation - Set Body
 	- Expression: null
 ```
 
-8. Configure Spring Boot to read generated camel xml - src/main/java - org.jboss.fuse.workshop.rest - Application.java
+10. Configure Spring Boot to read generated camel xml - src/main/java - org.jboss.fuse.workshop.rest - Application.java
 ```
 @ImportResource({"classpath:spring/rest-springboot-context.xml"})
 ```
 
 
-9. Change port so not conflicting with fuse-soap - src/main/resources - application.properties - Finish - source - add line below
+11. Change port so not conflicting with fuse-soap - src/main/resources - application.properties - Finish - source - add line below
 
 change management port from 8081 to 8091:
 ```
@@ -107,7 +119,7 @@ configure http port to 8090:
 server.port=8090
 ```
 
-10. Try your application
+12. Try your application
 ```
 Clean build: right click your fuse-soap project - run as - maven clean
 Build: right click your fuse-soap project - run as - maven build....
