@@ -64,6 +64,7 @@ $ oc start-build fuse-rest --from-dir=fuse-rest --follow
 Source code: local
 Build: local
 ```
+$ mvn clean package
 $ oc start-build fuse-rest --from-file=target/fuse-rest-1.0.0-SNAPSHOT.jar --follow
 ```
 
