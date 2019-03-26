@@ -74,7 +74,9 @@ fuse-rest requires employee SOAP service as a backend. Assumed employeeWS is alr
 1. Login to OpenShift Web Console via browser https://openshift.com
 2. Go to project <project>
 3. Choose Deployment Config fuse-rest - Environment tab - add environment parameter
+  ```
   Name: url.employeeWS | Value: http://<fuse-soap-route>/cxf/employeeWS
+  ```
 4. Save
   
 Application will be redeployed with configured parameter.
