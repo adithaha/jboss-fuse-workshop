@@ -64,6 +64,8 @@ $ oc start-build fuse-soap --from-dir=fuse-soap --follow
 Source code: local
 Build: local
 ```
+$ cd <fuse-soap>
+$ mvn clean package
 $ oc start-build fuse-soap --from-file=target/fuse-soap-1.0.0-SNAPSHOT.jar --follow
 ```
 
