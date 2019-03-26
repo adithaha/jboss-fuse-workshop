@@ -66,3 +66,16 @@ Build: local
 ```
 $ oc start-build fuse-soap --from-file=target/fuse-soap-1.0.0-SNAPSHOT.jar --follow
 ```
+
+### Configuring parameter
+fuse-soap requires postgre database to put and get data. Assumed database is already set up, below are procedures to configure database settings. Since we are using Spring Boot, all parameters are configured via application.properties, and mapped to system environment. All we need to do is to configure system properties in application Deployment Config.
+
+1. Login to OpenShift Web Console via browser https://openshift.com
+2. Go to project <project>
+3. Choose Deployment Config fuse-soap - Environment tab - add environment parameter
+  Name: spring.dsEmployee.url | Value: jdbc:postgresql://<host>:5432/dsEmployee
+  Name: spring.dsEmployee.username | Value: <username>
+  Name: spring.dsEmployee.password | Value: <password>
+4. Save
+  
+Application will be redeployed with configured parameter.
