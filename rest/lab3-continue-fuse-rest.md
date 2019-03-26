@@ -9,8 +9,8 @@ In this lab, we will create new additional API service to add employee with mult
             ...
             <post consumes="application/json" 
                 outType="org.jboss.fuse.workshop.soap.EmployeeList"
-                type="org.jboss.fuse.workshop.soap.EmployeeList" uri="/employeelist">
-                <to uri="direct:addEmployeeList"/>
+                type="org.jboss.fuse.workshop.soap.EmployeeList" uri="/employeebulk">
+                <to uri="direct:addEmployeeBulk"/>
             </post>...
         </rest>
 ```
@@ -30,7 +30,7 @@ Routing - Split
 	Expression: simple
 	Expression: ${property.employeeList.employeeList}
 (inside split) Component - Direct
-		Uri: direct:addEmployeeBulk
+		Uri: direct:addEmployee
 Transformation - Set Body
 	Expression: simple
 	Expression: ${property.employeeList}
