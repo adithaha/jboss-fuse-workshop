@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:cxf="http://camel.apache.org/schema/cxf"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd         http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd         http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+    <camelContext id="cxfrs" xmlns="http://camel.apache.org/schema/spring">
+        <dataFormats>
+            <xmljson id="xmljson"/>
+        </dataFormats>
+        <restConfiguration apiContextPath="api-docs" bindingMode="json"
+            component="servlet" contextPath="/camel" enableCORS="true">
+            <dataFormatProperty key="prettyPrint" value="true"/>
+            <apiProperty key="cors" value="true"/>
+            <apiProperty key="api.version" value="1.0.0"/>
+            <apiProperty key="api.title" value="Red Hat Fuse - REST"/>
+            <apiProperty key="api.description" value="Red Hat Fuse - REST"/>
+            <apiProperty key="api.contact.name" value="Red Hat"/>
+        </restConfiguration>
+        <rest id="rest-545e1e85-5364-4c63-8db8-91145e7c7b30" path="/jaxrs">
+            <post consumes="application/json"
+                id="post-35547320-379e-424f-8c50-cdc3a8d01703"
+                outType="org.jboss.fuse.workshop.soap.Employee"
+                type="org.jboss.fuse.workshop.soap.Employee" uri="/employee">
+                <to uri="direct:addEmployee"/>
+            </post>
+            <get id="get-b9d96a8a-fd80-4ca1-840b-7c062312e05d"
+                outType="org.jboss.fuse.workshop.soap.Employee"
+                type="java.lang.Integer" uri="/employee/{arg0}">
+                <to uri="direct:getEmployee"/>
+            </get>
+            <get id="get-8397d0f0-9272-401f-915f-72aead498c4c"
+                outType="org.jboss.fuse.workshop.soap.EmployeeList"
+                type="org.jboss.fuse.workshop.soap.GetEmployeeAll" uri="/employeeall">
+                <to uri="direct:getEmployeeAll"/>
+            </get>
+        </rest>
+        <route id="addEmployee">
+            <from id="_from1" uri="direct:addEmployee"/>
+            <log id="_log1" loggingLevel="INFO" message="addEmployee"/>
+            <to id="_to1" uri="cxf://{{url.employeeWS}}?serviceClass=org.jboss.fuse.workshop.soap.EmployeeWSPortType&amp;defaultOperationName=addEmployee"/>
+            <setHeader headerName="Content-Type" id="_setHeader1">
+                <constant>application/json</constant>
+            </setHeader>
+            <setBody id="_setBody1">
+                <simple>${body[0]}</simple>
+            </setBody>
+        </route>
+        <route id="getEmployee">
+            <from id="_from2" uri="direct:getEmployee"/>
+            <log id="_log2" loggingLevel="INFO" message="getEmployee"/>
+            <setBody id="_setBody2">
+                <simple>${header.arg0}</simple>
+            </setBody>
+            <unmarshal id="_unmarshal1">
+                <json library="Jackson" unmarshalTypeName="java.lang.Integer"/>
+            </unmarshal>
+            <to id="_to2" uri="cxf://{{url.employeeWS}}?serviceClass=org.jboss.fuse.workshop.soap.EmployeeWSPortType&amp;defaultOperationName=getEmployee"/>
+            <setHeader headerName="Content-Type" id="_setHeader2">
+                <constant>application/json</constant>
+            </setHeader>
+            <setBody id="_setBody3">
+                <simple>${body[0]}</simple>
+            </setBody>
+        </route>
+        <route id="getEmployeeAll">
+            <from id="_from3" uri="direct:getEmployeeAll"/>
+            <log id="_log3" loggingLevel="INFO" message="getEmployeeAll"/>
+            <setBody id="_setBody5">
+                <simple>null</simple>
+            </setBody>
+            <to id="_to3" uri="cxf://{{url.employeeWS}}?serviceClass=org.jboss.fuse.workshop.soap.EmployeeWSPortType&amp;defaultOperationName=getEmployeeAll"/>
+            <setHeader headerName="Content-Type" id="_setHeader3">
+                <constant>application/json</constant>
+            </setHeader>
+            <setBody id="_setBody4">
+                <simple>${body[0]}</simple>
+            </setBody>
+        </route>
+    </camelContext>
+</beans>

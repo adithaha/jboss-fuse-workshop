@@ -1,95 +1,49 @@
-Camel CBR Project
-======================
+# Spring-Boot Camel QuickStart
 
-This project demonstrates the Camel Content Based Router (CBR) pattern in Apache Camel.
+This example demonstrates how you can use Apache Camel with Spring Boot.
 
-To build this project use
+The quickstart uses Spring Boot to configure a little application that includes a Camel route that triggers a message every 5th second, and routes the message to a log.
 
-    mvn install
+### Building
 
-To run this project use the following Maven goal
+The example can be built with
 
-    mvn camel:run
+    mvn clean install
 
-For more help see the Apache Camel documentation
+### Running the example in OpenShift
 
-    http://camel.apache.org/
+It is assumed that:
+- OpenShift platform is already running, if not you can find details how to [Install OpenShift at your site](https://docs.openshift.com/container-platform/3.3/install_config/index.html).
+- Your system is configured for Fabric8 Maven Workflow, if not you can find a [Get Started Guide](https://access.redhat.com/documentation/en/red-hat-jboss-middleware-for-openshift/3/single/red-hat-jboss-fuse-integration-services-20-for-openshift/)
 
+The example can be built and run on OpenShift using a single goal:
 
-What is it?
------------
+    mvn fabric8:deploy
 
-This quick start shows how to use Apache Camel, and its OSGi integration to dynamically route messages to new or updated OSGi bundles. This allows you to route to newly deployed services at runtime without impacting running services.
+When the example runs in OpenShift, you can use the OpenShift client tool to inspect the status
 
-This quick start combines use of the Camel Recipient List, which allows you to at runtime specify the Camel Endpoint to route to, and use of the Camel VM Component, which provides a SEDA queue that can be accessed from different OSGi bundles running in the same Java virtual machine.
+To list all the running pods:
 
-In studying this quick start you will learn:
+    oc get pods
 
-* how to define a Camel route using the Blueprint XML syntax
-* how to build and deploy an OSGi bundle in JBoss Fuse
-* how to use the CBR enterprise integration pattern
+Then find the name of the pod that runs this quickstart, and output the logs from the running pods with:
 
-For more information see:
+    oc logs <name of pod>
 
-* http://www.enterpriseintegrationpatterns.com/ContentBasedRouter.html for more information about the CBR EIP
-* https://access.redhat.com/site/documentation/JBoss_Fuse/ for more information about using JBoss Fuse
+You can also use the OpenShift [web console](https://docs.openshift.com/container-platform/3.3/getting_started/developers_console.html#developers-console-video) to manage the
+running pods, and view logs and much more.
 
-Note: Extra steps, like use of Camel VM Component, need to be taken when accessing Camel Routes in different Camel Contexts, and in different OSGi bundles, as you are dealing with classes in different ClassLoaders.
+### Running via an S2I Application Template
 
+Application templates allow you deploy applications to OpenShift by filling out a form in the OpenShift console that allows you to adjust deployment parameters.  This template uses an S2I source build so that it handle building and deploying the application for you.
 
-System requirements
--------------------
+First, import the Fuse image streams:
 
-Before building and running this quick start you need:
+    oc create -f https://raw.githubusercontent.com/jboss-fuse/application-templates/GA/fis-image-streams.json
 
-* Maven 3.1.1 or higher
-* JDK 1.7 or 1.8
-* JBoss Fuse 7
+Then create the quickstart template:
 
+    oc create -f https://raw.githubusercontent.com/jboss-fuse/application-templates/GA/quickstarts/spring-boot-camel-template.json
 
-Build and Deploy the Quickstart
--------------------------
+Now when you use "Add to Project" button in the OpenShift console, you should see a template for this quickstart. 
 
-1. Change your working directory to `camel-blueprint-cbr` directory.
-* Run `mvn clean install` to build the quickstart.
-* Start JBoss Fuse by running bin/fuse (on Linux) or bin\fuse.bat (on Windows).
-* In the JBoss Fuse console, enter the following command:
-
-        osgi:install -s mvn:com.mycompany/camel-blueprint-cbr/1.0.0-SNAPSHOT
-
-* Fuse should give you an id when the bundle is deployed
-
-* You can check that everything is ok by issuing  the command:
-
-        osgi:list
-   your bundle should be present at the end of the list
-
-
-Use the bundle
----------------------
-
-To use the application be sure to have deployed the quickstart in Fuse as described above. 
-
-1. As soon as the Camel route has been started, you will see a directory `work/cbr/input` in your JBoss Fuse installation.
-2. Copy the files you find in this quick start's `src/test/resources/data` directory to the newly created `work/cbr/input`
-directory.
-3. Wait a few moments and you will find the same files organized by country under the `work/cbr/output` directory.
-  * `order1.xml` in `work/cbr/output/others`
-  * `order2.xml` and `order4.xml` in `work/cbr/output/uk`
-  * `order3.xml` and `order5.xml` in `work/cbr/output/us`
-4. Use `log:display` to check out the business logging.
-        Receiving order order1.xml
-        Sending order order1.xml to another country
-        Done processing order1.xml
-
-
-Undeploy the Archive
---------------------
-
-To stop and undeploy the bundle in Fuse:
-
-1. Enter `osgi:list` command to retrieve your bundle id
-2. To stop and uninstall the bundle enter
-
-        osgi:uninstall <id>
- 
