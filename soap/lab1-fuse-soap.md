@@ -3,7 +3,7 @@
 
 Open JBoss Developer Studio application
 
-1. File - New - Project.. - type 'fuse' - Fuse Integration Project - Project-name: fuse-soap - 2.21.0.fuse-710018-redhat-00001 (Fuse 7.1.0 GA) - Simple log using Spring Boot - Spring DSL - Finish - Open Associate Perspective: Yes
+1. File - New - Project.. - type 'fuse' - Fuse Integration Project - Project-name: fuse-soap - Select the Camel version: 2.21.0.fuse-710018-redhat-00001 (Fuse 7.1.0 GA) - Simple log using Spring Boot - Spring DSL - Finish - Open Associate Perspective: Yes
 2. Change groupId in pom.xml - fuse-soap - pom.xml
  ``` 
   <modelVersion>4.0.0</modelVersion>
