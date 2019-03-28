@@ -53,9 +53,8 @@ Open JBoss Developer Studio application. Download wsdl file here https://raw.git
 	- Destination Project: fuse-rest
 	- Next
 	- Finish
-- fuse-rest - right click - Run as - Maven generate-sources
 
-Check if classes already generated in target/generated/src/main/java directory
+Check if classes already generated in src/main/java - org.jboss.fuse.workshop.soap
 ```
 
 6. Configure API documentation, replace <restConfiguration> tag in rest-springboot-context.xml with below (use source)
