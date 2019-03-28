@@ -22,7 +22,7 @@ Replace below lines
   <description>Workshop:: Fuse SOAP</description>
   ```
   
-Add below lines under tag <dependencies>
+Add below lines
    ``` 
   <project>
     ...
