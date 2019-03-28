@@ -11,6 +11,10 @@ $ cd <workspace-dir>
 ```
 $ oc login -u <user> https://openshift.com
 ```
+3. Go to fuse project
+```
+$ oc project fuse
+```
 3. Create new OpenShift application
 ```
 $ oc new-app fuse7-java-openshift:1.1 --code=. --name=fuse-soap --strategy=source
