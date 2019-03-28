@@ -75,7 +75,7 @@ Check if classes already generated in target/generated/src/main/java directory
 7. For easy configuration, put SOAP address on application.properties - src/main/resources - application.properties - Finish - source
 ```
 ...
-url.employeeWS=http://localhost:8080/cxf/employeeWS
+url.employeeWS=${URL_EMPLOYEEWS}
 ...
 ```
 
