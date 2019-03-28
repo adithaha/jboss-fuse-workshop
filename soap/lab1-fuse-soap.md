@@ -11,6 +11,8 @@ Select the Camel version: 2.21.0.fuse-710018-redhat-00001 (Fuse 7.1.0 GA)
 Simple log using Spring Boot - Spring DSL - Finish - Open Associate Perspective: Yes
 
 2. Change groupId in pom.xml - fuse-soap - pom.xml
+
+Replace below lines
  ``` 
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.jboss.fuse.workshop</groupId>
@@ -20,31 +22,34 @@ Simple log using Spring Boot - Spring DSL - Finish - Open Associate Perspective:
   <description>Workshop:: Fuse SOAP</description>
   ```
   
+Add below lines under tag <dependencies>
    ``` 
-  <dependencies>
+  <project>
     ...
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-jdbc</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>camel-cxf-starter</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>camel-jaxb-starter</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>camel-sql-starter</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.postgresql</groupId>
-      <artifactId>postgresql</artifactId>
-      <version>9.4.1212</version>
-    </dependency>
-  </dependencies>
+      <dependencies>
+      ...
+	    <dependency>
+	      <groupId>org.springframework.boot</groupId>
+	      <artifactId>spring-boot-starter-jdbc</artifactId>
+	    </dependency>
+	    <dependency>
+	      <groupId>org.apache.camel</groupId>
+	      <artifactId>camel-cxf-starter</artifactId>
+	    </dependency>
+	    <dependency>
+	      <groupId>org.apache.camel</groupId>
+	      <artifactId>camel-jaxb-starter</artifactId>
+	    </dependency>
+	    <dependency>
+	      <groupId>org.apache.camel</groupId>
+	      <artifactId>camel-sql-starter</artifactId>
+	    </dependency>
+	    <dependency>
+	      <groupId>org.postgresql</groupId>
+	      <artifactId>postgresql</artifactId>
+	      <version>9.4.1212</version>
+	    </dependency>
+  	</dependencies>
   
   ```
 3. Build to download dependencies. Go to terminal
