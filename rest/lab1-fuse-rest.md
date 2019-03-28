@@ -75,6 +75,7 @@ Check if classes already generated in src/main/java - org.jboss.fuse.workshop.so
 ```
 ...
 url.employeeWS=${URL_EMPLOYEEWS}
+URL_EMPLOYEEWS=http://localhost:8080/cxf/employeeWS
 ...
 ```
 
