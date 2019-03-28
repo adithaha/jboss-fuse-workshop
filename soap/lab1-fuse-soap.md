@@ -41,6 +41,12 @@ Open JBoss Developer Studio application
   </dependencies>
   
   ```
+3. Build to download dependencies. Go to terminal
+  ```
+  $ cd <fuse-soap>
+  $ mvn clean package
+  ```
+
 3. Change default package src/main/java - org.mycompany - right click - refactor - rename
 	- New Name: org.jboss.fuse.workshop.soap
 	- Continue
