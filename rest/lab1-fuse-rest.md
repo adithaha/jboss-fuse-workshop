@@ -109,13 +109,11 @@ Transformation - Set Body
 
 12. Try your application
 ```
-Clean build: right click your fuse-soap project - run as - maven clean
-Build: right click your fuse-soap project - run as - maven build....
+Clean build: right click your fuse-rest project - run as - maven clean
+Build: right click your fuse-rest project - run as - maven build....
 	Goals: clean package
 	Run
-start fuse application: fuse-soap - src/main/java - org.jboss.fuse.workshop.soap - Application.java (right click) - run as - Java Application
-
-Check if classes already generated in target/generated/src/main/java directory
+start fuse application: fuse-rest - src/main/java - org.jboss.fuse.workshop.rest - Application.java (right click) - run as - Java Application
 ```
 Open browser, go to at http://localhost:8080/camel/api-docs
 
