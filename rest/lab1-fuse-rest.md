@@ -1,7 +1,7 @@
 
 ## LAB 1 - Create Fuse REST Integration Project
 
-Open JBoss Developer Studio application
+Open JBoss Developer Studio application. Download wsdl file here https://raw.githubusercontent.com/adithaha/jboss-fuse-workshop/master/rest/employeeWS.wsdl
 
 1. File - New - Project.. - type 'fuse' - Fuse Integration Project - Project-name: fuse-rest - 2.21.0.fuse-710018-redhat-00001 (Fuse 7.1.0 GA) - Simple log using Spring Boot - Spring DSL - Finish - Open Associate Perspective: Yes
 2. Change groupId in pom.xml - fuse-rest - pom.xml
