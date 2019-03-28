@@ -17,7 +17,7 @@ $ oc project fuse
 ```
 3. Create new OpenShift application
 ```
-$ oc new-app fuse7-java-openshift:1.1 --code=. --name=fuse-soap --strategy=source
+$ oc new-app fuse7-java-openshift:1.1 --code=. --name=fuse-soap-<name> --strategy=source
 ```
 4. Open application port 8080 in service
 ```
