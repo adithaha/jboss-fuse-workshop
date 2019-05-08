@@ -17,8 +17,12 @@ $ oc project fuse
 ```
 3. Create new OpenShift application
 ```
-$ oc new-app fuse7-java-openshift:1.1 --code=. --name=fuse-soap-<name> --strategy=source
+$ oc new-app fuse7-java-openshift:1.3 --code=. --name=fuse-soap-<name> --strategy=source
 ```
+```
+$ oc new-app fuse7-java-openshift:1.3 --name=fuse-soap-adit https://github.com/adithaha/jboss-fuse-workshop.git --context-dir=/soap/solution/fuse-soap
+```
+
 4. Open application port 8080 in service
 ```
 $ oc edit svc/fuse-soap-<name>
