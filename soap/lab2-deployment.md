@@ -24,7 +24,7 @@ $ oc new-app fuse7-java-openshift:1.3 --code=. --name=fuse-soap-<name> --strateg
 
 Using git repository
 ```
-$ oc new-app fuse7-java-openshift:1.3~https://github.com/adithaha/jboss-fuse-workshop.git --context-dir=/soap/solution/fuse-soap --name=fuse-soap
+$ oc new-app fuse7-java-openshift:1.3~https://github.com/adithaha/jboss-fuse-workshop.git --context-dir=/soap/solution/fuse-soap --name=fuse-soap-<name>
 ```
 
 4. Open application port 8080 in service
