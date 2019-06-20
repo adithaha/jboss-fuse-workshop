@@ -87,9 +87,9 @@ fuse-soap requires postgre database to put and get data. Assumed database is alr
 1. Login to OpenShift Web Console via browser https://openshift.com
 2. Go to project <project>
 3. Choose Deployment Config fuse-soap - Environment tab - add environment parameter  
-  Name: spring.dsEmployee.url | Value: jdbc:postgresql://postgresql:5432/dsEmployee  
-  Name: spring.dsEmployee.username | Value: postgres  
-  Name: spring.dsEmployee.password | Value: postgres  
+  Name: SPRING_DSEMPLOYEE_URL | Value: jdbc:postgresql://postgresql:5432/dsEmployee  
+  Name: SPRING_DSEMPLOYEE_USERNAME | Value: postgres  
+  Name: SPRING_DSEMPLOYEE_PASSWORD | Value: postgres  
 4. Save
   
 Application will be redeployed with configured parameter.
