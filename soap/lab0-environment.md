@@ -12,7 +12,7 @@
 5. Create
 
 
-### Preparing environment
+### Preparing environment - with VM
 
 ssh into the machine, user user/pass below: jboss/jboss
 ```
@@ -22,10 +22,25 @@ $ sudo su
 $ docker start postgres94
 ```
 
-Start JBoss Developer Studio application
+
+### Preparing environment - with OpenShift
+
+Login into OpenShift
+```
+Create Project
+	Name: fuse-<name>
+	Create
+Add to Project - Browse Catalog - Databases - Postgres - PostgreSQL (Ephemeral) - Next
+	PostgreSQL Connection Username: postgres
+	PostgreSQL Connection Password: postgres
+	PostgreSQL Database Name: dsEmployee
+	Create
+```
 
 ### Import database table
 
+
+Open postgreql-ephemeral pod - Terminal
 ```
 $ createdb dsEmployee
 $ vi ddl.sql
