@@ -22,7 +22,7 @@ Using local path
 $ oc new-app fuse7-java-openshift:1.3 --code=. --name=fuse-soap-<name> --strategy=source
 ```
 
-Using git repository
+Using git repository --DJA DO NOT USE THIS--
 ```
 $ oc new-app fuse7-java-openshift:1.3~https://github.com/adithaha/jboss-fuse-workshop.git --context-dir=/soap/solution/fuse-soap --name=fuse-soap-<name>
 ```
@@ -65,7 +65,7 @@ spec:
 ...
 ```
 
-### Deploy using source code from local client
+### Deploy using source code from local client --DJA DO NOT USE THIS--
 Source code: local
 Build: OpenShift server
 ```
