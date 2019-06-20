@@ -27,5 +27,10 @@ Start JBoss Developer Studio application
 ### Import database table
 
 ```
+$ createdb dsEmployee
+$ vi ddl.sql
+
+copy ddl.sql content here
+
 $ psql -h localhost postgres -f ddl.sql postgres
 ```
