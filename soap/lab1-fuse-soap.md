@@ -241,7 +241,7 @@ spring.dsEmployee.initial-size=5
 ```
 	@Bean(name = "dsEmployee")
 	@ConfigurationProperties(prefix = "spring.dsEmployee")
-	public DataSource mysqlDataSource() {
+	public DataSource dsEmployeeDataSource() {
 		return DataSourceBuilder.create().build();
 	}
 ```
