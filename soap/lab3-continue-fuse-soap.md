@@ -71,15 +71,15 @@ Component - Log
 
 3. Redeploy into openshift
 
-Deploy using source code from local client --DJA DO NOT USE THIS--
-Source code: local
+Deploy using source code from local client --DJA DO NOT USE THIS--  
+Source code: local  
 Build: OpenShift server
 ```
 $ oc start-build fuse-soap-<name> --from-dir=fuse-soap --follow
 ```
 
-Deploy using jar from local client
-Source code: local
+Deploy using jar from local client  
+Source code: local  
 Build: local
 ```
 $ cd <fuse-soap>
