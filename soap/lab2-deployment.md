@@ -13,7 +13,7 @@ $ oc login -u <user> https://openshift.com
 ```
 3. Go to fuse project
 ```
-$ oc project fuse
+$ oc project fuse-workshop-<name>
 ```
 3. Create new OpenShift application
 
