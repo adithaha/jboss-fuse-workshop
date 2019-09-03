@@ -3,7 +3,7 @@
 
 Open JBoss Developer Studio application
 
-1. File - New - Project.. - type 'fuse' - Fuse Integration Project
+1. File - New - Project.. - type 'fuse' - Fuse Integration Project - Next
  ```
 Project-name: fuse-soap
 Select the Camel version: 2.21.0.fuse-731003-redhat-00003 (Fuse 7.3.1 GA)
