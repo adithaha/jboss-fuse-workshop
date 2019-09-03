@@ -53,11 +53,9 @@ Start LAB:
 Fuse SOAP
 1. https://github.com/adithaha/jboss-fuse-workshop/blob/master/soap/lab1-fuse-soap.md
 2. https://github.com/adithaha/jboss-fuse-workshop/blob/master/soap/lab2-deployment.md
-3. https://github.com/adithaha/jboss-fuse-workshop/blob/master/soap/lab3-continue-fuse-soap.md  
 
 Fuse REST
 1. https://github.com/adithaha/jboss-fuse-workshop/blob/master/rest/lab1-fuse-rest.md
 2. https://github.com/adithaha/jboss-fuse-workshop/blob/master/rest/lab2-deployment.md
-3. https://github.com/adithaha/jboss-fuse-workshop/blob/master/rest/lab3-continue-fuse-rest.md  
 
 3Scale
