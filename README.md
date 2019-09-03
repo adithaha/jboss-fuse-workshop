@@ -36,7 +36,7 @@ OS name: "mac os x", version: "10.13.6", arch: "x86_64", family: "mac"
 CodeReady Studio
 ----------------
 install:  
-cmd - "java -jar jboss.jar"  
+cmd - "java -jar jboss.jar" - select "Red Hat Fuse Tooling"
 
 check:  
 open Codeready Studio
