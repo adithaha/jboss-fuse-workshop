@@ -225,7 +225,7 @@ public interface EmployeeWS {
 
 9. Create datasource - src/main/resources - application.properties - Finish - source - add line below
 ```
-spring.dsEmployee.url=jdbc:postgresql://localhost:5432/fis2demo
+spring.dsEmployee.url=jdbc:postgresql://localhost:5432/dsEmployee
 spring.dsEmployee.username=postgres
 spring.dsEmployee.password=postgres
 spring.dsEmployee.driver-class-name=org.postgresql.Driver
