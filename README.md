@@ -33,3 +33,10 @@ Java version: 1.8.0_151, vendor: Oracle Corporation, runtime: /Library/Java/Java
 Default locale: en_US, platform encoding: UTF-8
 OS name: "mac os x", version: "10.13.6", arch: "x86_64", family: "mac"
 
+CodeReady Studio
+----------------
+install:  
+cmd - "java -jar jboss.jar"  
+
+check:  
+open Codeready Studio
