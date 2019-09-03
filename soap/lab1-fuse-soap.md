@@ -6,7 +6,7 @@ Open JBoss Developer Studio application
 1. File - New - Project.. - type 'fuse' - Fuse Integration Project
  ```
 Project-name: fuse-soap
-Select the Camel version: 2.21.0.fuse-710018-redhat-00001 (Fuse 7.1.0 GA)
+Select the Camel version: 2.21.0.fuse-731003-redhat-00003 (Fuse 7.3.1 GA)
  ```
 Simple log using Spring Boot - Spring DSL - Finish - Open Associate Perspective: Yes
 
