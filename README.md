@@ -40,3 +40,8 @@ cmd - "java -jar jboss.jar"
 
 check:  
 open Codeready Studio
+
+
+Start LAB:
+1. https://github.com/adithaha/jboss-fuse-workshop/blob/master/soap/lab1-fuse-soap.md
+2. 
