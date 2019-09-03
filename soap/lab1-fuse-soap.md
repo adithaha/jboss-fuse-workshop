@@ -12,7 +12,7 @@ Standalone - Simple log using Spring Boot - Spring DSL - Finish - Open Associate
 
 2. Change groupId in pom.xml - fuse-soap - pom.xml
 
-Replace below lines
+Replace below lines #4
  ``` 
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.jboss.fuse.workshop</groupId>
@@ -22,7 +22,7 @@ Replace below lines
   <description>Workshop:: Fuse SOAP</description>
   ```
   
-Add below lines
+Add below lines #28
    ``` 
   <project>
     ...
