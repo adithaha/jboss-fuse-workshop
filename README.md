@@ -42,6 +42,17 @@ check:
 open Codeready Studio
 
 
+OpenShift Client
+----------------
+install:  
+mkdir oc-client
+unzip oc-3.11.98-windows.zip  
+tambah ke system path: oc-client
+
 Start LAB:
+Fuse SOAP
 1. https://github.com/adithaha/jboss-fuse-workshop/blob/master/soap/lab1-fuse-soap.md
-2. 
+2. https://github.com/adithaha/jboss-fuse-workshop/blob/master/soap/lab2-deployment.md
+3. https://github.com/adithaha/jboss-fuse-workshop/blob/master/soap/lab3-continue-fuse-soap.md
+Fuse REST
+
