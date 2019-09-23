@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:camel="http://camel.apache.org/schema/spring"
+    xmlns:cxf="http://camel.apache.org/schema/cxf"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd http://camel.apache.org/schema/cxf     http://camel.apache.org/schema/cxf/camel-cxf.xsd">
+    <cxf:cxfEndpoint address="/employeeWS" id="employeeWS" serviceClass="org.jboss.fuse.workshop.soap.EmployeeWS">
+        <cxf:properties>
+            <entry key="dataFormat" value="POJO"/>
+            <entry key="faultStackTraceEnabled" value="true"/>
+            <entry key="loggingFeatureEnabled" value="false"/>
+        </cxf:properties>
+    </cxf:cxfEndpoint>
+    <bean class="org.jboss.fuse.workshop.soap.MyTransformer" id="myTransformer"/>
+    <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+        <route id="employeeWS"/>
+    </camelContext>
+</beans>
