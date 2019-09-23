@@ -1,5 +1,5 @@
 
-## LAB 3 - Integrate Continued
+## LAB 4 - Integrate Continued
 
 1. 
 
@@ -71,13 +71,6 @@ Component - Log
 
 3. Redeploy into openshift
 
-Deploy using source code from local client --DJA DO NOT USE THIS--  
-Source code: local  
-Build: OpenShift server
-```
-$ oc start-build fuse-soap-<name> --from-dir=fuse-soap --follow
-```
-
 Deploy using jar from local client  
 Source code: local  
 Build: local
@@ -86,3 +79,14 @@ $ cd <fuse-soap>
 $ mvn clean package
 $ oc start-build fuse-soap-<name> --from-file=target/fuse-soap-1.0.0-SNAPSHOT.jar --follow
 ```
+
+OR
+
+Deploy using source code from local client  
+Source code: local  
+Build: OpenShift server
+```
+$ oc start-build fuse-soap-<name> --from-dir=fuse-soap --follow
+```
+
+
