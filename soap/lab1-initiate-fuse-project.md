@@ -6,13 +6,19 @@ Open JBoss Developer Studio application
 1. File - New - Project.. - type 'fuse' - Fuse Integration Project - Next
  ```
 Project-name: fuse-soap
-Select the Camel version: 2.21.0.fuse-731003-redhat-00003 (Fuse 7.3.1 GA)
+Next
+Deployment Platform: Standalone
+Runtime Environment: Spring Boot
+Camel version: 2.21.0.fuse-731003-redhat-00003 (Fuse 7.3.1 GA)
+Next
+Simple log using Spring Boot - Spring DSL
+Finish
+Open Associate Perspective: Yes
  ```
-Standalone - Simple log using Spring Boot - Spring DSL - Finish - Open Associate Perspective: Yes
 
 2. Change groupId in pom.xml - fuse-soap - pom.xml
 
-Replace below lines #4
+Replace below lines #4 - #9
  ``` 
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.jboss.fuse.workshop</groupId>
@@ -22,7 +28,7 @@ Replace below lines #4
   <description>Workshop:: Fuse SOAP</description>
   ```
   
-Add below lines #28
+Add below lines #28 starting with <dependency>
    ``` 
   <project>
     ...
@@ -223,7 +229,7 @@ public interface EmployeeWS {
 }
 ```
 
-9. Create datasource - src/main/resources - application.properties - Finish - source - add line below
+9. Add datasource properties - src/main/resources - application.properties(open) - source - add line below
 ```
 spring.dsEmployee.url=jdbc:postgresql://localhost:5432/dsEmployee
 spring.dsEmployee.username=postgres
@@ -236,8 +242,9 @@ spring.dsEmployee.min-idle=8
 spring.dsEmployee.initial-size=5
 ```
 
-10. Inject datasource into Spring Boot application - src/main/java - org.jboss.fuse.workshop.soap - Application.java
+10. Inject datasource and CXF servlet - src/main/java - org.jboss.fuse.workshop.soap - Application.java (open)
 
+Inject datasource into Spring Boot application (line #33)
 ```
 	@Bean(name = "dsEmployee")
 	@ConfigurationProperties(prefix = "spring.dsEmployee")
@@ -246,14 +253,14 @@ spring.dsEmployee.initial-size=5
 	}
 ```
 
-Add import below:
+Add import below (line #21):
 ```
 import javax.sql.DataSource;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 ```
-11. Register CXF servlet into Spring Boot application - src/main/java - org.jboss.fuse.workshop.soap - Application.java
+Register CXF servlet (line #46)
 
 ```
 	@Bean
@@ -264,15 +271,69 @@ import org.springframework.context.annotation.Bean;
     	}
 ```
 
-Add import below:
+Add import below (line #25)
 ```
 import org.apache.cxf.transport.servlet.CXFServlet;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 ```
 
-12. Remove default route src/main/resources - spring - camel-context.xml
+Final content Application.java
+```
+/**
+ *  Copyright 2005-2018 Red Hat, Inc.
+ *
+ *  Red Hat licenses this file to you under the Apache License, version
+ *  2.0 (the "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ *  implied.  See the License for the specific language governing
+ *  permissions and limitations under the License.
+ */
+package org.jboss.fuse.workshop.soap;
 
-13. Create route src/main/resources - spring - right click - New - Camel XML File - camel-context.xml (Spring) - Finish - source
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ImportResource;
+import javax.sql.DataSource;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Bean;
+import org.apache.cxf.transport.servlet.CXFServlet;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
+
+/**
+ * A spring-boot application that includes a Camel route builder to setup the Camel routes
+ */
+@SpringBootApplication
+@ImportResource({"classpath:spring/camel-context.xml"})
+public class Application {
+
+    // must have a main method spring-boot can run
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+    
+	@Bean(name = "dsEmployee")
+	@ConfigurationProperties(prefix = "spring.dsEmployee")
+	public DataSource dsEmployeeDataSource() {
+		return DataSourceBuilder.create().build();
+	}
+	
+	@Bean
+	ServletRegistrationBean servletRegistrationBeanCXF() {
+    	ServletRegistrationBean servlet = new ServletRegistrationBean(new CXFServlet(), "/cxf/*");
+    	servlet.setName("CXFServlet");
+    	return servlet;
+	}
+}
+```
+
+12. replace default route src/main/resources - spring - camel-context.xml (open) - source
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
