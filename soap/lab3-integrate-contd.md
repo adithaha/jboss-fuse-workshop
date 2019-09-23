@@ -1,5 +1,5 @@
 
-## LAB 3 - Continue Fuse SOAP
+## LAB 3 - Integrate Continued
 
 1. 
 
