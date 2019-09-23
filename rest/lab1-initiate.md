@@ -15,7 +15,7 @@ Simple log using Spring Boot - Spring DSL
 Finish
 Open Associate Perspective: Yes
  ```
-2. Change groupId in pom.xml - fuse-rest - pom.xml line #4
+2. Replace below lines #4 - #9
  ``` 
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.jboss.fuse.workshop</groupId>
@@ -24,7 +24,7 @@ Open Associate Perspective: Yes
   <name>Workshop:: Fuse REST</name>
   <description>Workshop:: Fuse REST</description>
   ```
-  Add few dependencies below:
+  Add below lines 28 starting with <dependency>
    ``` 
   <dependencies>
     ...
