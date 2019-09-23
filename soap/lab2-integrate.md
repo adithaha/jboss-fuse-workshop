@@ -1,7 +1,7 @@
 
 ## LAB 2 - Create Fuse Soap Integration Project
 
-Open JBoss Developer Studio application, continue to work on fuse-soap project
+Open JBoss Developer Studio application, continue to work on fuse-soap project from lab1. If you haven't completed lab1, you can start with this project https://github.com/adithaha/jboss-fuse-workshop/raw/master/soap/solution/lab1/fuse-soap.zip and import into CodeReady Studio
 
 1.  Create webservice route. Click Design tab, drag and drop to Route employeeWS
 ```

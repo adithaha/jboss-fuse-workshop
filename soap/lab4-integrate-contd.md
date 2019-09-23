@@ -1,6 +1,8 @@
 
 ## LAB 4 - Integrate Continued
 
+Open JBoss Developer Studio application, continue to work on fuse-soap project from lab3. If you haven't completed lab3, you can start with this project https://github.com/adithaha/jboss-fuse-workshop/raw/master/soap/solution/lab2/fuse-soap.zip, import into CodeReady Studio, and do lab3 on https://github.com/adithaha/jboss-fuse-workshop/blob/master/soap/lab3-deployment.md
+
 1. Create getEmployee route. Click Design tab, drag and drop to create new Route
 ```
 Routing - Route
