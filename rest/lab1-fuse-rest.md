@@ -5,8 +5,16 @@ Open JBoss Developer Studio application. Download wsdl file here https://raw.git
 
 1. File - New - Project.. - type 'fuse' - Fuse Integration Project - Next
  ```
- Project-name: fuse-rest - 2.21.0.fuse-731003-redhat-00003 (Fuse 7.3.1 GA) - Simple log using Spring Boot - Spring DSL - Finish - Open Associate Perspective: Yes
- ``` 
+Project-name: fuse-rest
+Next
+Deployment Platform: Standalone
+Runtime Environment: Spring Boot
+Camel version: 2.21.0.fuse-731003-redhat-00003 (Fuse 7.3.1 GA)
+Next
+Simple log using Spring Boot - Spring DSL
+Finish
+Open Associate Perspective: Yes
+ ```
 2. Change groupId in pom.xml - fuse-rest - pom.xml line #4
  ``` 
   <modelVersion>4.0.0</modelVersion>
