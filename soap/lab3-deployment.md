@@ -1,5 +1,5 @@
 
-## LAB 2 - Deployment
+## LAB 3 - Deployment
 
 ### Configure deployment
 
@@ -7,7 +7,7 @@
 ```
 $ cd <workspace-dir>
 ```
-2. Login into openshift
+2. Login into openshift (you need openshift web url correctly)
 ```
 $ oc login -u <user> https://openshift.com
 ```
@@ -22,7 +22,9 @@ Using local path
 $ oc new-app fuse7-java-openshift:1.3 --code=. --name=fuse-soap-<name> --strategy=source
 ```
 
-Using git repository --DJA DO NOT USE THIS--
+OR
+
+Using git repository
 ```
 $ oc new-app fuse7-java-openshift:1.3~https://github.com/adithaha/jboss-fuse-workshop.git --context-dir=/soap/solution/fuse-soap --name=fuse-soap-<name>
 ```
@@ -65,13 +67,6 @@ spec:
 ...
 ```
 
-### Deploy using source code from local client --DJA DO NOT USE THIS--
-Source code: local
-Build: OpenShift server
-```
-$ oc start-build fuse-soap-<name> --from-dir=fuse-soap --follow
-```
-
 ### Deploy using jar from local client
 Source code: local
 Build: local
@@ -79,6 +74,13 @@ Build: local
 $ cd <fuse-soap>
 $ mvn clean package
 $ oc start-build fuse-soap-<name> --from-file=target/fuse-soap-1.0.0-SNAPSHOT.jar --follow
+```
+
+### Or, Deploy using source code from local client 
+Source code: local
+Build: OpenShift server
+```
+$ oc start-build fuse-soap-<name> --from-dir=fuse-soap --follow
 ```
 
 ### Configuring parameter
