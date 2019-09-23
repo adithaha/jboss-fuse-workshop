@@ -1,7 +1,9 @@
 
 ## LAB 1 - Create Fuse REST Integration Project
 
-Open JBoss Developer Studio application. Download wsdl file here https://raw.githubusercontent.com/adithaha/jboss-fuse-workshop/master/rest/employeeWS.wsdl
+Open JBoss Developer Studio application. Continue to work on fuse-rest project from lab1. If you haven't completed lab1, you can start with this project https://github.com/adithaha/jboss-fuse-workshop/raw/master/rest/solution/lab1/fuse-rest.zip and import into CodeReady Studio.
+
+Download wsdl file here https://raw.githubusercontent.com/adithaha/jboss-fuse-workshop/master/rest/employeeWS.wsdl
 
 1. File - New - Project.. - type 'fuse' - Fuse Integration Project - Next
  ```
