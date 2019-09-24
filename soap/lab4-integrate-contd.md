@@ -91,4 +91,13 @@ Build: OpenShift server
 $ oc start-build fuse-soap-<name> --from-dir=fuse-soap --follow
 ```
 
+### Try your application
+
+1. Get your application route
+```
+$ oc get route
+```
+Note the url  
+
+2. Open url from browser, add path /cxf
 
