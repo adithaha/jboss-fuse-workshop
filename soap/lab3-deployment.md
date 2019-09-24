@@ -104,3 +104,11 @@ fuse-soap requires postgre database to put and get data. Assumed database is alr
 4. Save
   
 Application will be redeployed with configured parameter.
+
+### Try your application
+1. Get your application route
+```
+$ oc get route
+```
+Note the url  
+2. Open url from browser, add path /cxf
