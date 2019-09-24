@@ -6,7 +6,7 @@
 Backend API: http://fuse-rest-#-fuse-workshop-#.ocpapps.bkpm.go.id    
   
 1. Login into 3Scale admin portal
-2. + New API
+2. (+) New API
    ```
    Name: fuse-workshop-<name>
    System Name: fuse-workshop-<name>
