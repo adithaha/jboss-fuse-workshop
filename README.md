@@ -64,7 +64,7 @@ Fuse SOAP
 2. https://github.com/adithaha/jboss-fuse-workshop/blob/master/soap/lab4-integrate-contd.md
 
 Fuse REST
-1. https://github.com/adithaha/jboss-fuse-workshop/blob/master/rest/lab1-fuse-rest.md
+1. https://github.com/adithaha/jboss-fuse-workshop/blob/master/rest/lab1-initiate.md
 2. https://github.com/adithaha/jboss-fuse-workshop/blob/master/rest/lab2-deployment.md
 
 3Scale
