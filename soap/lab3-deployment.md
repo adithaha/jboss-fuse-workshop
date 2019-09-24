@@ -78,7 +78,7 @@ $ mvn clean package
 $ oc start-build fuse-soap-<name> --from-file=target/fuse-soap-1.0.0-SNAPSHOT.jar --follow
 ```
 
-### Or, Deploy using source code from local client 
+### Or, Deploy using source code from local client (BKPM skip)
 Source code: local
 Build: OpenShift server
 ```
