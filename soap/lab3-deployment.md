@@ -32,7 +32,7 @@ $ oc new-app fuse7-java-openshift:1.3 --code=. --name=fuse-soap-<name> --strateg
 
 OR
 
-Using git repository
+Using git repository (BKPM skip)
 ```
 $ oc new-app fuse7-java-openshift:1.3~https://github.com/adithaha/jboss-fuse-workshop.git --context-dir=/soap/solution/fuse-soap --name=fuse-soap-<name>
 ```
