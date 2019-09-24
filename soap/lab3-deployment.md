@@ -17,7 +17,7 @@ $ cd <workspace-dir>
 ```
 2. Login into openshift (you need openshift web url correctly)
 ```
-$ oc login -u <user> https://openshift.com
+$ oc login -u bkpmuser https://ocpmasters.bkpm.go.id:8443
 ```
 3. Go to fuse project
 ```
