@@ -3,7 +3,7 @@
 
 
 3Scale admin URL: https://3scale-admin.api.ocpapps.bkpm.go.id  (admin/admin)  
-Backend API: http://fuse-rest-#-fuse-workshop-#.ocpapps.bkpm.go.id    
+Backend API: http://fuse-rest-1-fuse-workshop-1.ocpapps.bkpm.go.id    
   
 1. Login into 3Scale admin portal
 2. (+) New API
@@ -29,7 +29,7 @@ Backend API: http://fuse-rest-#-fuse-workshop-#.ocpapps.bkpm.go.id
    ```
 4. Integration > Configuration - add the base URL of your API and save the configuration.
    ```
-   Private Base URL: http://fuse-rest-#-fuse-workshop-#.ocpapps.bkpm.go.id
+   Private Base URL: http://fuse-rest-1-fuse-workshop-1.ocpapps.bkpm.go.id
    Mapping Rules:
      Delete Get /
      Add Mapping Rules:
