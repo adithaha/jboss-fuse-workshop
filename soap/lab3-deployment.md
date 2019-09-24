@@ -38,7 +38,7 @@ Using git repository (BKPM skip)
 $ oc new-app fuse7-java-openshift:1.3~https://github.com/adithaha/jboss-fuse-workshop.git --context-dir=/soap/solution/fuse-soap --name=fuse-soap-<name>
 ```
 
-4. Open application port 8080 in service, add port 8080
+4. Open service yaml configuration, add port 8080
 ```
 $ oc edit svc/fuse-soap-<name>
 ...
@@ -57,7 +57,7 @@ spec:
 $ oc expose service fuse-soap-<name> --name=fuse-soap-<name> --port=8080
 ```
 
-6. Open jolokia access so the application can be monitored using fuse console. Add name: jolokia to existing port 8778.
+6. Open jolokia access so the application can be monitored using fuse console. Add name: 'jolokia' to existing port 8778.
 ```
 $ oc edit dc/fuse-soap-<name>
 ...
