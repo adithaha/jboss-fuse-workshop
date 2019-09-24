@@ -2,7 +2,8 @@
 
 Workshop untuk JBoss Fuse dalam bahasa Indonesia
 
-
+JDK 8
+-----
 install:  
 <java>.exe - click
 
