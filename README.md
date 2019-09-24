@@ -50,6 +50,14 @@ mkdir oc-client
 unzip oc-3.11.98-windows.zip  
 tambah ke system path: oc-client
 
+check:  
+cmd -> "oc version"
+
+output:
+oc v3.11.98
+kubernetes v1.11.0+d4cacc0
+
+
 Start LAB:
 Fuse SOAP
 1. https://github.com/adithaha/jboss-fuse-workshop/blob/master/soap/lab1-initiate-fuse-project.md
