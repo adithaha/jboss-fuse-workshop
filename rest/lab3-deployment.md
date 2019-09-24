@@ -60,7 +60,7 @@ spec:
 ...
 ```
 
-### Deploy using source code from local client --DJA DO NOT USE THIS--
+### Deploy using source code from local client --BKPM Skip--
 Source code: local
 Build: OpenShift server
 ```
@@ -72,7 +72,7 @@ Source code: local
 Build: local
 ```
 $ mvn clean package
-$ oc start-build fuse-rest --from-file=target/fuse-rest-1.0.0-SNAPSHOT.jar --follow
+$ oc start-build fuse-rest-<name> --from-file=target/fuse-rest-1.0.0-SNAPSHOT.jar --follow
 ```
 
 ### Configuring parameter
