@@ -112,7 +112,7 @@ Backend API: http://fuse-rest-#-fuse-workshop-#.ocpapps.bkpm.go.id
    Call API
    ```
    Open API Gateway staging URL via browser, add path below with user key from #6:
-   /xxxx/xxx?user_key=<user_key>
+   /camel/jaxrs/employeeall?user_key=<user_key>
    ```
    You should be able to get employee data response
 
