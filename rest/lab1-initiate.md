@@ -17,7 +17,7 @@ Simple log using Spring Boot - Spring DSL
 Finish
 Open Associate Perspective: Yes
  ```
-2. Replace below lines #4 - #9
+2. Open pom.xml, source, replace below lines #4 - #9
  ``` 
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.jboss.fuse.workshop</groupId>
