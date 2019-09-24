@@ -14,12 +14,12 @@ $ oc login -u <user> https://openshift.com
 3. Create new OpenShift application
 Using local path
 ```
-$ oc new-app fuse7-java-openshift:1.1 --code=. --name=fuse-rest-<name> --strategy=source
+$ oc new-app fuse7-java-openshift:1.3 --code=. --name=fuse-rest-<name> --strategy=source
 ```
 
 Using git repository  --DJA DO NOT USE THIS--
 ```
-$ oc new-app fuse7-java-openshift:1.1~https://github.com/adithaha/jboss-fuse-workshop.git --context-dir=/rest/solution/fuse-rest --name=fuse-rest-<name>
+$ oc new-app fuse7-java-openshift:1.3~https://github.com/adithaha/jboss-fuse-workshop.git --context-dir=/rest/solution/fuse-rest --name=fuse-rest-<name>
 ```
 
 4. Open application port 8080 in service
