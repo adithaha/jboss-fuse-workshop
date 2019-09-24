@@ -77,7 +77,7 @@ Backend API: http://fuse-rest-1-fuse-workshop-1.ocpapps.bkpm.go.id
      System Name: premium
      Create Application Plan
    Publish
-   Click Basic - Metrics, Methods, Limits & Pricing Rules 
+   Click Premium - Metrics, Methods, Limits & Pricing Rules 
      get_employee - Limits - New usage limit
        Period: Minute
        Max. value: 600
