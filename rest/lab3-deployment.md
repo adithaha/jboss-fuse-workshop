@@ -24,7 +24,7 @@ $ oc new-app fuse7-java-openshift:1.3~https://github.com/adithaha/jboss-fuse-wor
 
 4. Open application port 8080 in service
 ```
-$ oc edit svc/fuse-rest
+$ oc edit svc/fuse-rest-<name>
 ...
 spec:
   ...
@@ -38,12 +38,12 @@ spec:
 ```
 5. Create route from external to service port 8080
 ```
-$ oc expose service fuse-rest --name=fuse-rest --port=8080
+$ oc expose service fuse-rest-<name> --name=fuse-rest-<name> --port=8080
 ```
 
 6. Open jolokia access so the application can be monitored using fuse console. Add name: jolokia to existing port 8778.
 ```
-$ oc edit dc/fuse-rest
+$ oc edit dc/fuse-rest-<name>
 ...
 spec:
   ...
@@ -64,7 +64,7 @@ spec:
 Source code: local
 Build: OpenShift server
 ```
-$ oc start-build fuse-rest --from-dir=fuse-rest --follow
+$ oc start-build fuse-rest-<name> --from-dir=fuse-rest --follow
 ```
 
 ### Deploy using jar from local client
@@ -78,13 +78,19 @@ $ oc start-build fuse-rest-<name> --from-file=target/fuse-rest-1.0.0-SNAPSHOT.ja
 ### Configuring parameter
 fuse-rest requires employee SOAP service as a backend. Assumed employeeWS is already set up, below are procedures to configure employeeWS settings. Since we are using Spring Boot, all parameters are configured via application.properties, and mapped to system environment. All we need to do is to configure system properties in application Deployment Config.
 
-1. Login to OpenShift Web Console via browser https://openshift.com
-2. Go to project <project>
-3. Choose Deployment Config fuse-rest - Environment tab - add environment parameter
+1. Get your application route
+```
+$ oc get route
+```
+Note the url for fuse-soap application 
+
+2. Login to OpenShift Web Console via browser https://openshift.com
+3. Go to project fuse-workshop-<name>
+4. Choose Deployment Config fuse-rest - Environment tab - add environment parameter
   ```
-  Name: URL_EMPLOYEEWS | Value: http://<fuse-soap-route>/cxf/employeeWS
+  Name: URL_EMPLOYEEWS | Value: http://<fuse-soap-url>/cxf/employeeWS
   ```
-4. Save
+5. Save
   
 Application will be redeployed with configured parameter.
 
