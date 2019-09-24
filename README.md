@@ -70,3 +70,4 @@ Fuse REST
 4. https://github.com/adithaha/jboss-fuse-workshop/blob/master/rest/lab4-integrate-contd.md
 
 3Scale
+1. https://github.com/adithaha/jboss-fuse-workshop/blob/master/api/lab1-api-management.md
