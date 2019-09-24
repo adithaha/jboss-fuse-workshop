@@ -33,21 +33,21 @@ Backend API: http://fuse-rest-#-fuse-workshop-#.ocpapps.bkpm.go.id
    Mapping Rules:
      Delete Get /
      Add Mapping Rules:
-       Verb: POST xxx
-       Pattern: /rest/v1/vocabularies xxx
+       Verb: POST
+       Pattern: /camel/jaxrs/employee
        + : 1
        Metric or Method: add_employee
      Add Mapping Rules:
-       Verb: POST xxx
-       Pattern: /rest/v1/types xxx
+       Verb: GET
+       Pattern: /camel/jaxrs/employee/{id}
        + : 1
        Metric or Method: get_employee
      Add Mapping Rules:
-       Verb: GET xxx
-       Pattern: /rest/v1/types xxx
+       Verb: GET
+       Pattern: /camel/jaxrs/employeeall
        + : 1
        Metric or Method: get_employee_all
-   API test GET request: /rest/v1/vocabularies xxx
+   API test GET request: /camel/jaxrs/employeeall
    Update and Test in Staging Environment
    ```
 5. Applications > Application Plan
