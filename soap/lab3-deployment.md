@@ -29,6 +29,7 @@ Using local path
 ```
 $ oc new-app fuse7-java-openshift:1.3 --code=. --name=fuse-soap-<name> --strategy=source
 ```
+Ignore git error as we are not using git server
 
 OR
 
@@ -37,7 +38,7 @@ Using git repository (BKPM skip)
 $ oc new-app fuse7-java-openshift:1.3~https://github.com/adithaha/jboss-fuse-workshop.git --context-dir=/soap/solution/fuse-soap --name=fuse-soap-<name>
 ```
 
-4. Open application port 8080 in service
+4. Open application port 8080 in service, add port 8080
 ```
 $ oc edit svc/fuse-soap-<name>
 ...
