@@ -49,7 +49,7 @@ Backend API: http://fuse-rest-1-fuse-workshop-1.ocpapps.bkpm.go.id
        Metric or Method: get_employee_all
    API test GET request: /camel/jaxrs/employeeall
    Update and Test in Staging Environment 
-   Test might fail as we haven't register user yet, we can ignore that
+   Test might fail as we haven't registered user yet, we can ignore that
    ```
 5. Applications > Application Plan
    Create Basic plan
