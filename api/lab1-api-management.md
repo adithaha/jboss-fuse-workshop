@@ -90,8 +90,29 @@ Backend API: http://fuse-rest-#-fuse-workshop-#.ocpapps.bkpm.go.id
        Max. value: 60
        Create usage limit
     ```
-       
+6. Register developer  
+   There is existing account Developer, we will use that account to be registered with application plan  
+   Register with Basic plan
+   ```
+   Choose dropdown Audience
+   Click Developer - Applications - (+) Create Application
+     Application Plan: Choose - fuse-workshop-<name> - Basic 
+     Name: fuse-workshop-<name>-basic
+     Description: fuse-workshop-<name>-basic
+     Create Application
+   Note the User Key eg. 4567d96a9a0d34b590d1b93f92397a79
+   ```
+7. Call API through API Gateway  
+   Note API Gateway URL
+   ```
+   Choose dropdown at top: fuse-workshop-<name>
+   Integration - Configuration
+   Note API Gateway staging URL
+   ```
+   Call API
+   ```
+   Open API Gateway staging URL via browser, add path below with user key from #6:
+   /xxxx/xxx?user_key=<user_key>
+   ```
+   You should be able to get employee data response
 
-```
-xxxxx
-```
