@@ -2,8 +2,8 @@
 ## LAB 1 - Integrate API
 
 
-3Scale admin URL: https://3scale-admin.api.ocpapps.bkpm.go.id  (admin/admin)
-Backend API: http://fuse-rest-#-fuse-workshop-#.ocpapps.bkpm.go.id  
+3Scale admin URL: https://3scale-admin.api.ocpapps.bkpm.go.id  (admin/admin)  
+Backend API: http://fuse-rest-#-fuse-workshop-#.ocpapps.bkpm.go.id    
   
 1. Login into 3Scale admin portal
 2. + New API
@@ -51,38 +51,44 @@ Backend API: http://fuse-rest-#-fuse-workshop-#.ocpapps.bkpm.go.id
    Update and Test in Staging Environment
    ```
 5. Applications > Application Plan
+   Create Basic plan
    ```
    Create Application Plan
      Name: Basic
      System Name: basic
      Create Application Plan
-     Click Basic - Metrics, Methods, Limits & Pricing Rules 
-       get_employee - Limits - New usage limit
-         Period: Minute
-         Max. value: 60
-         Create usage limit
-       get_employee_all - Limits - New usage limit
-         Period: Minute
-         Max. value: 60
-         Create usage limit
-       add_employee - disable
+   Publish
+   Click Basic - Metrics, Methods, Limits & Pricing Rules 
+     get_employee - Limits - New usage limit
+       Period: Minute
+       Max. value: 60
+       Create usage limit
+     get_employee_all - Limits - New usage limit
+       Period: Minute
+       Max. value: 60
+       Create usage limit
+     add_employee - disable
+   ```
+   Create Premium plan
+   ```
    Create Application Plan
      Name: Premium
      System Name: premium
      Create Application Plan
-     Click Basic - Metrics, Methods, Limits & Pricing Rules 
-       get_employee - Limits - New usage limit
-         Period: Minute
-         Max. value: 600
-         Create usage limit
-       get_employee_all - Limits - New usage limit
-         Period: Minute
-         Max. value: 600
-         Create usage limit
-       add_employee - Limits - New usage limit
-         Period: Minute
-         Max. value: 60
-         Create usage limit
+   Publish
+   Click Basic - Metrics, Methods, Limits & Pricing Rules 
+     get_employee - Limits - New usage limit
+       Period: Minute
+       Max. value: 600
+       Create usage limit
+     get_employee_all - Limits - New usage limit
+       Period: Minute
+       Max. value: 600
+       Create usage limit
+     add_employee - Limits - New usage limit
+       Period: Minute
+       Max. value: 60
+       Create usage limit
     ```
        
 
