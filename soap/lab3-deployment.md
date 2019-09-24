@@ -13,7 +13,7 @@ If you download fuse-soap.zip, follow procedure below
 
 1. Go to workspace directory
 ```
-$ cd <workspace-dir>/fuse-soap
+$ cd fuse-soap
 ```
 2. Login into openshift (you need openshift web url correctly)
 ```
