@@ -52,8 +52,8 @@ tambah ke system path: oc-client
 
 Start LAB:
 Fuse SOAP
-1. https://github.com/adithaha/jboss-fuse-workshop/blob/master/soap/lab1-fuse-soap.md
-2. https://github.com/adithaha/jboss-fuse-workshop/blob/master/soap/lab2-deployment.md
+1. https://github.com/adithaha/jboss-fuse-workshop/blob/master/soap/lab1-initiate-fuse-project.md
+2. https://github.com/adithaha/jboss-fuse-workshop/blob/master/soap/lab2-integrate.md
 
 Fuse REST
 1. https://github.com/adithaha/jboss-fuse-workshop/blob/master/rest/lab1-fuse-rest.md
