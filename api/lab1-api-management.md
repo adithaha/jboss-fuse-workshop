@@ -2,38 +2,52 @@
 ## LAB 1 - Integrate API
 
 
-3Scale admin URL: https://3scale-admin.api.ocpapps.bkpm.go.id  (admin/admin123)
+3Scale admin URL: https://3scale-admin.api.ocpapps.bkpm.go.id  (admin/admin)
 Backend API: http://fuse-rest-#-fuse-workshop-#.ocpapps.bkpm.go.id  
   
 1. Login into 3Scale admin portal
-2. Drop down - API
+2. + New API
+   ```
+   Name: fuse-workshop-<name>
+   System Name: fuse-workshop-<name>
+   Add API
+   ```
 3. Integration > Methods & Metrics 
    ```
    Method - New method  
-     Friendly name: GET_vocabularies  
-     System name: GET_vocabularies  
+     Friendly name: Add Employee  
+     System name: add_employee  
      Create Method  
    Method - New method  
-     Friendly name: GET_types  
-     System name: GET_types  
+     Friendly name: Get Employee  
+     System name: get_employee  
+     Create Method  
+   Method - New method  
+     Friendly name: Get Employee All  
+     System name: get_employee_all  
      Create Method  
    ```
 4. Integration > Configuration - add the base URL of your API and save the configuration.
    ```
-   Private Base URL: https://api.finto.fi
+   Private Base URL: http://fuse-rest-#-fuse-workshop-#.ocpapps.bkpm.go.id
    Mapping Rules:
      Delete Get /
      Add Mapping Rules:
-       Verb: GET
-       Pattern: /rest/v1/vocabularies
+       Verb: POST xxx
+       Pattern: /rest/v1/vocabularies xxx
        + : 1
-       Metric or Method: GET_vocabularies
+       Metric or Method: add_employee
      Add Mapping Rules:
-       Verb: GET
-       Pattern: /rest/v1/types
+       Verb: POST xxx
+       Pattern: /rest/v1/types xxx
        + : 1
-       Metric or Method: GET_types
-   API test GET request: /rest/v1/vocabularies
+       Metric or Method: get_employee
+     Add Mapping Rules:
+       Verb: GET xxx
+       Pattern: /rest/v1/types xxx
+       + : 1
+       Metric or Method: get_employee_all
+   API test GET request: /rest/v1/vocabularies xxx
    Update and Test in Staging Environment
    ```
 5. Applications > Application Plan
@@ -43,23 +57,31 @@ Backend API: http://fuse-rest-#-fuse-workshop-#.ocpapps.bkpm.go.id
      System Name: basic
      Create Application Plan
      Click Basic - Metrics, Methods, Limits & Pricing Rules 
-       GET_vocabularies - Limits - New usage limit
+       get_employee - Limits - New usage limit
          Period: Minute
          Max. value: 60
          Create usage limit
-       GET_types - disable
+       get_employee_all - Limits - New usage limit
+         Period: Minute
+         Max. value: 60
+         Create usage limit
+       add_employee - disable
    Create Application Plan
-     Name: Basic
-     System Name: basic
+     Name: Premium
+     System Name: premium
      Create Application Plan
      Click Basic - Metrics, Methods, Limits & Pricing Rules 
-       GET_vocabularies - Limits - New usage limit
+       get_employee - Limits - New usage limit
          Period: Minute
-         Max. value: 6000
+         Max. value: 600
          Create usage limit
-       GET_types - Limits - New usage limit
+       get_employee_all - Limits - New usage limit
          Period: Minute
-         Max. value: 6000
+         Max. value: 600
+         Create usage limit
+       add_employee - Limits - New usage limit
+         Period: Minute
+         Max. value: 60
          Create usage limit
     ```
        
