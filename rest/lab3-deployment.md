@@ -87,3 +87,13 @@ fuse-rest requires employee SOAP service as a backend. Assumed employeeWS is alr
 4. Save
   
 Application will be redeployed with configured parameter.
+
+### Try your application
+
+1. Get your application route
+```
+$ oc get route
+```
+Note the url for fuse-rest application 
+
+2. Open url from browser, add path /camel/api-docs
