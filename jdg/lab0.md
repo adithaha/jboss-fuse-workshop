@@ -51,5 +51,52 @@ Build: right click your fuse-rest project - run as - maven build....
 	Run
 The application should be compiled successfully
 ```
-6. Create getEmployeeAll with cache
+6. Create getEmployeeAllCache 
+```
+Routing - Route
+	Id: getEmployeeAllCache
+Component - Direct
+	Uri: direct:getEmployeeAllCache
+Transformation - Set Header
+	Expression: constant 
+	Expression: CamelInfinispanOperationGet
+	Header Name: CamelInfinispanOperation
+Transformation - Set Header
+	Expression: constant 
+	Expression: getEmployeeAll
+	Header Name: CamelInfinispanKey
+Component - Direct
+	Uri: infinispan://{{jdg.hosts}}
+Routing - Choice 
+(inside Choice) Routing - When
+	Expression: simple
+	Expression: ${header.CamelInfinispanOperationResult} == null
+(inside When) Component - Log
+	Message: not found in cache, calling SOAP webservice
+(inside When) Component - Direct
+	Uri: direct:getEmployeeAll
+(inside When) Transformation - Convert Body To
+	Type: java.lang.String
+(inside When) Transformation - Set Header
+	Expression: constant 
+	Expression: CamelInfinispanOperationPut
+	Header Name: CamelInfinispanOperation
+(inside When) Transformation - Set Header
+	Expression: simple 
+	Expression: ${body}
+	Header Name: CamelInfinispanValue
+(inside When) Component - Direct
+	Uri: infinispan://{{jdg.hosts}}
+(inside Choice) Routing - Otherwise
+(inside Otherwise)  Component - Log
+	Message: found in cache
+(inside Otherwise) Transformation - Set Body
+	Expression: simple
+	Expression: ${header.CamelInfinispanOperationResult}
+(inside Otherwise) Transformation - Set Body
+	Expression: simple
+	Expression: ${header.CamelInfinispanOperationResult}
+Transformation - Convert Body To
+	Type: org.jboss.fuse.workshop.soap.EmployeeList
 
+```
