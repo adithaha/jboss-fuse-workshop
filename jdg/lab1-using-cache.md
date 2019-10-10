@@ -1,8 +1,26 @@
 
 ## LAB 1 - Using JDG as response cache
 
+We will Continue to work on fuse-rest project from REST lab. Add cache capability for method getEmployeeAll using JBoss Data Grid.  
+
 Open JBoss Developer Studio application. Continue to work on fuse-rest project from REST lab. If you haven't completed REST lab, you can start with this project https://github.com/adithaha/jboss-fuse-workshop/raw/master/rest/solution/lab4/fuse-rest.zip, import into CodeReady Studio, and do lab3 on https://github.com/adithaha/jboss-fuse-workshop/blob/master/soap/lab3-deployment.md
 
+### Deploy JBoss Data Grid
+
+1. Go to openshift web console, login with your user
+2. Go to project fuse-workshop-<user>
+3. Deploy JBoss Data Grid using template
+```
+Add to Project - Browse Catalog - filter - type 'grid 7.2' - choose Red Hat JBoss Data Grid 7.2 (Ephemeral, no https) 
+Next
+Cache Names: fuse-workshop
+Next
+Create
+```	
+4. JBoss Data Grid will be deployed. Notice there are 4 network service exposed, we will be using hotrod connecter later. Note the service name and port - datagrid-app-hotrod:11333
+
+### Create getEmployeeAllCache method
+	
 1. Open pom.xml, source
  
 Add JDG client version inside <properties>
@@ -42,9 +60,9 @@ Add  JDG client dependency
     </dependency>
   
 ```
-2. Add JDG URL property. Open src/main/resources - application.properties - source
+2. Add JDG URL property, put hotrod url from previous step. Open src/main/resources - application.properties - source
 ```
-jdg.url=localhost:11222?cacheName=coba
+jdg.url=datagrid-app-hotrod:11333?cacheName=fuse-workshop
 ```
 3. Compile your application
 ```
