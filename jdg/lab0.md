@@ -42,7 +42,7 @@ Add below JDG client dependency
     </dependency>
   
 ```
-5. Compile your application
+2. Compile your application
 ```
 Clean build: right click your fuse-soap project - run as - maven clean
 Build: right click your fuse-rest project - run as - maven build....
@@ -50,7 +50,7 @@ Build: right click your fuse-rest project - run as - maven build....
 	Run
 The application should be compiled successfully
 ```
-6. Create getEmployeeAllCache 
+3. Create getEmployeeAllCache 
 ```
 Routing - Route
 	Id: getEmployeeAllCache
@@ -99,3 +99,37 @@ Transformation - Convert Body To
 	Type: org.jboss.fuse.workshop.soap.EmployeeList
 
 ```
+4. Make getEmployeeAllCache as default. Go to rest configuration - rest-springboot-context.xml - REST
+```
+REST Operations - get /employeall
+To URI: direct:getEmployeeAllCache
+```
+5. Redeploy into openshift
+
+Deploy using built jar from local client  
+Source code: local  
+Build: local
+```
+$ cd <fuse-rest>
+$ mvn clean package
+$ oc start-build fuse-rest-<name> --from-file=target/fuse-rest-1.0.0-SNAPSHOT.jar --follow
+```
+
+OR
+(Pegadaian skip)
+Deploy using source code from local client  
+Source code: local  
+Build: OpenShift server
+```
+$ oc start-build fuse-rest-<name> --from-dir=fuse-rest --follow
+```
+
+### Try your application
+
+1. Get your application route
+```
+$ oc get route
+```
+Note the url  
+
+2. Open url from browser, add path /camel/jaxrs/employeeall
