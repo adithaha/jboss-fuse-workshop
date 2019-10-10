@@ -8,7 +8,10 @@ Open JBoss Developer Studio application. Continue to work on fuse-rest project f
 ### Deploy JBoss Data Grid
 
 1. Go to openshift web console, login with your user
-2. Go to project fuse-workshop-<user>
+2. Go to project 
+```
+fuse-workshop-<name>
+```
 3. Deploy JBoss Data Grid using template
 ```
 Add to Project - Browse Catalog - filter - type 'grid 7.2' - choose Red Hat JBoss Data Grid 7.2 (Ephemeral, no https) 
