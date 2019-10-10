@@ -1,7 +1,7 @@
 
 ## LAB 2 - Create add employee bulk asynchronous
 
-In this lab, we will create new additional API service to add employee with multiple employee paramater. We will be reusing existing addEmployee method, with asynchronous approach 
+In this lab, we will create new additional API service to add employee with multiple employee paramater. We will reuse existing addEmployee method, with asynchronous approach.
 
 1. Create employeelist API service. Click Source tab.
 ```
