@@ -6,8 +6,8 @@ Open JBoss Developer Studio application. Continue to work on fuse-rest project f
 
 1. Open pom.xml, source
  
-  Add JDG client version inside <properties>
-  ```
+Add JDG client version inside <properties>
+```
   ...
   <properties>
     <fuse.version>7.3.1.fuse-731003-redhat-00003</fuse.version>
@@ -16,9 +16,9 @@ Open JBoss Developer Studio application. Continue to work on fuse-rest project f
     <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
     <org.jboss.datagrid.version>6.5.1.Final-redhat-1</org.jboss.datagrid.version>
   </properties>
-  ```
-  Add below JDG client dependency
-  ``` 
+```
+Add below JDG client dependency
+``` 
       ...
       <artifactId>camel-swagger-java-starter</artifactId>
     </dependency>
@@ -42,7 +42,7 @@ Open JBoss Developer Studio application. Continue to work on fuse-rest project f
       </exclusions>
     </dependency>
   
-  ```
+```
 5. Compile your application
 ```
 Clean build: right click your fuse-soap project - run as - maven clean
