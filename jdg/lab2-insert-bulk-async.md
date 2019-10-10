@@ -3,18 +3,20 @@
 
 In this lab, we will create new additional API service to add employee with multiple employee paramater. We will reuse existing addEmployee method, with asynchronous approach.
 
-1. Create employeelist API service. Click Source tab.
+1. Open rest-springboot-context.xml. Create employeebulk API service. Click REST tab.
 ```
-        <rest>
-            ...
-            <post consumes="application/json" 
-                outType="org.jboss.fuse.workshop.soap.EmployeeList"
-                type="org.jboss.fuse.workshop.soap.EmployeeList" uri="/employeebulk">
-                <to uri="direct:addEmployeeBulk"/>
-            </post>...
-        </rest>
+REST Operations +
+URI: /employeebulk
+Operation Type: POST
+Finish
 ```
-2. Create addEmployeeList route. Click Design tab, drag and drop to create new Route
+2. Configure employeebulk definition
+```
+Type: org.jboss.fuse.workshop.soap.EmployeeList 
+Out Type: org.jboss.fuse.workshop.soap.EmployeeList
+To URI: direct:addEmployeeBulk
+```
+2. Create addEmployeeBulk route. Click Design tab, drag and drop to create new Route
 ```
 Routing - Route
 	ID: addEmployeeBulk
