@@ -1,5 +1,5 @@
 
-## LAB 1 - Create Fuse REST Integration Project
+## LAB 1 - Using JDG as response cache
 
 Open JBoss Developer Studio application. Continue to work on fuse-rest project from REST lab. If you haven't completed REST lab, you can start with this project https://github.com/adithaha/jboss-fuse-workshop/raw/master/rest/solution/lab4/fuse-rest.zip, import into CodeReady Studio, and do lab3 on https://github.com/adithaha/jboss-fuse-workshop/blob/master/soap/lab3-deployment.md
 
@@ -16,7 +16,7 @@ Add JDG client version inside <properties>
     <org.jboss.datagrid.version>6.5.1.Final-redhat-1</org.jboss.datagrid.version>
   </properties>
 ```
-Add below JDG client dependency
+Add  JDG client dependency
 ``` 
       ...
       <artifactId>camel-swagger-java-starter</artifactId>
@@ -42,7 +42,11 @@ Add below JDG client dependency
     </dependency>
   
 ```
-2. Compile your application
+2. Add JDG URL property. Open src/main/resources - application.properties - source
+```
+jdg.url=localhost:11222?cacheName=coba
+```
+3. Compile your application
 ```
 Clean build: right click your fuse-soap project - run as - maven clean
 Build: right click your fuse-rest project - run as - maven build....
@@ -50,7 +54,7 @@ Build: right click your fuse-rest project - run as - maven build....
 	Run
 The application should be compiled successfully
 ```
-3. Create getEmployeeAllCache 
+4. Create getEmployeeAllCache 
 ```
 Routing - Route
 	Id: getEmployeeAllCache
@@ -65,7 +69,7 @@ Transformation - Set Header
 	Expression: getEmployeeAll
 	Header Name: CamelInfinispanKey
 Component - Direct
-	Uri: infinispan://{{jdg.hosts}}
+	Uri: infinispan://{{jdg.url}}
 Routing - Choice 
 (inside Choice) Routing - When
 	Expression: simple
@@ -85,7 +89,7 @@ Routing - Choice
 	Expression: ${body}
 	Header Name: CamelInfinispanValue
 (inside When) Component - Direct
-	Uri: infinispan://{{jdg.hosts}}
+	Uri: infinispan://{{jdg.url}}
 (inside Choice) Routing - Otherwise
 (inside Otherwise)  Component - Log
 	Message: found in cache
@@ -99,12 +103,12 @@ Transformation - Convert Body To
 	Type: org.jboss.fuse.workshop.soap.EmployeeList
 
 ```
-4. Make getEmployeeAllCache as default. Go to rest configuration - rest-springboot-context.xml - REST
+5. Make getEmployeeAllCache as default. Go to rest configuration - rest-springboot-context.xml - REST
 ```
 REST Operations - get /employeall
 To URI: direct:getEmployeeAllCache
 ```
-5. Redeploy into openshift
+6. Redeploy into openshift
 
 Deploy using built jar from local client  
 Source code: local  
