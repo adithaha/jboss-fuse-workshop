@@ -102,7 +102,7 @@ Transformation - Convert Body To
 	Type: org.jboss.fuse.workshop.soap.Employee
 Component - Direct
 	Uri: direct:addEmployee
-
+```
 6. Open rest-springboot-context.xml. Create employeebulk API service. Click REST tab.
 ```
 REST Operations +
