@@ -30,10 +30,7 @@ Add JDG client version inside <properties>
 ```
   ...
   <properties>
-    <fuse.version>7.3.1.fuse-731003-redhat-00003</fuse.version>
-    <maven-compiler-plugin.version>3.6.0</maven-compiler-plugin.version>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
+    ...
     <org.jboss.datagrid.version>6.5.1.Final-redhat-1</org.jboss.datagrid.version>
   </properties>
 ```
