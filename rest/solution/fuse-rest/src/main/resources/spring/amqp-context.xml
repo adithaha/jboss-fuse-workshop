@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    
+ <bean id="amqp" class="org.apache.camel.component.jms.JmsComponent">
+        <property name="connectionFactory">
+            <bean class="org.apache.qpid.jms.JmsConnectionFactory" >
+	            <constructor-arg index="0"  value="${amq.user}" />
+	            <constructor-arg index="1" value="${amq.pass}" />
+	            <constructor-arg index="2" value="${amq.url}" />
+            </bean>
+        </property>
+    </bean>
+	
+</beans>
