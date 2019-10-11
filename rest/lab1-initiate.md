@@ -17,15 +17,14 @@ Simple log using Spring Boot - Spring DSL
 Finish
 Open Associate Perspective: Yes
  ```
-2. Open pom.xml, source, replace below lines #4 - #9
+2. Open fuse-rest - pom.xml, pom.xml, replace below lines #4 - #9
  ``` 
-  <modelVersion>4.0.0</modelVersion>
   <groupId>org.jboss.fuse.workshop</groupId>
   <artifactId>fuse-rest</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <name>Workshop:: Fuse REST</name>
   <description>Workshop:: Fuse REST</description>
-  ```
+```
   Add below lines #28 starting with <dependency>
   
    ``` 
@@ -55,18 +54,20 @@ Open Associate Perspective: Yes
   
   ```
 
-3. Change default package src/main/java - org.mycompany - right click - refactor - rename
+3. Change default package fuse-rest - src/main/java - org.mycompany - right click - refactor - rename
 	- New Name: org.jboss.fuse.workshop.rest
 	- OK
 	- Continue
-4. Remove default route src/main/resources - spring - camel-context.xml
+4. Remove default route fuse-rest - Camel Contexts - camel-context.xml - right click - Delete - OK
 
 5. Compile your application
 ```
-Clean build: right click your fuse-soap project - run as - maven clean
-Build: right click your fuse-rest project - run as - maven build....
+Clean and Build: right click your fuse-rest - run as - maven build....
+	Name: fuse-rest mvn clean package
 	Goals: clean package
 	Run
 The application should be compiled successfully
+
+*Later if you want to build the application, you can just select maven build - fuse-rest clean package
 ```
 
