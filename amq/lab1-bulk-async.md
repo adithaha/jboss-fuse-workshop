@@ -1,8 +1,9 @@
 
 ## LAB 2 - Using AMQ to add employee in bulk asynchronously
 
-In this lab, we will create new additional API service to add employee with multiple employee paramater. We will reuse existing addEmployee method, with asynchronous approach.
+We will continue to work on fuse-rest project from REST lab. Create new additional API service to add multiple employee reuse existing addEmployee method, with asynchronous approach.  
 
+Open JBoss Developer Studio application. Continue to work on fuse-rest project from JDG lab. If you haven't completed JDG lab, you can start with this project https://github.com/adithaha/jboss-fuse-workshop/raw/master/jdg/solution/lab1/fuse-rest.zip, import into CodeReady Studio, and do lab3 on https://github.com/adithaha/jboss-fuse-workshop/blob/master/rest/lab3-deployment.md
 
 ### Deploy JBoss AMQ Broker
 
@@ -24,7 +25,7 @@ Create
 
 ### Create add employee bulk asynchronous
 
-1. Open pom.xml, source. Add Camel-AMQP component dependency
+1. Open fuse-rest - pom.xml, source. Add Camel-AMQP component dependency
 ``` 
       ...
       <artifactId>camel-swagger-java-starter</artifactId>
@@ -39,7 +40,7 @@ Create
 
 2. Create amqp connector. 
 ```
-src/main/resources - spring - right click - New - Camel XML File
+fuse-rest - Camel Contexts - right click - New Camel XML File
 File name: amqp-context.xml
 Finish
 ```
@@ -70,7 +71,7 @@ amq.password=amq
 amq.url=amqp://broker-amq-amqp:5672
 ```
 
-4. Create addEmployeeBulk route. Click Design tab, drag and drop to create new Route
+4. Create addEmployeeBulk route in Camel Contexts - rest-springboot-context.xml. Click Design tab, drag and drop to create new Route
 ```
 Routing - Route
 	ID: addEmployeeBulk
@@ -86,13 +87,14 @@ Routing - Split
 	Expression: simple
 	Expression: ${property.employeeList.employeeList}
 (inside split) Component - Direct
-		Uri: amqp:queue:employeeQueue
+	Uri: amqp:queue:employeeQueue
+	Pattern: InOnly
 Transformation - Set Body
 	Expression: constant
 	Expression: { "message": "Request is being processed" }
 ```
 
-5. Create addEmployeeConsumer route. Click Design tab, drag and drop to create new Route
+5. Create addEmployeeConsumer route in Camel Contexts - rest-springboot-context.xml. Click Design tab, drag and drop to create new Route
 ```
 Routing - Route
 	ID: addEmployeeConsumer
@@ -107,13 +109,16 @@ Component - Direct
 ```
 REST Operations +
 URI: /employeebulk
-Operation Type: POST
+Operation Type: post
 Finish
 ```
 7. Configure employeebulk definition
 ```
+REST Operations - post /employeebulk
 Type: org.jboss.fuse.workshop.soap.EmployeeList 
 To URI: direct:addEmployeeBulk
+
+* if you cannot select direct:addEmployeeBulk, save rest-springboot-context.xml - close - open again
 ```
 8. Try on local
 ```
