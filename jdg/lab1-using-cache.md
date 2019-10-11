@@ -1,7 +1,7 @@
 
 ## LAB 1 - Using JDG as response cache
 
-We will Continue to work on fuse-rest project from REST lab. Add cache capability for method getEmployeeAll using JBoss Data Grid.  
+We will continue to work on fuse-rest project from REST lab. Add cache capability for method getEmployeeAll using JBoss Data Grid.  
 
 Open JBoss Developer Studio application. Continue to work on fuse-rest project from REST lab. If you haven't completed REST lab, you can start with this project https://github.com/adithaha/jboss-fuse-workshop/raw/master/rest/solution/lab2/fuse-rest.zip, import into CodeReady Studio, and do lab3 on https://github.com/adithaha/jboss-fuse-workshop/blob/master/rest/lab3-deployment.md
 
