@@ -75,13 +75,10 @@ To:
 ```
 9. Try your application
 ```
-Clean build: right click your fuse-rest project - run as - maven clean
-Build: right click your fuse-rest project - run as - maven build....
-	Goals: clean package
-	Run
+Build: right click your fuse-rest project - run as - maven build - fuse-rest clean package - OK
 start fuse application: fuse-rest - src/main/java - org.jboss.fuse.workshop.rest - Application.java (right click) - run as - Java Application
 ```
-Open browser, go to at http://localhost:8080/camel/api-docs
+Open browser, go to at http://localhost:8080/camel/api-docs. You should be able to see OpenAPI doc generated.
 
 ```
 stop fuse application: go to console tab - click red square on the right
