@@ -65,7 +65,6 @@ Transformation - Set Body
 ```
 
 8. Configure Spring Boot to read generated camel xml - src/main/java - org.jboss.fuse.workshop.rest - Application.java
-```
 From:
 ```
 @ImportResource({"classpath:spring/camel-context.xml"})
