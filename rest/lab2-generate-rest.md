@@ -46,14 +46,14 @@ Change to Uri: cxf://{{url.employeeWS}}?serviceClass=org.jboss.fuse.workshop.soa
 ```
 There are 3 cxf endpoint that need to be changed.
 
-6. Method with empty parameter is not configured correctly. getEmployeeAll service uri must be changed in <rest> tag (use source)
+6. Method with empty parameter is not configured correctly. getEmployeeAll service uri must be changed to not accepting parameter. rest-springboot-context.xml - tab REST - REST Operations - get /employeeall/{arg0}
 From:
 ```
-uri="/employeeall/{arg0}">
+uri=/employeeall/{arg0
 ```
 To:
 ```
-uri="/employeeall">
+uri=/employeeall
 ```
 
 7. since getEmployeeAll doesn't have any parameter, its body need to be set to null before sending to soap backend. Go to design.
@@ -66,10 +66,14 @@ Transformation - Set Body
 
 8. Configure Spring Boot to read generated camel xml - src/main/java - org.jboss.fuse.workshop.rest - Application.java
 ```
+From:
+```
+@ImportResource({"classpath:spring/camel-context.xml"})
+```
+To:
+```
 @ImportResource({"classpath:spring/rest-springboot-context.xml"})
 ```
-
-
 9. Try your application
 ```
 Clean build: right click your fuse-rest project - run as - maven clean
