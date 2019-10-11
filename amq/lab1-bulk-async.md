@@ -64,14 +64,23 @@ Open that file, tab source. Replace all its content with below
 </beans>
 
 ```
-3. Add AMQ connection properties, put url from previous step. Open src/main/resources - application.properties - source
+3. Configure Spring Boot to read amqp-context.xml - src/main/java - org.jboss.fuse.workshop.rest - Application.java
+From:
+```
+@ImportResource({"classpath:spring/rest-springboot-context.xml"})
+```
+To:
+```
+@ImportResource({"classpath:spring/rest-springboot-context.xml","amqp-context.xml"})
+```
+4. Add AMQ connection properties, put url from previous step. Open src/main/resources - application.properties - source
 ```
 amq.user=amq
-amq.password=amq
+amq.pass=amq
 amq.url=amqp://broker-amq-amqp:5672
 ```
 
-4. Create addEmployeeBulk route in Camel Contexts - rest-springboot-context.xml. Click Design tab, drag and drop to create new Route
+5. Create addEmployeeBulk route in Camel Contexts - rest-springboot-context.xml. Click Design tab, drag and drop to create new Route
 ```
 Routing - Route
 	ID: addEmployeeBulk
@@ -94,7 +103,7 @@ Transformation - Set Body
 	Expression: { "message": "Request is being processed" }
 ```
 
-5. Create addEmployeeConsumer route in Camel Contexts - rest-springboot-context.xml. Click Design tab, drag and drop to create new Route
+6. Create addEmployeeConsumer route in Camel Contexts - rest-springboot-context.xml. Click Design tab, drag and drop to create new Route
 ```
 Routing - Route
 	ID: addEmployeeConsumer
@@ -105,14 +114,14 @@ Transformation - Convert Body To
 Component - Direct
 	Uri: direct:addEmployee
 ```
-6. Open rest-springboot-context.xml. Create employeebulk API service. Click REST tab.
+7. Open rest-springboot-context.xml. Create employeebulk API service. Click REST tab.
 ```
 REST Operations +
 URI: /employeebulk
 Operation Type: post
 Finish
 ```
-7. Configure employeebulk definition
+8. Configure employeebulk definition
 ```
 REST Operations - post /employeebulk
 Type: org.jboss.fuse.workshop.soap.EmployeeList 
@@ -120,7 +129,7 @@ To URI: direct:addEmployeeBulk
 
 * if you cannot select direct:addEmployeeBulk, save rest-springboot-context.xml - close - open again
 ```
-8. Try on local
+9. Try on local
 ```
 $ cd <fuse-rest>
 $ mvn clean spring-boot:run
@@ -129,7 +138,7 @@ Check if url below can be accessed:
 
 http://localhost:8080/camel/api-docs
 
-9. Redeploy into openshift
+10. Redeploy into openshift
 
 Deploy using built jar from local client  
 Source code: local  
