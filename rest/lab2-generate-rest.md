@@ -16,8 +16,7 @@ Check if classes already generated in src/main/java - org.jboss.fuse.workshop.so
 Also check if camel route is generated in Camel Contexts - rest-springboot-context.xml
 ```
 
-3. Configure API documentation, replace <restConfiguration> tag in rest-springboot-context.xml with below (use source)
-
+3. Configure API documentation, open fuse-rest - Camel Contexts - rest-springboot-context.xml - source. Replace all <restConfiguration> tag with below (line 9-10)
 ```
 	<restConfiguration apiContextPath="api-docs" bindingMode="json"
             component="servlet" contextPath="/camel" enableCORS="true">
@@ -30,18 +29,22 @@ Also check if camel route is generated in Camel Contexts - rest-springboot-conte
         </restConfiguration>
         
 ```
-4. For easy configuration, put SOAP address on application.properties - src/main/resources - application.properties - Finish - source
+4. For easy configuration, put SOAP address on application.properties - src/main/resources - application.properties - source
 ```
 ...
-url.employeeWS=${URL_EMPLOYEEWS}
-URL_EMPLOYEEWS=http://localhost:8080/cxf/employeeWS
+url.employeeWS=http://localhost:8080/cxf/employeeWS
+
+#url.employeeWS=${URL_EMPLOYEEWS}
+#URL_EMPLOYEEWS=http://localhost:8080/cxf/employeeWS
 ...
 ```
 
-5. Configure camel context to get SOAP address from properties - rest-springboot-context. For each cxf endpoint, replace http://localhost:8080/cxf/employeeWS to {{url.employeeWS}} (use design)
+5. Configure camel context to get SOAP address from properties Camel Contexts - rest-springboot-context. For each cxf endpoint, replace http://localhost:8080/cxf/employeeWS to {{url.employeeWS}}. For example:
 ```
-Uri: cxf://{{url.employeeWS}}...
+Current Uri:cxf://http://localhost:8080/cxf/employeeWS?serviceClass=org.jboss.fuse.workshop.soap.EmployeeWSPortType&defaultOperationName=addEmployee
+Change to Uri: cxf://{{url.employeeWS}}?serviceClass=org.jboss.fuse.workshop.soap.EmployeeWSPortType&defaultOperationName=addEmployee
 ```
+There are 3 cxf endpoint that need to be changed.
 
 6. Method with empty parameter is not configured correctly. getEmployeeAll service uri must be changed in <rest> tag (use source)
 From:
