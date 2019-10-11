@@ -4,18 +4,19 @@
 Open JBoss Developer Studio application. Continue to work on fuse-rest project from lab1. If you haven't completed lab1, you can start with this project https://github.com/adithaha/jboss-fuse-workshop/raw/master/rest/solution/lab1/fuse-rest.zip and import into CodeReady Studio.
 
 1. Download wsdl file here https://raw.githubusercontent.com/adithaha/jboss-fuse-workshop/master/rest/employeeWS.wsdl, put into fuse-rest - src/main/resources  
-1. Generate REST service from WSDL
+2. Generate REST service from WSDL
 ```
 - File - New - Other... - Camel REST From WSDL
-	- WSDL file: put wsdl file from employeeWS
+	- WSDL file: put employeeWS.wsdl file location
 	- Destination Project: fuse-rest
 	- Next
 	- Finish
 
 Check if classes already generated in src/main/java - org.jboss.fuse.workshop.soap
+Also check if camel route is generated in Camel Contexts - rest-springboot-context.xml
 ```
 
-2. Configure API documentation, replace <restConfiguration> tag in rest-springboot-context.xml with below (use source)
+3. Configure API documentation, replace <restConfiguration> tag in rest-springboot-context.xml with below (use source)
 
 ```
 	<restConfiguration apiContextPath="api-docs" bindingMode="json"
@@ -29,7 +30,7 @@ Check if classes already generated in src/main/java - org.jboss.fuse.workshop.so
         </restConfiguration>
         
 ```
-3. For easy configuration, put SOAP address on application.properties - src/main/resources - application.properties - Finish - source
+4. For easy configuration, put SOAP address on application.properties - src/main/resources - application.properties - Finish - source
 ```
 ...
 url.employeeWS=${URL_EMPLOYEEWS}
@@ -37,12 +38,12 @@ URL_EMPLOYEEWS=http://localhost:8080/cxf/employeeWS
 ...
 ```
 
-4. Configure camel context to get SOAP address from properties - rest-springboot-context. For each cxf endpoint, replace http://localhost:8080/cxf/employeeWS to {{url.employeeWS}} (use design)
+5. Configure camel context to get SOAP address from properties - rest-springboot-context. For each cxf endpoint, replace http://localhost:8080/cxf/employeeWS to {{url.employeeWS}} (use design)
 ```
 Uri: cxf://{{url.employeeWS}}...
 ```
 
-5. Method with empty parameter is not configured correctly. getEmployeeAll service uri must be changed in <rest> tag (use source)
+6. Method with empty parameter is not configured correctly. getEmployeeAll service uri must be changed in <rest> tag (use source)
 From:
 ```
 uri="/employeeall/{arg0}">
@@ -52,7 +53,7 @@ To:
 uri="/employeeall">
 ```
 
-6. since getEmployeeAll doesn't have any parameter, its body need to be set to null before sending to soap backend. Go to design.
+7. since getEmployeeAll doesn't have any parameter, its body need to be set to null before sending to soap backend. Go to design.
 ```
 In route getEmployeeAll, insert below between _log3 and cxf
 Transformation - Set Body
@@ -60,13 +61,13 @@ Transformation - Set Body
 	- Expression: null
 ```
 
-7. Configure Spring Boot to read generated camel xml - src/main/java - org.jboss.fuse.workshop.rest - Application.java
+8. Configure Spring Boot to read generated camel xml - src/main/java - org.jboss.fuse.workshop.rest - Application.java
 ```
 @ImportResource({"classpath:spring/rest-springboot-context.xml"})
 ```
 
 
-8. Try your application
+9. Try your application
 ```
 Clean build: right click your fuse-rest project - run as - maven clean
 Build: right click your fuse-rest project - run as - maven build....
