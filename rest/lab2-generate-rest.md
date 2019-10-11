@@ -3,8 +3,7 @@
 
 Open JBoss Developer Studio application. Continue to work on fuse-rest project from lab1. If you haven't completed lab1, you can start with this project https://github.com/adithaha/jboss-fuse-workshop/raw/master/rest/solution/lab1/fuse-rest.zip and import into CodeReady Studio.
 
-Download wsdl file here https://raw.githubusercontent.com/adithaha/jboss-fuse-workshop/master/rest/employeeWS.wsdl
-
+1. Download wsdl file here https://raw.githubusercontent.com/adithaha/jboss-fuse-workshop/master/rest/employeeWS.wsdl, put into fuse-rest - src/main/resources  
 1. Generate REST service from WSDL
 ```
 - File - New - Other... - Camel REST From WSDL
