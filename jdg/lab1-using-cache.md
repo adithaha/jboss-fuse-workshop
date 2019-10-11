@@ -3,7 +3,7 @@
 
 We will Continue to work on fuse-rest project from REST lab. Add cache capability for method getEmployeeAll using JBoss Data Grid.  
 
-Open JBoss Developer Studio application. Continue to work on fuse-rest project from REST lab. If you haven't completed REST lab, you can start with this project https://github.com/adithaha/jboss-fuse-workshop/raw/master/rest/solution/lab4/fuse-rest.zip, import into CodeReady Studio, and do lab3 on https://github.com/adithaha/jboss-fuse-workshop/blob/master/soap/lab3-deployment.md
+Open JBoss Developer Studio application. Continue to work on fuse-rest project from REST lab. If you haven't completed REST lab, you can start with this project https://github.com/adithaha/jboss-fuse-workshop/raw/master/rest/solution/lab4/fuse-rest.zip, import into CodeReady Studio, and do lab3 on https://github.com/adithaha/jboss-fuse-workshop/blob/master/rest/lab3-deployment.md
 
 ### Deploy JBoss Data Grid
 
@@ -24,7 +24,7 @@ Create
 
 ### Create getEmployeeAllCache method
 	
-1. Open pom.xml, source
+1. Open fuse-rest - pom.xml, pom.xml
  
 Add JDG client version inside <properties>
 ```
@@ -66,13 +66,12 @@ jdg.url=datagrid-app-hotrod:11333?cacheName=fuse-workshop
 ```
 3. Compile your application
 ```
-Clean build: right click your fuse-soap project - run as - maven clean
 Build: right click your fuse-rest project - run as - maven build....
 	Goals: clean package
 	Run
 The application should be compiled successfully
 ```
-4. Create getEmployeeAllCache 
+4. Create getEmployeeAllCache route, Camel Contexts - rest-springboot-context.xml
 ```
 Routing - Route
 	Id: getEmployeeAllCache
@@ -114,9 +113,6 @@ Routing - Choice
 (inside Otherwise) Transformation - Set Body
 	Expression: simple
 	Expression: ${header.CamelInfinispanOperationResult}
-(inside Otherwise) Transformation - Set Body
-	Expression: simple
-	Expression: ${header.CamelInfinispanOperationResult}
 Transformation - Convert Body To
 	Type: org.jboss.fuse.workshop.soap.EmployeeList
 
@@ -125,6 +121,8 @@ Transformation - Convert Body To
 ```
 REST Operations - get /employeall
 To URI: direct:getEmployeeAllCache
+
+* if you cannot select direct:getEmployeeAllCache, save rest-springboot-context.xml - close - open again
 ```
 6. Redeploy into openshift
 
