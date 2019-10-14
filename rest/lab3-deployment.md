@@ -14,12 +14,12 @@ $ oc login -u <user> https://openshift.com
 3. Create new OpenShift application
 Using local path
 ```
-$ oc new-app fuse7-java-openshift:1.3 --code=. --name=fuse-rest-<name> --strategy=source
+$ oc new-app fuse7-java-openshift:1.2 --code=. --name=fuse-rest-<name> --strategy=source --build-env=MAVEN_MIRROR_URL=
 ```
 
-Using git repository  --DJA DO NOT USE THIS--
+Using git repository  --PEGADAIAN SKIP--
 ```
-$ oc new-app fuse7-java-openshift:1.3~https://github.com/adithaha/jboss-fuse-workshop.git --context-dir=/rest/solution/fuse-rest --name=fuse-rest-<name>
+$ oc new-app fuse7-java-openshift:1.2~https://github.com/adithaha/jboss-fuse-workshop.git --context-dir=/rest/solution/fuse-rest --name=fuse-rest-<name>
 ```
 
 4. Open application port 8080 in service
@@ -60,19 +60,19 @@ spec:
 ...
 ```
 
-### Deploy using source code from local client --BKPM Skip--
+### Deploy using source code from local client
 Source code: local
 Build: OpenShift server
 ```
-$ oc start-build fuse-rest-<name> --from-dir=fuse-rest --follow
+oc start-build fuse-rest-<name> --from-dir=fuse-rest --follow
 ```
 
-### Deploy using jar from local client
+### Deploy using jar from local client --PEGADAIAN Skip--
 Source code: local
 Build: local
 ```
-$ mvn clean package
-$ oc start-build fuse-rest-<name> --from-file=target/fuse-rest-1.0.0-SNAPSHOT.jar --follow
+mvn clean package
+oc start-build fuse-rest-<name> --from-file=target/fuse-rest-1.0.0-SNAPSHOT.jar --follow
 ```
 
 ### Configuring parameter
@@ -80,7 +80,7 @@ fuse-rest requires employee SOAP service as a backend. Assumed employeeWS is alr
 
 1. Get your application route
 ```
-$ oc get route
+oc get route
 ```
 Note the url for fuse-soap application 
 
