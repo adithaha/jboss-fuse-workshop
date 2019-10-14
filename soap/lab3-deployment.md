@@ -27,7 +27,7 @@ $ oc project fuse-workshop-<user>
 
 Using local path
 ```
-$ oc new-app fuse7-java-openshift:1.3 --code=. --name=fuse-soap-<user> --strategy=source
+$ oc new-app fuse7-java-openshift:1.2 --code=. --name=fuse-soap-<user> --strategy=source
 ```
 Ignore git error as we are not using git server
 
