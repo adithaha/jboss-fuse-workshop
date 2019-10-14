@@ -1,0 +1,21 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soap.workshop.fuse.jboss.org/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <soap:addEmployee>
+         <!--Optional:-->
+         <soap:arg0>
+            <!--Optional:-->
+            <address>?</address>
+            <!--Optional:-->
+            <name>?</name>
+            <!--Zero or more repetitions:-->
+            <phoneList>
+               <!--Optional:-->
+               <phone>?</phone>
+               <!--Optional:-->
+               <type>?</type>
+            </phoneList>
+         </soap:arg0>
+      </soap:addEmployee>
+   </soapenv:Body>
+</soapenv:Envelope>
