@@ -1,5 +1,5 @@
 
-## LAB 1 - Create Fuse REST Integration Project
+## LAB 2 - Create Fuse REST Integration Project
 
 Open JBoss Developer Studio application. Continue to work on fuse-rest project from lab1. If you haven't completed lab1, you can start with this project https://github.com/adithaha/jboss-fuse-workshop/raw/master/rest/solution/lab1/fuse-rest.zip and import into CodeReady Studio.
 
