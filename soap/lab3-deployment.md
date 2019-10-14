@@ -17,11 +17,11 @@ $ cd fuse-soap
 ```
 2. Login into openshift (https://github.com/adithaha/workshop-agile-integration/blob/master/openshift-url.md)
 ```
-$ oc login -u bkpmuser <openshift-url>
+$ oc login -u <user> <openshift-url>
 ```
 3. Go to fuse project
 ```
-$ oc project fuse-workshop-<name>
+$ oc project fuse-workshop-<user>
 ```
 3. Create new OpenShift application
 
@@ -85,7 +85,7 @@ $ mvn clean package
 $ oc start-build fuse-soap-<name> --from-file=target/fuse-soap-1.0.0-SNAPSHOT.jar --follow
 ```
 
-### Or, Deploy using source code from local client (BKPM skip)
+### Or, Deploy using source code from local client (Pegadaian skip)
 Source code: local
 Build: OpenShift server
 ```
