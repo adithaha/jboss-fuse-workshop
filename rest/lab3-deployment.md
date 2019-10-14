@@ -24,7 +24,7 @@ $ oc new-app fuse7-java-openshift:1.2~https://github.com/adithaha/jboss-fuse-wor
 
 4. Open application port 8080 in service
 ```
-$ oc edit svc/fuse-rest-<name>
+oc edit svc/fuse-rest-<name>
 ...
 spec:
   ...
@@ -38,12 +38,12 @@ spec:
 ```
 5. Create route from external to service port 8080
 ```
-$ oc expose service fuse-rest-<name> --name=fuse-rest-<name> --port=8080
+oc expose service fuse-rest-<name> --name=fuse-rest-<name> --port=8080
 ```
 
 6. Open jolokia access so the application can be monitored using fuse console. Add name: jolokia to existing port 8778.
 ```
-$ oc edit dc/fuse-rest-<name>
+oc edit dc/fuse-rest-<name>
 ...
 spec:
   ...
@@ -64,7 +64,7 @@ spec:
 Source code: local
 Build: OpenShift server
 ```
-oc start-build fuse-rest-<name> --from-dir=fuse-rest --follow
+oc start-build fuse-rest-<name> --from-dir=. --follow
 ```
 
 ### Deploy using jar from local client --PEGADAIAN Skip--
