@@ -1,0 +1,6 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soap.workshop.fuse.jboss.org/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <soap:getEmployeeAll/>
+   </soapenv:Body>
+</soapenv:Envelope>
