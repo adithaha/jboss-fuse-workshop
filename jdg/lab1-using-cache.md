@@ -124,7 +124,14 @@ To URI: direct:getEmployeeAllCache
 
 * if you cannot select direct:getEmployeeAllCache, save rest-springboot-context.xml - close - open again
 ```
-6. Redeploy into openshift
+
+6. To make sure conversion from xml to json run smoothly, one need to add annotation in class - fuse-rest - src/main/java - org.jboss.fuse.workshop.soap - EmployeeList.java
+```
+@XmlRootElement(name = "employeeList")
+public class EmployeeList {
+```
+
+7. Redeploy into openshift
 
 Deploy using built jar from local client  
 Source code: local  
