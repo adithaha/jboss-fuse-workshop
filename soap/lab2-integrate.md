@@ -13,6 +13,8 @@ Do this if you skip lab 1.
 cd fuse-soap
 mvn clean package
 ```
+4. Open CodeReady Studio
+5. File - Import... - type 'maven' - Existing maven projects - Next - Browse... (select fuse-soap folder) - Finish
 
 ### LAB
 
