@@ -35,7 +35,7 @@ OR
 
 Using git repository (Pegadaian skip)
 ```
-$ oc new-app fuse7-java-openshift:1.3~https://github.com/adithaha/jboss-fuse-workshop.git --context-dir=/soap/solution/fuse-soap --name=fuse-soap-<user>
+$ oc new-app fuse7-java-openshift:1.2~https://github.com/adithaha/jboss-fuse-workshop.git --context-dir=/soap/solution/fuse-soap --name=fuse-soap-<user>
 ```
 
 4. Open service yaml configuration, add port 8080
