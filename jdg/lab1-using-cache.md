@@ -21,6 +21,12 @@ Next
 Create
 ```	
 4. JBoss Data Grid will be deployed. Notice there are 4 network service exposed, we will be using hotrod connecter later. Note the service name and port - datagrid-app-hotrod:11333
+5. By default there is no expiration in cache datagrid. We will configure data to be expire in 10 seconds
+```
+Open OpenShit Web Console
+Deployment Config datagrid-app - tab Environment - Add Value
+fuse-workshop_CACHE_EXPIRATION_LIFESPAN: 10000
+```
 
 ### Create getEmployeeAllCache method
 	
