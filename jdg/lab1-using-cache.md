@@ -119,7 +119,7 @@ Routing - Choice
 (inside Otherwise) Transformation - Set Body
 	Expression: simple
 	Expression: ${header.CamelInfinispanOperationResult}
-(inside Otherwise) Transformation - Convert Body To
+Transformation - Convert Body To
 	Type: org.jboss.fuse.workshop.soap.EmployeeList
 Transformation - Set Header
 	Expression: constant 
