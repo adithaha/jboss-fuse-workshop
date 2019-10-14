@@ -119,9 +119,12 @@ Routing - Choice
 (inside Otherwise) Transformation - Set Body
 	Expression: simple
 	Expression: ${header.CamelInfinispanOperationResult}
-Transformation - Convert Body To
+(inside Otherwise) Transformation - Convert Body To
 	Type: org.jboss.fuse.workshop.soap.EmployeeList
-
+Transformation - Set Header
+	Expression: constant 
+	Expression: application/json
+	Header Name: Content-Type
 ```
 5. Make getEmployeeAllCache as default. Go to rest configuration - rest-springboot-context.xml - REST
 ```
