@@ -60,8 +60,9 @@ kubernetes v1.11.0+d4cacc0
 
 Start LAB:
 Fuse SOAP
-1. https://github.com/adithaha/jboss-fuse-workshop/blob/master/soap/lab3-deployment.md
-2. https://github.com/adithaha/jboss-fuse-workshop/blob/master/soap/lab4-integrate-contd.md
+1. https://github.com/adithaha/workshop-agile-integration/blob/master/soap/lab2-integrate.md
+2. https://github.com/adithaha/workshop-agile-integration/blob/master/soap/lab3-deployment.md
+3. https://github.com/adithaha/workshop-agile-integration/blob/master/soap/lab4-integrate-contd.md
 
 Fuse REST
 1. https://github.com/adithaha/jboss-fuse-workshop/blob/master/rest/lab1-initiate.md
