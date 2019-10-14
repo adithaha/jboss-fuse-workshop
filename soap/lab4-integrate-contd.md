@@ -101,3 +101,11 @@ Note the url
 
 2. Open url from browser, add path /cxf
 
+### Monitor your application
+
+Fuse has capability to monitor integration service using OpenShift Web Console
+1. Go to OpenShift Web Console
+2. Click (1) Pod
+3. -> Open Java Console
+4. Explore your routes, you should be able to see 3 routes and their statistics
+5. Go to each route, explore tab Route Diagram and Source
