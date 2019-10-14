@@ -1,8 +1,13 @@
 # Agile Integration Workshop
 
-OpenShift URL: https://master.jakarta-1913.open.redhat.com/console
+Workshop untuk Agile Integration
+- Red Hat Fuse
+- Red Hat OpenShift Container Platform
+- Red Hat Data Grid
+- Red Hat AMQ
+- Red Hat 3Scale API Management
 
-Workshop untuk JBoss Fuse dalam bahasa Indonesia
+### Requirement
 
 JDK 8
 -----
