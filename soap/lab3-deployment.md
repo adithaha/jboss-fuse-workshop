@@ -15,9 +15,9 @@ If you download fuse-soap.zip, follow procedure below
 ```
 $ cd fuse-soap
 ```
-2. Login into openshift (you need openshift web url correctly)
+2. Login into openshift (https://github.com/adithaha/workshop-agile-integration/blob/master/openshift-url.md)
 ```
-$ oc login -u bkpmuser https://ocpmasters.bkpm.go.id:8443
+$ oc login -u bkpmuser <openshift-url>
 ```
 3. Go to fuse project
 ```
@@ -33,7 +33,7 @@ Ignore git error as we are not using git server
 
 OR
 
-Using git repository (BKPM skip)
+Using git repository (Pegadaian skip)
 ```
 $ oc new-app fuse7-java-openshift:1.3~https://github.com/adithaha/jboss-fuse-workshop.git --context-dir=/soap/solution/fuse-soap --name=fuse-soap-<name>
 ```
