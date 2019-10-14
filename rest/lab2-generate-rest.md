@@ -73,7 +73,9 @@ To:
 ```
 @ImportResource({"classpath:spring/rest-springboot-context.xml"})
 ```
-9. Try your application
+9. Remove generated maven settings file - configuration - settings.xml - right click - Delete - OK
+
+10. Try your application
 ```
 Build: right click your fuse-rest project - run as - maven build - fuse-rest clean package - OK
 start fuse application: fuse-rest - src/main/java - org.jboss.fuse.workshop.rest - Application.java (right click) - run as - Java Application
