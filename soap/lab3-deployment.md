@@ -27,7 +27,7 @@ $ oc project fuse-workshop-<user>
 
 Using local path
 ```
-$ oc new-app fuse7-java-openshift:1.3 --code=. --name=fuse-soap-<name> --strategy=source
+$ oc new-app fuse7-java-openshift:1.3 --code=. --name=fuse-soap-<user> --strategy=source
 ```
 Ignore git error as we are not using git server
 
@@ -35,12 +35,12 @@ OR
 
 Using git repository (Pegadaian skip)
 ```
-$ oc new-app fuse7-java-openshift:1.3~https://github.com/adithaha/jboss-fuse-workshop.git --context-dir=/soap/solution/fuse-soap --name=fuse-soap-<name>
+$ oc new-app fuse7-java-openshift:1.3~https://github.com/adithaha/jboss-fuse-workshop.git --context-dir=/soap/solution/fuse-soap --name=fuse-soap-<user>
 ```
 
 4. Open service yaml configuration, add port 8080
 ```
-$ oc edit svc/fuse-soap-<name>
+$ oc edit svc/fuse-soap-<user>
 ...
 spec:
   ...
@@ -54,12 +54,12 @@ spec:
 ```
 5. Create route from external to service port 8080
 ```
-$ oc expose service fuse-soap-<name> --name=fuse-soap-<name> --port=8080
+$ oc expose service fuse-soap-<user> --name=fuse-soap-<user> --port=8080
 ```
 
 6. Open jolokia access so the application can be monitored using fuse console. Add name: 'jolokia' to existing port 8778.
 ```
-$ oc edit dc/fuse-soap-<name>
+$ oc edit dc/fuse-soap-<user>
 ...
 spec:
   ...
@@ -82,14 +82,14 @@ Build: local
 ```
 $ cd <fuse-soap>
 $ mvn clean package
-$ oc start-build fuse-soap-<name> --from-file=target/fuse-soap-1.0.0-SNAPSHOT.jar --follow
+$ oc start-build fuse-soap-<user> --from-file=target/fuse-soap-1.0.0-SNAPSHOT.jar --follow
 ```
 
 ### Or, Deploy using source code from local client (Pegadaian skip)
 Source code: local
 Build: OpenShift server
 ```
-$ oc start-build fuse-soap-<name> --from-dir=fuse-soap --follow
+$ oc start-build fuse-soap-<user> --from-dir=fuse-soap --follow
 ```
 
 ### Configuring parameter
