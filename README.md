@@ -1,4 +1,6 @@
-# jboss-fuse-workshop
+# Agile Integration Workshop
+
+OpenShift URL: https://master.jakarta-1913.open.redhat.com/console
 
 Workshop untuk JBoss Fuse dalam bahasa Indonesia
 
