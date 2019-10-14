@@ -1,5 +1,5 @@
 
-## LAB 2 - Deployment
+## LAB 3 - Deployment
 
 ### Configure deployment
 
@@ -14,7 +14,7 @@ $ oc login -u <user> https://openshift.com
 3. Create new OpenShift application
 Using local path
 ```
-$ oc new-app fuse7-java-openshift:1.2 --code=. --name=fuse-rest-<name> --strategy=source --build-env=MAVEN_MIRROR_URL=
+$ oc new-app fuse7-java-openshift:1.2 --code=. --name=fuse-rest-<name> --strategy=source --build-env=MAVEN_MIRROR_URL=http://nexus3-workshop-tools.apps.jakarta-1913.open.redhat.com/repository/maven-public/
 ```
 
 Using git repository  --PEGADAIAN SKIP--
