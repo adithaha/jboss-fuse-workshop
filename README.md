@@ -67,7 +67,9 @@ Fuse REST
 1. https://github.com/adithaha/jboss-fuse-workshop/blob/master/rest/lab1-initiate.md
 2. https://github.com/adithaha/jboss-fuse-workshop/blob/master/rest/lab2-generate-rest.md
 3. https://github.com/adithaha/jboss-fuse-workshop/blob/master/rest/lab3-deployment.md
-4. https://github.com/adithaha/jboss-fuse-workshop/blob/master/rest/lab4-integrate-contd.md
+
+JDG
+1. https://github.com/adithaha/workshop-agile-integration/blob/master/jdg/lab1-using-cache.md
 
 3Scale
 1. https://github.com/adithaha/jboss-fuse-workshop/blob/master/api/lab1-api-management.md
