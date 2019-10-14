@@ -18,7 +18,7 @@ mvn clean package
 
 ### LAB
 
-1.  Create webservice route. Click Design tab, drag and drop to Route employeeWS
+1.  Create webservice route. Open Camel Contexts/camel-context.xml - Click Design tab, drag and drop to Route employeeWS
 ```
 Components - CXF
 	URI: cxf:bean:employeeWS
