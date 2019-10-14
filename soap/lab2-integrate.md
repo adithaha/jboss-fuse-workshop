@@ -3,6 +3,19 @@
 
 Open JBoss Developer Studio application, continue to work on fuse-soap project from lab1. If you haven't completed lab1, you can start with this project https://github.com/adithaha/jboss-fuse-workshop/raw/master/soap/solution/lab1/fuse-soap.zip and import into CodeReady Studio
 
+### fuse-soap preparation
+
+Do this if you skip lab 1.
+1. Download fuse-soap project https://github.com/adithaha/jboss-fuse-workshop/raw/master/soap/solution/lab1/fuse-soap.zip
+2. Unzip fuse-soap.zip
+3. Go to cmd, run command below to download all dependencies
+```
+cd fuse-soap
+mvn clean package
+```
+
+### LAB
+
 1.  Create webservice route. Click Design tab, drag and drop to Route employeeWS
 ```
 Components - CXF
