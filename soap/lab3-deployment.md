@@ -33,7 +33,7 @@ Ignore git error as we are not using git server
 
 OR
 
-Using git repository (Pegadaian skip)
+Using git repository (SKIP THIS!)
 ```
 $ oc new-app fuse7-java-openshift:1.2~https://github.com/adithaha/jboss-fuse-workshop.git --context-dir=/soap/solution/fuse-soap --name=fuse-soap-<user>
 ```
@@ -85,7 +85,7 @@ $ mvn clean package
 $ oc start-build fuse-soap-<user> --from-file=target/fuse-soap-1.0.0-SNAPSHOT.jar --follow
 ```
 
-### Or, Deploy using source code from local client (Pegadaian skip)
+### Or, Deploy using source code from local client (SKIP THIS!)
 Source code: local
 Build: OpenShift server
 ```
