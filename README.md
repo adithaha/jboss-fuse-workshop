@@ -3,8 +3,8 @@
 Workshop untuk Agile Integration
 - Red Hat Fuse
 - Red Hat OpenShift Container Platform
-- Red Hat Data Grid
 - Red Hat AMQ
+- Red Hat Data Grid
 - Red Hat 3Scale API Management
 
 ### Requirement
@@ -64,16 +64,27 @@ output:
 oc v3.11.98
 kubernetes v1.11.0+d4cacc0
 
+SoapUI
+install: SoapUI-x64-5.5.0.exe
+
+postman:
+install: Postman-win64-7.9.0-Setup.exe
+
 
 Start LAB:
 Fuse SOAP
-1. https://github.com/adithaha/workshop-agile-integration/blob/master/soap/lab2-integrate.md
-2. https://github.com/adithaha/workshop-agile-integration/blob/master/soap/lab3-deployment.md
-3. https://github.com/adithaha/workshop-agile-integration/blob/master/soap/lab4-integrate-contd.md
+1. https://github.com/adithaha/workshop-agile-integration/blob/master/soap/lab1-initiate-fuse-project.md
+2. https://github.com/adithaha/workshop-agile-integration/blob/master/soap/lab2-integrate.md
+3. https://github.com/adithaha/workshop-agile-integration/blob/master/soap/lab3-deployment.md
+4. https://github.com/adithaha/workshop-agile-integration/blob/master/soap/lab4-integrate-contd.md
 
 Fuse REST
-1. https://github.com/adithaha/jboss-fuse-workshop/blob/master/rest/lab2-generate-rest.md
-2. https://github.com/adithaha/jboss-fuse-workshop/blob/master/rest/lab3-deployment.md
+1. https://github.com/adithaha/workshop-agile-integration/blob/master/rest/lab1-initiate.md
+2. https://github.com/adithaha/jboss-fuse-workshop/blob/master/rest/lab2-generate-rest.md
+3. https://github.com/adithaha/jboss-fuse-workshop/blob/master/rest/lab3-deployment.md
+
+AMQ Broker
+1. https://github.com/adithaha/workshop-agile-integration/blob/master/amq/lab1-bulk-async.md
 
 JDG
 1. https://github.com/adithaha/workshop-agile-integration/blob/master/jdg/lab1-using-cache.md
