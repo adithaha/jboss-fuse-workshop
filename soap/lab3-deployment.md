@@ -76,7 +76,7 @@ spec:
 ...
 ```
 
-### Deploy using jar from local client
+### Deploy using jar from local client (SKIP THIS!)
 Source code: local
 Build: local
 ```
@@ -85,11 +85,13 @@ $ mvn clean package
 $ oc start-build fuse-soap-<user> --from-file=target/fuse-soap-1.0.0-SNAPSHOT.jar --follow
 ```
 
-### Or, Deploy using source code from local client (SKIP THIS!)
+### Or, Deploy using source code from local client
 Source code: local
 Build: OpenShift server
 ```
-$ oc start-build fuse-soap-<user> --from-dir=fuse-soap --follow
+cd <fuse-soap>
+mvn clean
+oc start-build fuse-soap-<user> --from-dir=. --follow
 ```
 
 ### Configuring parameter
