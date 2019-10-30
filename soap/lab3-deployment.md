@@ -38,7 +38,7 @@ Using git repository (SKIP THIS!)
 $ oc new-app fuse7-java-openshift:1.2~https://github.com/adithaha/jboss-fuse-workshop.git --context-dir=/soap/solution/fuse-soap --name=fuse-soap-<user> --build-env=MAVEN_MIRROR_URL=<repo>
 ```
 
-4. Open service yaml configuration, add port 8080
+4. Open service yaml configuration, add port 8080. Note: be careful with identation, must be correct and always use space.
 ```
 $ oc edit svc/fuse-soap-<user>
 ...
@@ -57,7 +57,7 @@ spec:
 $ oc expose service fuse-soap-<user> --name=fuse-soap-<user> --port=8080
 ```
 
-6. Open jolokia access so the application can be monitored using fuse console. Add name: 'jolokia' to existing port 8778.
+6. Open jolokia access so the application can be monitored using fuse console. Add name: 'jolokia' to existing port 8778. Note: be careful with identation, must be correct and always use space.
 ```
 $ oc edit dc/fuse-soap-<user>
 ...
