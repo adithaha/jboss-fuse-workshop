@@ -9,7 +9,7 @@ oc new-project fuse-workshop-<user>
 ```
 2. Deploy postgre database
 ```
-oc new-app --template=postgresql-ephemeral --env=POSTGRESQL_DATABASE=dsEmployee
+oc new-app --template=postgresql-ephemeral -p POSTGRESQL_DATABASE=dsEmployee -p POSTGRESQL_USER=postgres -p POSTGRESQL_PASSWORD=postgres
 ```
 
 3. Import database ddl
