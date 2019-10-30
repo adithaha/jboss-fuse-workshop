@@ -1,5 +1,5 @@
 
-## LAB 3 - Deployment
+## LAB 5 - Explore Fuse Application
 
 Open JBoss Developer Studio application,  to work on fuse-soap project from lab4. If you haven't completed lab4, you can start with this project https://github.com/adithaha/jboss-fuse-workshop/raw/master/soap/solution/lab4/fuse-soap.zip and import into CodeReady Studio
 
