@@ -64,7 +64,7 @@ spec:
 Source code: local
 Build: OpenShift server
 ```
-cd <fuse-soap>
+cd <fuse-rest>
 mvn clean
 oc start-build fuse-rest-<name> --from-dir=. --follow
 ```
@@ -73,7 +73,7 @@ oc start-build fuse-rest-<name> --from-dir=. --follow
 Source code: local
 Build: local
 ```
-cd <fuse-soap>
+cd <fuse-rest>
 mvn clean package
 oc start-build fuse-rest-<name> --from-file=target/fuse-rest-1.0.0-SNAPSHOT.jar --follow
 ```
