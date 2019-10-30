@@ -70,10 +70,21 @@ Transformation - Set Body
 Component - Log
 	Message: send response ${body}
 ```
+4. Try your application
+```
+Build: right click your fuse-soap project - run as - maven build....
+	Goals: clean package
+	Run
+start fuse application: fuse-soap - src/main/java - org.jboss.fuse.workshop.soap - Application.java (right click) - run as - Java Application
+```
+Open browser, go to at http://localhost:8080/cxf
+```
+stop fuse application: go to console tab - click red square on the right
+```
 
-4. Redeploy into openshift
+5. Redeploy into openshift
 
-Deploy using jar from local client  
+Deploy using jar from local client  (SKIP THIS!)
 Source code: local  
 Build: local
 ```
@@ -83,12 +94,13 @@ $ oc start-build fuse-soap-<name> --from-file=target/fuse-soap-1.0.0-SNAPSHOT.ja
 ```
 
 OR
-(BKPM skip)
+
 Deploy using source code from local client  
 Source code: local  
 Build: OpenShift server
 ```
-$ oc start-build fuse-soap-<name> --from-dir=fuse-soap --follow
+$ cd <fuse-soap>
+$ oc start-build fuse-soap-<name> --from-dir=. --follow
 ```
 
 ### Try your application
@@ -100,12 +112,3 @@ $ oc get route
 Note the url  
 
 2. Open url from browser, add path /cxf
-
-### Monitor your application
-
-Fuse has capability to monitor integration service using OpenShift Web Console
-1. Go to OpenShift Web Console
-2. Click (1) Pod
-3. -> Open Java Console
-4. Explore your routes, you should be able to see 3 routes and their statistics
-5. Go to each route, explore tab Route Diagram and Source
