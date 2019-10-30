@@ -73,7 +73,7 @@ install: Postman-win64-7.9.0-Setup.exe
 
 Start LAB:
 Fuse SOAP  
-0. https://github.com/adithaha/workshop-agile-integration/blob/master/soap/lab0-environment.md  
+0. https://github.com/adithaha/workshop-agile-integration/blob/master/soap/lab0-environment.md
 1. https://github.com/adithaha/workshop-agile-integration/blob/master/soap/lab1-initiate-fuse-project.md 
 2. https://github.com/adithaha/workshop-agile-integration/blob/master/soap/lab2-integrate.md
 3. https://github.com/adithaha/workshop-agile-integration/blob/master/soap/lab3-deployment.md
