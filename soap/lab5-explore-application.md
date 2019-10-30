@@ -71,3 +71,13 @@ OK
 1. Click triangle getEmployeeAll on left side - Request 1
 2. This method doesn't need additional parameter, leave current request as it is
 3. Click green triangle on top left to send request, you should receive response with all employee data
+
+#### Explore Fuse Console
+Fuse application can be viewed using Fuse console. 
+1. Open OpenShift via browser
+2. Open fuse-workshop-<user1>
+3. Click (1) pod, you will see container detail
+4. Click Open Java Console
+5. Explore main console, you can see routes with their statisti runtime data
+6. Click Routes - addEmployee, you will be able to see addEmployee camel routes
+7. You can explore other tabs/routes to see fuse console capabilities
