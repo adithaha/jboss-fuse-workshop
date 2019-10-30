@@ -16,11 +16,11 @@ oc new-app --template=postgresql-ephemeral -p POSTGRESQL_DATABASE=dsEmployee -p 
 
 3. Import database ddl
 ```
-oc get pods | grep postgresql | grep Running
+oc get pods
 ```
-Note down pod id, eg. postgresql-1-2sr6g
+Note down pod id which has status  Running', eg. postgresql-1-2sr6g
 ```
-oc rsh postgresql-1-<id>
+oc rsh <pod-id>
 cd /tmp/
 curl https://raw.githubusercontent.com/adithaha/workshop-agile-integration/master/soap/ddl.sql > ddl.sql
 createdb dsEmployee
