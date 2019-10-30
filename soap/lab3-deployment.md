@@ -23,7 +23,7 @@ $ oc login -u <user> <openshift-url>
 ```
 $ oc project fuse-workshop-<user>
 ```
-3. Create new OpenShift application
+3. Create new OpenShift application. Use <repo> in https://github.com/adithaha/workshop-agile-integration/blob/master/openshift-url.md
 
 Using local path
 ```
