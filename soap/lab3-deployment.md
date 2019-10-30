@@ -77,13 +77,14 @@ spec:
 ```
 
 ### Deploy using jar from local client (SKIP THIS!)
-Source code: local
+Source code: local  
 Build: local
 ```
 $ cd <fuse-soap>
 $ mvn clean package
 $ oc start-build fuse-soap-<user> --from-file=target/fuse-soap-1.0.0-SNAPSHOT.jar --follow
 ```
+Note: If you want to redeploy application, just execute above command. No need to start from begining.
 
 ### Or, Deploy using source code from local client
 Source code: local
@@ -93,6 +94,7 @@ cd <fuse-soap>
 mvn clean
 oc start-build fuse-soap-<user> --from-dir=. --follow
 ```
+Note: If you want to redeploy application, just execute above command. No need to start from begining.
 
 ### Configuring parameter
 fuse-soap requires postgre database to put and get data. Assumed database is already set up, below are procedures to configure database settings. Since we are using Spring Boot, all parameters are configured via application.properties, and mapped to system environment. All we need to do is to configure system properties in application Deployment Config.
