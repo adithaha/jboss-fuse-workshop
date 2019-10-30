@@ -82,8 +82,9 @@ Fuse SOAP
 
 Fuse REST
 1. https://github.com/adithaha/workshop-agile-integration/blob/master/rest/lab1-initiate.md
-2. https://github.com/adithaha/jboss-fuse-workshop/blob/master/rest/lab2-generate-rest.md
-3. https://github.com/adithaha/jboss-fuse-workshop/blob/master/rest/lab3-deployment.md
+2. https://github.com/adithaha/workshop-agile-integration/blob/master/rest/lab2-generate-rest.md
+3. https://github.com/adithaha/workshop-agile-integration/blob/master/rest/lab3-deployment.md
+4. https://github.com/adithaha/workshop-agile-integration/blob/master/rest/lab4-explore-application.md
 
 AMQ Broker
 1. https://github.com/adithaha/workshop-agile-integration/blob/master/amq/lab1-bulk-async.md
