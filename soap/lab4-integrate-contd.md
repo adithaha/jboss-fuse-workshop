@@ -84,7 +84,7 @@ stop fuse application: go to console tab - click red square on the right
 
 5. Redeploy into openshift
 
-Deploy using jar from local client  (SKIP THIS!)
+Deploy using jar from local client  (SKIP THIS!)  
 Source code: local  
 Build: local
 ```
@@ -99,8 +99,9 @@ Deploy using source code from local client
 Source code: local  
 Build: OpenShift server
 ```
-$ cd <fuse-soap>
-$ oc start-build fuse-soap-<name> --from-dir=. --follow
+cd <fuse-soap>
+mvn clean
+oc start-build fuse-soap-<name> --from-dir=. --follow
 ```
 
 ### Try your application
