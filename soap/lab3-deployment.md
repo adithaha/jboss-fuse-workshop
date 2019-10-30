@@ -90,7 +90,6 @@ Source code: local
 Build: OpenShift server
 ```
 cd <fuse-soap>
-rm -rf configuration/
 mvn clean
 oc start-build fuse-soap-<user> --from-dir=. --follow
 ```
