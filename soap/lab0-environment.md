@@ -1,6 +1,8 @@
 
 ## LAB 0 - Environment
 
+URL: https://github.com/adithaha/workshop-agile-integration/blob/master/openshift-url.md
+
 ### Preparing environment
 1. Create project namespace
 ```
