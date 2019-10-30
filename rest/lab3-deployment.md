@@ -14,12 +14,12 @@ $ oc login -u <user> https://openshift.com
 3. Create new OpenShift application
 Using local path
 ```
-$ oc new-app fuse7-java-openshift:1.2 --code=. --name=fuse-rest-<name> --strategy=source --build-env=MAVEN_MIRROR_URL=http://nexus3-workshop-tools.apps.jakarta-1913.open.redhat.com/repository/maven-public/
+$ oc new-app fuse7-java-openshift:1.2 --code=. --name=fuse-rest-<name> --strategy=source --build-env=MAVEN_MIRROR_URL=<repo>
 ```
 
-Using git repository  --PEGADAIAN SKIP--
+Using git repository (SKIP THIS!)
 ```
-$ oc new-app fuse7-java-openshift:1.2~https://github.com/adithaha/jboss-fuse-workshop.git --context-dir=/rest/solution/fuse-rest --name=fuse-rest-<name>
+$ oc new-app fuse7-java-openshift:1.2~https://github.com/adithaha/jboss-fuse-workshop.git --context-dir=/rest/solution/fuse-rest --name=fuse-rest-<name> --build-env=MAVEN_MIRROR_URL=<repo>
 ```
 
 4. Open application port 8080 in service
@@ -64,13 +64,16 @@ spec:
 Source code: local
 Build: OpenShift server
 ```
+cd <fuse-soap>
+mvn clean
 oc start-build fuse-rest-<name> --from-dir=. --follow
 ```
 
-### Deploy using jar from local client --PEGADAIAN Skip--
+### Deploy using jar from local client (SKIP THIS!)
 Source code: local
 Build: local
 ```
+cd <fuse-soap>
 mvn clean package
 oc start-build fuse-rest-<name> --from-file=target/fuse-rest-1.0.0-SNAPSHOT.jar --follow
 ```
@@ -84,7 +87,7 @@ oc get route
 ```
 Note the url for fuse-soap application 
 
-2. Login to OpenShift Web Console via browser https://openshift.com
+2. Login to OpenShift Web Console via browser <openshift-url>
 3. Go to project fuse-workshop-<name>
 4. Choose Deployment Config fuse-rest - Environment tab - add environment parameter
   ```
