@@ -27,7 +27,7 @@ $ oc project fuse-workshop-<user>
 
 Using local path
 ```
-$ oc new-app fuse7-java-openshift:1.2 --code=. --name=fuse-soap-<user> --strategy=source
+$ oc new-app fuse7-java-openshift:1.2 --code=. --name=fuse-soap-<user> --strategy=source --build-env=MAVEN_MIRROR_URL=<repo>
 ```
 Ignore git error as we are not using git server
 
@@ -35,7 +35,7 @@ OR
 
 Using git repository (SKIP THIS!)
 ```
-$ oc new-app fuse7-java-openshift:1.2~https://github.com/adithaha/jboss-fuse-workshop.git --context-dir=/soap/solution/fuse-soap --name=fuse-soap-<user>
+$ oc new-app fuse7-java-openshift:1.2~https://github.com/adithaha/jboss-fuse-workshop.git --context-dir=/soap/solution/fuse-soap --name=fuse-soap-<user> --build-env=MAVEN_MIRROR_URL=<repo>
 ```
 
 4. Open service yaml configuration, add port 8080
@@ -97,7 +97,7 @@ oc start-build fuse-soap-<user> --from-dir=. --follow
 ### Configuring parameter
 fuse-soap requires postgre database to put and get data. Assumed database is already set up, below are procedures to configure database settings. Since we are using Spring Boot, all parameters are configured via application.properties, and mapped to system environment. All we need to do is to configure system properties in application Deployment Config.
 
-1. Login to OpenShift Web Console via browser https://openshift.com
+1. Login to OpenShift Web Console via browser <openshift-url>
 2. Go to project <project>
 3. Choose Deployment Config fuse-soap - Environment tab - add environment parameter  
   Name: SPRING_DSEMPLOYEE_URL | Value: jdbc:postgresql://postgresql:5432/dsEmployee  
