@@ -21,6 +21,7 @@ Note down pod id, eg. postgresql-1-2sr6g
 oc rsh postgresql-1-<id>
 cd /tmp/
 curl https://raw.githubusercontent.com/adithaha/workshop-agile-integration/master/soap/ddl.sql > ddl.sql
+createdb dsEmployee
 psql -h localhost postgres -f ddl.sql postgres
 exit
 ```
