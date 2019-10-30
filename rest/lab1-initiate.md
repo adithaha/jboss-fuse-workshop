@@ -60,7 +60,9 @@ Open Associate Perspective: Yes
 	- Continue
 4. Remove default route fuse-rest - Camel Contexts - camel-context.xml - right click - Delete - OK
 
-5. Compile your application
+5. Remove configuration folder - configuration - right click - Delete
+
+6. Compile your application
 ```
 Clean and Build: right click your fuse-rest - run as - maven build....
 	Name: fuse-rest mvn clean package
