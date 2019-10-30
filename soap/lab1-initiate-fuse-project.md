@@ -333,7 +333,7 @@ public class Application {
 }
 ```
 
-12. replace default route src/main/resources - spring - camel-context.xml (open) - source
+11. replace default route src/main/resources - spring - camel-context.xml (open) - source
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -354,7 +354,8 @@ public class Application {
 </beans>
 
 ```
-14. Compile your application
+12. Remove configuration folder - configuration - right click - Delete
+13. Compile your application
 ```
 Clean build: right click your fuse-soap project - run as - maven clean
 Build: right click your fuse-soap project - run as - maven build....
