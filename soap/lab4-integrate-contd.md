@@ -39,7 +39,7 @@ Component - Log
 Routing - Route
 	ID: getEmployeeAll
 Component - Direct
-	URI: direct: getEmployeeAll
+	URI: direct:getEmployeeAll
 Component - Log
 	Message: receive request ${body}
 Transformation - Set Property
