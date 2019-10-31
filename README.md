@@ -88,6 +88,7 @@ Fuse REST
 
 AMQ Broker
 1. https://github.com/adithaha/workshop-agile-integration/blob/master/amq/lab1-bulk-async.md
+2. https://github.com/adithaha/workshop-agile-integration/blob/master/amq/lab2-try-amq.md
 
 JDG
 1. https://github.com/adithaha/workshop-agile-integration/blob/master/jdg/lab1-using-cache.md
