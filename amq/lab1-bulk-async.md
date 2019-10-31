@@ -138,6 +138,8 @@ Check if url below can be accessed:
 
 http://localhost:8080/camel/api-docs
 
+Note: If you check application log, There will be an error trying to connect to amq port 5672. This is correct behaviour since there is no AMQ deployed on your workstation. This can be safely ignored.
+
 10. Redeploy into openshift
 
 Deploy using built jar from local client (SKIP THIS!)  
