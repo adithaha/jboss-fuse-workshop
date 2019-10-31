@@ -130,9 +130,9 @@ To URI: direct:addEmployeeBulk
 * if you cannot select direct:addEmployeeBulk, save rest-springboot-context.xml - close - open again
 ```
 
-9. Configure XML conversion.
-Import and add annotation @XmlRootElement to EmployeeList.java
-src/main/java - org.jboss.fuse.workshop.soap - EmployeeList.java
+9. Configure XML JSON conversion.  
+Import and add annotation @XmlRootElement to EmployeeList.java  
+src/main/java - org.jboss.fuse.workshop.soap - EmployeeList.java  
 ```
 package org.jboss.fuse.workshop.soap;
 
@@ -143,8 +143,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class EmployeeList {
 ...
 ```
-Import and add annotation @XmlRootElement to Employee.java
-src/main/java - org.jboss.fuse.workshop.soap - Employee.java
+Import and add annotation @XmlRootElement to Employee.java  
+src/main/java - org.jboss.fuse.workshop.soap - Employee.java  
 ```
 package org.jboss.fuse.workshop.soap;
 
