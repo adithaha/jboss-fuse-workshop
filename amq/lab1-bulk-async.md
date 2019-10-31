@@ -129,10 +129,10 @@ To URI: direct:addEmployeeBulk
 
 * if you cannot select direct:addEmployeeBulk, save rest-springboot-context.xml - close - open again
 ```
-9. Try on local
+9. Try your application
 ```
-$ cd <fuse-rest>
-$ mvn clean spring-boot:run
+Build: right click your fuse-rest project - run as - maven build - fuse-rest clean package - OK
+start fuse application: fuse-rest - src/main/java - org.jboss.fuse.workshop.rest - Application.java (right click) - run as - Java Application
 ```
 Check if url below can be accessed:
 
