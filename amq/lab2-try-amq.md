@@ -48,3 +48,4 @@ Note the fuse-rest url
 }
 ```
 4. SEND, you should receive response with ACK message
+5. Check if employee data is already inserted into database, use getEmployeeAll API
