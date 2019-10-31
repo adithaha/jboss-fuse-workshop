@@ -140,7 +140,7 @@ http://localhost:8080/camel/api-docs
 
 10. Redeploy into openshift
 
-Deploy using built jar from local client  
+Deploy using built jar from local client (SKIP THIS!)
 Source code: local  
 Build: local
 ```
@@ -150,10 +150,11 @@ $ oc start-build fuse-rest-<name> --from-file=target/fuse-rest-1.0.0-SNAPSHOT.ja
 ```
 
 OR
-(Pegadaian skip)
 Deploy using source code from local client  
 Source code: local  
 Build: OpenShift server
 ```
-$ oc start-build fuse-rest-<name> --from-dir=fuse-rest --follow
+cd <fuse-rest>
+mvn clean
+oc start-build fuse-rest-<name> --from-dir=. --follow
 ```
