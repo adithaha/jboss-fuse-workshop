@@ -1,5 +1,5 @@
 
-## LAB 2 - Using AMQ to add employee in bulk asynchronously
+## LAB 1 - Using AMQ to add employee in bulk asynchronously
 
 We will continue to work on fuse-rest project from REST lab. Create new additional API service to add multiple employee reuse existing addEmployee method, with asynchronous approach.  
 
