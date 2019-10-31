@@ -2,8 +2,7 @@
 ## LAB 1 - Integrate API
 
 
-3Scale admin URL: https://3scale-admin.api.ocpapps.bkpm.go.id  (admin/admin)  
-Backend API: http://fuse-rest-1-fuse-workshop-1.ocpapps.bkpm.go.id    
+3Scale admin URL: https://github.com/adithaha/workshop-agile-integration/blob/master/openshift-url.md
   
 1. Login into 3Scale admin portal
 2. (+) New API
@@ -25,6 +24,10 @@ Backend API: http://fuse-rest-1-fuse-workshop-1.ocpapps.bkpm.go.id
    Method - New method  
      Friendly name: Get Employee All  
      System name: get_employee_all  
+     Create Method  
+   Method - New method  
+     Friendly name: Add Employee Bulk  
+     System name: add_employee_bulk 
      Create Method  
    ```
 4. Integration > Configuration - add the base URL of your API and save the configuration.
