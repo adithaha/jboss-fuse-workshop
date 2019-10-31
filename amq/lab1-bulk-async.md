@@ -67,11 +67,11 @@ Open that file, tab source. Replace all its content with below
 3. Configure Spring Boot to read amqp-context.xml - src/main/java - org.jboss.fuse.workshop.rest - Application.java
 From:
 ```
-@ImportResource({"classpath:spring/rest-springboot-context.xml","amqp-context.xml"})
+@ImportResource({"classpath:spring/rest-springboot-context.xml"})
 ```
 To:
 ```
-@ImportResource({"classpath:spring/rest-springboot-context.xml","amqp-context.xml"})
+@ImportResource({"classpath:spring/rest-springboot-context.xml","classpath:spring/amqp-context.xml"})
 ```
 4. Add AMQ connection properties, put url from previous step. Open src/main/resources - application.properties - source
 ```
