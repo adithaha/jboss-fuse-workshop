@@ -126,6 +126,7 @@ Finish
 REST Operations - post /employeebulk
 Type: org.jboss.fuse.workshop.soap.EmployeeList 
 To URI: direct:addEmployeeBulk
+Out Type: java.lang.String
 
 * if you cannot select direct:addEmployeeBulk, save rest-springboot-context.xml - close - open again
 ```
