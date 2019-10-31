@@ -149,10 +149,10 @@ src/main/java - org.jboss.fuse.workshop.soap - Employee.java
 ```
 package org.jboss.fuse.workshop.soap;
 
-import javax.xml.bind.annotation.XmlRootElement;
+**import javax.xml.bind.annotation.XmlRootElement;**
 ...
 ...
-@XmlRootElement
+**@XmlRootElement**
 public class Employee {
 ...
 ```
