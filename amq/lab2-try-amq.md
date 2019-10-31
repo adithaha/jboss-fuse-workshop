@@ -63,5 +63,3 @@ By default, AMQ Console already exposed to route. Lookup for AMQ Console as belo
 5. Open that link, click Management Console, you may need to login using openshift user
 6. Browse broker - addresses, tab Queues
 7. You will see employeeQueue that has been used for fuse-rest application, Consumer Count is 5, and Message Count should be 0 means no pending message
-
-http://console-fuse-workshop-user2.apps.1c68.example.opentlc.com/
