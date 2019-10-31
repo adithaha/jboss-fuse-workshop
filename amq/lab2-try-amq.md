@@ -1,7 +1,9 @@
 
-## LAB 2 - Try addEmployeeBulk
+## LAB 2 - Explore AMQ
 
 In this lab, we will try out addEmployeeBulk method we created in lab1 earlier.
+
+### Try addEmployeeBulk
 
 #### Get application apidocs url
 1. Get your application route
@@ -49,3 +51,17 @@ Note the fuse-rest url
 ```
 4. SEND, you should receive response with ACK message
 5. Check if employee data is already inserted into database, use getEmployeeAll API
+
+### Explore AMQ Console
+
+By default, AMQ Console already exposed to route. Lookup for AMQ Console as below:
+
+1. Login into OpenShift
+2. Go to fuse-workshop-<user> project
+3. Look for broker-amq deployment, expand it
+4. Look for Service broker-amq-jolokia, and you will find its route url on its right side, eg. http://console-fuse-workshop-user14.apps.1c68.example.opentlc.com 
+5. Open that link, click Management Console, you may need to login using openshift user
+6. Browse broker - addresses, tab Queues
+7. You will see employeeQueue that has been used for fuse-rest application, Consumer Count is 5, and Message Count should be 0 means no pending message
+
+http://console-fuse-workshop-user2.apps.1c68.example.opentlc.com/
