@@ -140,7 +140,7 @@ http://localhost:8080/camel/api-docs
 
 10. Redeploy into openshift
 
-Deploy using built jar from local client (SKIP THIS!)
+Deploy using built jar from local client (SKIP THIS!)  
 Source code: local  
 Build: local
 ```
