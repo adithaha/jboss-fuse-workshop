@@ -129,7 +129,34 @@ To URI: direct:addEmployeeBulk
 
 * if you cannot select direct:addEmployeeBulk, save rest-springboot-context.xml - close - open again
 ```
-9. Try your application
+
+9. Configure XML conversion.
+Import and add annotation @XmlRootElement to EmployeeList.java
+src/main/java - org.jboss.fuse.workshop.soap - EmployeeList.java
+```
+package org.jboss.fuse.workshop.soap;
+
+import javax.xml.bind.annotation.XmlRootElement;
+...
+...
+@XmlRootElement
+public class EmployeeList {
+...
+```
+Import and add annotation @XmlRootElement to Employee.java
+src/main/java - org.jboss.fuse.workshop.soap - Employee.java
+```
+package org.jboss.fuse.workshop.soap;
+
+import javax.xml.bind.annotation.XmlRootElement;
+...
+...
+@XmlRootElement
+public class Employee {
+...
+```
+
+10. Try your application
 ```
 Build: right click your fuse-rest project - run as - maven build - fuse-rest clean package - OK
 start fuse application: fuse-rest - src/main/java - org.jboss.fuse.workshop.rest - Application.java (right click) - run as - Java Application
@@ -140,7 +167,7 @@ http://localhost:8080/camel/api-docs
 
 Note: If you check application log, There will be an error trying to connect to amq port 5672. This is correct behaviour since there is no AMQ deployed on your workstation. This can be safely ignored.
 
-10. Redeploy into openshift
+11. Redeploy into openshift
 
 Deploy using built jar from local client (SKIP THIS!)  
 Source code: local  
