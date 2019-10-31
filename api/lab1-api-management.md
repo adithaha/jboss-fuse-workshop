@@ -50,6 +50,11 @@
        Pattern: /camel/jaxrs/employeeall
        + : 1
        Metric or Method: get_employee_all
+     Add Mapping Rules:
+       Verb: POST
+       Pattern: /camel/jaxrs/employeebulk
+       + : 1
+       Metric or Method: add_employee_bulk
    API test GET request: /camel/jaxrs/employeeall
    Update and Test in Staging Environment 
    Test might fail as we haven't registered user yet, we can ignore that for now
@@ -92,6 +97,10 @@
      add_employee - Limits - New usage limit
        Period: Minute
        Max. value: 60
+       Create usage limit
+     add_employee_bulk - Limits - New usage limit
+       Period: Minute
+       Max. value: 30
        Create usage limit
     ```
 6. Register developer  
