@@ -13,12 +13,12 @@ Open JBoss Developer Studio application. Continue to work on fuse-json project f
 ```
 fuse-rest.url=fuse-rest:80
 ```
-5. Create fuse-rest-transformation route, Camel Contexts - camel-context.xml
+3. Create fuse-rest-transformation route, Camel Contexts - camel-context.xml
 ```
 Routing - Route
 	Id: fuse-rest-transformation
 Component - servlet
-	Uri: servlet:finto?matchOnUriPrefix=true&disableStreamCache=true
+	Uri: servlet:fuse-rest?matchOnUriPrefix=true&disableStreamCache=true
 Component - Log
 	Message: receive input
 Component - direct
@@ -26,7 +26,7 @@ Component - direct
 Routing - Choice 
 (inside Choice) Routing - When
 	Expression: simple
-	Expression: ${header.CamelHttpMethod} == 'GET' && ${header.CamelHttpPath} == '/rest/v1/vocabularies'
+	Expression: ${header.CamelHttpMethod} == 'GET' && ${header.CamelHttpPath} regex '\/camel\/jaxrs\/employee\/(.+)'
 (inside When) Component - Log
 	Message: apply transformation ${header.CamelHttpMethod} ${header.CamelHttpPath}
 (inside When) Component - direct
@@ -34,7 +34,7 @@ Routing - Choice
 Component - Log
 	Message: receive input
 ```
-5. Create JSON transformation file directory - src/main/resources - right click - New - Other - type 'folder'
+4. Create JSON transformation file directory - src/main/resources - right click - New - Other - type 'folder'
 ```
 Folder name: jolt
 Finish
@@ -61,3 +61,12 @@ Copy text below in fuse-rest-getEmployee.json file
   }
 ]
 ```
+JOLT transformation above will remove element {vocabularies: [array]: {id }} element.  
+For JOLT documentation you can go here https://github.com/bazaarvoice/jolt
+6. Try your application
+```
+Build: right click your fuse-json project - run as - maven build - fuse-json clean package - OK
+start fuse application: fuse-json - src/main/java - org.jboss.fuse.workshop.json - Application.java (right click) - run as - Java Application
+```
+Open browser, go to at http://localhost:8080/camel/fuse-rest/camel/jaxrs/employee/1. Compare with output from previous fuse-rest, see if there is any difference.
+
