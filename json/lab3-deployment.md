@@ -91,7 +91,7 @@ Note the url for fuse-rest application
 3. Go to project fuse-workshop-<user>
 4. Choose Deployment Config fuse-json - Environment tab - add environment parameter
   ```
-  Name: URL_FUSE-REST | Value: fuse-soap-url
+  Name: URL_EMPLOYERS | Value: fuse-soap-url
   ```
 5. Save
   
