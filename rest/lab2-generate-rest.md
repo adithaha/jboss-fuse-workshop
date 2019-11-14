@@ -3,6 +3,21 @@
 
 Open JBoss Developer Studio application. Continue to work on fuse-rest project from lab1. If you haven't completed lab1, you can start with this project https://github.com/adithaha/jboss-fuse-workshop/raw/master/rest/solution/lab1/fuse-rest.zip and import into CodeReady Studio.
 
+### fuse-rest preparation
+
+Do this if you skip lab 1.
+1. Download fuse-soap project https://github.com/adithaha/jboss-fuse-workshop/raw/master/rest/solution/lab1/fuse-rest.zip
+2. Unzip fuse-rest.zip
+3. Go to cmd, run command below to download all dependencies
+```
+cd fuse-rest
+mvn clean package
+```
+4. Open CodeReady Studio
+5. File - Import... - type 'maven' - Existing maven projects - Next - Browse... (select fuse-rest folder) - Finish
+
+### LAB
+
 1. Download wsdl file here https://raw.githubusercontent.com/adithaha/jboss-fuse-workshop/master/rest/employeeWS.wsdl, put into fuse-rest - src/main/resources  
 2. Generate REST service from WSDL
 ```
