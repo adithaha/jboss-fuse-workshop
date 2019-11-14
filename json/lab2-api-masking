@@ -1,0 +1,63 @@
+
+## LAB 2 - API Masking
+
+We will continue to work on fuse-json project from JSON lab. Put masking on existing API, so it won't show address data. 
+
+Open JBoss Developer Studio application. Continue to work on fuse-json project from JSON lab. If you haven't completed JSON lab1, you can start with this project https://github.com/adithaha/jboss-fuse-workshop/raw/master/json/solution/lab1/fuse-json.zip, import into CodeReady Studio.
+
+### Create http proxy with masking
+	
+1. Open fuse-rest - pom.xml, pom.xml
+
+2. Add API backend property, put hotrod url from previous step. Open src/main/resources - application.properties - source
+```
+fuse-rest.url=fuse-rest:80
+```
+5. Create fuse-rest-transformation route, Camel Contexts - camel-context.xml
+```
+Routing - Route
+	Id: fuse-rest-transformation
+Component - servlet
+	Uri: servlet:finto?matchOnUriPrefix=true&disableStreamCache=true
+Component - Log
+	Message: receive input
+Component - direct
+	Uri: https4://{{fuse-rest.url}}?bridgeEndpoint=true&throwExceptionOnFailure=false
+Routing - Choice 
+(inside Choice) Routing - When
+	Expression: simple
+	Expression: ${header.CamelHttpMethod} == 'GET' && ${header.CamelHttpPath} == '/rest/v1/vocabularies'
+(inside When) Component - Log
+	Message: apply transformation ${header.CamelHttpMethod} ${header.CamelHttpPath}
+(inside When) Component - direct
+	Uri: jolt:jolt/fuse-rest-getEmployee.json?inputType=JsonString&outputType=JsonString
+Component - Log
+	Message: receive input
+```
+5. Create JSON transformation file directory - src/main/resources - right click - New - Other - type 'folder'
+```
+Folder name: jolt
+Finish
+```
+
+5. Create JSON transformation file using JOLT - src/main/resources - jolt - right click - New - Other - type 'file' - choose Generic/File
+```
+Folder name: fuse-rest-getEmployee.json
+Finish
+```
+Copy text below in fuse-rest-getEmployee.json file
+```
+[
+  {
+    "operation": "remove",
+    "spec": {
+      "vocabularies": {
+        "*": {
+          "id": ""
+        }
+      },
+      "uri": ""
+    }
+  }
+]
+```
