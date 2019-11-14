@@ -44,7 +44,8 @@ OS name: "mac os x", version: "10.13.6", arch: "x86_64", family: "mac"
 CodeReady Studio
 ----------------
 install:  
-cmd - "java -jar jboss.jar" - select "Red Hat Fuse Tooling"
+cmd - "java -jar codereadystudio-12.12.0.GA-installer-standalone.jar"  
+select "Red Hat Fuse Tooling"
 
 check:  
 open Codeready Studio
@@ -54,6 +55,7 @@ OpenShift Client
 ----------------
 install:  
 mkdir oc-client
+cd oc-client
 unzip oc-3.11.98-windows.zip  
 tambah ke system path: oc-client
 
