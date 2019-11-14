@@ -11,7 +11,15 @@ cd <fuse-jolt>
 ```
 oc login -u <user> <openshift-url>
 ```
-3. Create new OpenShift application
+3. Go to fuse project, or create if you don't have any
+```
+$ oc project fuse-workshop-<user>
+```
+or
+```
+$ oc new-project fuse-workshop-<user>
+```
+4. Create new OpenShift application
 Using local path
 ```
 oc new-app fuse7-java-openshift:1.2 --code=. --name=fuse-json-<user> --strategy=source --build-env=MAVEN_MIRROR_URL=<repo>
@@ -22,7 +30,7 @@ Using git repository (SKIP THIS!)
 $ oc new-app fuse7-java-openshift:1.2~https://github.com/adithaha/jboss-fuse-workshop.git --context-dir=/rest/solution/fuse-rest --name=fuse-rest-<user> --build-env=MAVEN_MIRROR_URL=<repo>
 ```
 
-4. Open application port 8080 in service
+5. Open application port 8080 in service
 ```
 oc edit svc/fuse-json-<user>
 ...
@@ -36,12 +44,12 @@ spec:
     targetPort: 8080
 ...
 ```
-5. Create route from external to service port 8080
+6. Create route from external to service port 8080
 ```
 oc expose service fuse-json-<user> --name=fuse-json-<user> --port=8080
 ```
 
-6. Open jolokia access so the application can be monitored using fuse console. Add name: jolokia to existing port 8778.
+7. Open jolokia access so the application can be monitored using fuse console. Add name: jolokia to existing port 8778.
 ```
 oc edit dc/fuse-json-<user>
 ...
