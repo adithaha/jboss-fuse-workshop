@@ -19,9 +19,13 @@ $ cd fuse-soap
 ```
 $ oc login -u <user> <openshift-url>
 ```
-3. Go to fuse project
+3. Go to fuse project, or create if you don't have any
 ```
 $ oc project fuse-workshop-<user>
+```
+or
+```
+$ oc new-project fuse-workshop-<user>
 ```
 3. Create new OpenShift application. Use <repo> in https://github.com/adithaha/workshop-agile-integration/blob/master/openshift-url.md
 
