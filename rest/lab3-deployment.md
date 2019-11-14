@@ -93,6 +93,7 @@ fuse-rest requires employee SOAP service as a backend. Assumed employeeWS is alr
 ```
 oc get route
 ```
+or, use provided fuse-soap here https://github.com/adithaha/workshop-agile-integration/blob/master/openshift-url.md
 Note the url for fuse-soap application 
 
 2. Login to OpenShift Web Console via browser <openshift-url>
