@@ -9,9 +9,14 @@ Open JBoss Developer Studio application. Continue to work on fuse-json project f
 	
 1. Open fuse-rest - pom.xml, pom.xml
 
-2. Add API backend property, put hotrod url from previous step. Open src/main/resources - application.properties - source
+2. Add API backend property, get fuse-rest url from previous step.  
 ```
-fuse-rest.url=fuse-rest:80
+oc get route
+```
+Note the url for fuse-rest application  
+Open src/main/resources - application.properties - source
+```
+url.employeeRS=<fuse-url>
 ```
 3. Create fuse-rest-transformation route, Camel Contexts - camel-context.xml
 ```
