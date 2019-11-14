@@ -32,7 +32,7 @@
    ```
 4. Integration > Configuration - add the base URL of your API and save the configuration.
    ```
-   Private Base URL: http://fuse-rest-1-fuse-workshop-1.ocpapps.bkpm.go.id
+   Private Base URL: http://<fuse-json>
    Mapping Rules:
      Delete Get /
      Add Mapping Rules:
@@ -103,23 +103,33 @@
        Max. value: 30
        Create usage limit
     ```
+6. Create developer account 
+   ```
+   Choose dropdown Audience
+   Account - Listing - Create
+     Username: fuse-workshop-<user>
+     Email: fuse-workshop-<user>@email.com
+     Password: password
+     Organization: fuse-workshop-<user>
+   ```    
+
 6. Register developer  
-   There is existing account Developer, we will use that account to be registered with application plan  
+   We will use the account to be registered with application plan  
    Register with Basic plan
    ```
    Choose dropdown Audience
    Account - Listing
-   Click Developer - Applications - (+) Create Application
+   Click fuse-workshop-<user> - Applications - (+) Create Application
      Application Plan: Choose - fuse-workshop-<name> - Basic 
-     Name: fuse-workshop-<name>-basic
-     Description: fuse-workshop-<name>-basic
+     Name: fuse-workshop-<user>-basic
+     Description: fuse-workshop-<user>-basic
      Create Application
    Note the User Key eg. 4567d96a9a0d34b590d1b93f92397a79
    ```
 7. Call API through API Gateway  
    Note API Gateway URL
    ```
-   Choose dropdown at top: fuse-workshop-<name>
+   Choose dropdown at top: fuse-workshop-<user>
    Integration - Configuration
    Note API Gateway staging URL
    ```
