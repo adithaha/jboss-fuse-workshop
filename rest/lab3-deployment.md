@@ -11,6 +11,14 @@ $ cd <fuse-rest>
 ```
 oc login -u <user> <openshift-url>
 ```
+3. Go to fuse project, or create if you don't have any
+```
+$ oc project fuse-workshop-<user>
+```
+or
+```
+$ oc new-project fuse-workshop-<user>
+```
 3. Create new OpenShift application
 Using local path
 ```
