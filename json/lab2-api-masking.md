@@ -7,27 +7,29 @@ Open JBoss Developer Studio application. Continue to work on fuse-json project f
 
 ### Create http proxy with masking
 	
-1. Open fuse-rest - pom.xml, pom.xml
-
-2. Add API backend property, get fuse-rest url from previous step.  
+1. Add API backend property, get fuse-rest url from previous REST lab.  
 ```
 oc get route
 ```
-Note the url for fuse-rest application  
+Note the url for fuse-rest application
 Open src/main/resources - application.properties - source
 ```
-url.employeeRS=<fuse-url>
+url.employeeRS=http4://<fuse-rest-url>
 ```
-3. Create fuse-rest-transformation route, Camel Contexts - camel-context.xml
+2. Delete sample route simple-route, open route GUI, Camel Contexts - camel-context.xml
+```
+Route simple-route - trash icon - Yes
+```
+3. Create fuse-rest-transformation route, open route GUI, Camel Contexts - camel-context.xml
 ```
 Routing - Route
 	Id: fuse-rest-transformation
 Component - servlet
 	Uri: servlet:fuse-rest?matchOnUriPrefix=true&disableStreamCache=true
 Component - Log
-	Message: receive input
+	Message: receive request
 Component - direct
-	Uri: https4://{{fuse-rest.url}}?bridgeEndpoint=true&throwExceptionOnFailure=false
+	Uri: https4://{{url.employeeRS}}?bridgeEndpoint=true&throwExceptionOnFailure=false
 Routing - Choice 
 (inside Choice) Routing - When
 	Expression: simple
@@ -37,7 +39,7 @@ Routing - Choice
 (inside When) Component - direct
 	Uri: jolt:jolt/fuse-rest-getEmployee.json?inputType=JsonString&outputType=JsonString
 Component - Log
-	Message: receive input
+	Message: send response
 ```
 4. Create JSON transformation file directory - src/main/resources - right click - New - Other - type 'folder'
 ```
