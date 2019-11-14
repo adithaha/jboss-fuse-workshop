@@ -17,6 +17,8 @@ Simple log using Spring Boot - Spring DSL
 Finish
 Open Associate Perspective: Yes
  ```
+ If this is the first time you create fuse project, expect around 15 minutes to download dependency from internet
+ 
 2. Open fuse-rest - pom.xml, pom.xml, replace below lines #4 - #9
  ``` 
   <groupId>org.jboss.fuse.workshop</groupId>
@@ -68,8 +70,8 @@ Clean and Build: right click your fuse-rest - run as - maven build....
 	Name: fuse-rest mvn clean package
 	Goals: clean package
 	Run
+if this is the first time you build fuse project, expect to have around 10 minutes to download all libraries from internet
 The application should be compiled successfully
-
 *Later if you want to build the application, you can just select maven build - fuse-rest clean package
 ```
 
