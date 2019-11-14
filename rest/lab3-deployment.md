@@ -7,24 +7,24 @@
 ```
 $ cd <fuse-rest>
 ```
-2. Login into openshift
+2. Login into openshift (https://github.com/adithaha/workshop-agile-integration/blob/master/openshift-url.md)
 ```
-$ oc login -u <user> https://openshift.com
+oc login -u <user> <openshift-url>
 ```
 3. Create new OpenShift application
 Using local path
 ```
-$ oc new-app fuse7-java-openshift:1.2 --code=. --name=fuse-rest-<name> --strategy=source --build-env=MAVEN_MIRROR_URL=<repo>
+$ oc new-app fuse7-java-openshift:1.2 --code=. --name=fuse-rest-<user> --strategy=source --build-env=MAVEN_MIRROR_URL=<repo>
 ```
 
 Using git repository (SKIP THIS!)
 ```
-$ oc new-app fuse7-java-openshift:1.2~https://github.com/adithaha/jboss-fuse-workshop.git --context-dir=/rest/solution/fuse-rest --name=fuse-rest-<name> --build-env=MAVEN_MIRROR_URL=<repo>
+$ oc new-app fuse7-java-openshift:1.2~https://github.com/adithaha/jboss-fuse-workshop.git --context-dir=/rest/solution/fuse-rest --name=fuse-rest-<user> --build-env=MAVEN_MIRROR_URL=<repo>
 ```
 
 4. Open application port 8080 in service
 ```
-oc edit svc/fuse-rest-<name>
+oc edit svc/fuse-rest-<user>
 ...
 spec:
   ...
@@ -38,12 +38,12 @@ spec:
 ```
 5. Create route from external to service port 8080
 ```
-oc expose service fuse-rest-<name> --name=fuse-rest-<name> --port=8080
+oc expose service fuse-rest-<name> --name=fuse-rest-<user> --port=8080
 ```
 
 6. Open jolokia access so the application can be monitored using fuse console. Add name: jolokia to existing port 8778.
 ```
-oc edit dc/fuse-rest-<name>
+oc edit dc/fuse-rest-<user>
 ...
 spec:
   ...
@@ -66,7 +66,7 @@ Build: OpenShift server
 ```
 cd <fuse-rest>
 mvn clean
-oc start-build fuse-rest-<name> --from-dir=. --follow
+oc start-build fuse-rest-<user> --from-dir=. --follow
 ```
 
 ### Deploy using jar from local client (SKIP THIS!)
@@ -75,7 +75,7 @@ Build: local
 ```
 cd <fuse-rest>
 mvn clean package
-oc start-build fuse-rest-<name> --from-file=target/fuse-rest-1.0.0-SNAPSHOT.jar --follow
+oc start-build fuse-rest-<user> --from-file=target/fuse-rest-1.0.0-SNAPSHOT.jar --follow
 ```
 
 ### Configuring parameter
@@ -88,7 +88,7 @@ oc get route
 Note the url for fuse-soap application 
 
 2. Login to OpenShift Web Console via browser <openshift-url>
-3. Go to project fuse-workshop-<name>
+3. Go to project fuse-workshop-<user>
 4. Choose Deployment Config fuse-rest - Environment tab - add environment parameter
   ```
   Name: URL_EMPLOYEEWS | Value: http://<fuse-soap-url>/cxf/employeeWS
