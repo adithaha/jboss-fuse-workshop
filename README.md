@@ -64,9 +64,6 @@ output:
 oc v3.11.98
 kubernetes v1.11.0+d4cacc0
 
-SoapUI
-install: SoapUI-x64-5.5.0.exe
-
 postman:
 install: Postman-win64-7.9.0-Setup.exe
 
@@ -92,6 +89,11 @@ AMQ Broker
 
 JDG
 1. https://github.com/adithaha/workshop-agile-integration/blob/master/jdg/lab1-using-cache.md
+
+Fuse JSON
+1. https://github.com/adithaha/workshop-agile-integration/blob/master/json/lab1-initiate.md
+2. https://github.com/adithaha/workshop-agile-integration/blob/master/json/lab2-api-masking.md
+3. https://github.com/adithaha/workshop-agile-integration/blob/master/json/lab3-deployment.md
 
 3Scale
 1. https://github.com/adithaha/jboss-fuse-workshop/blob/master/api/lab1-api-management.md
