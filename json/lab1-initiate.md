@@ -1,6 +1,8 @@
 
 ## LAB 1 - Create Fuse JSON Integration Project
 
+Previous REST lab has deployed fuse-rest application, for employee API. There is new requirement to use employee API, but with some attribute masking. In this case, we will remove address and phone type attributes.
+
 Open JBoss Developer Studio application. 
 
 1. File - New - Project.. - type 'fuse' - Fuse Integration Project - Next
