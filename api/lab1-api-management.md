@@ -37,25 +37,25 @@
      Delete Get /
      Add Mapping Rules:
        Verb: POST
-       Pattern: /camel/jaxrs/employee
+       Pattern: /camel/fuse-rest/camel/jaxrs/employee
        + : 1
        Metric or Method: add_employee
      Add Mapping Rules:
        Verb: GET
-       Pattern: /camel/jaxrs/employee/{id}
+       Pattern: /camel/fuse-rest/camel/jaxrs/employee/{id}
        + : 1
        Metric or Method: get_employee
      Add Mapping Rules:
        Verb: GET
-       Pattern: /camel/jaxrs/employeeall
+       Pattern: /camel/fuse-rest/camel/jaxrs/employeeall
        + : 1
        Metric or Method: get_employee_all
      Add Mapping Rules:
        Verb: POST
-       Pattern: /camel/jaxrs/employeebulk
+       Pattern: /camel/fuse-rest/camel/jaxrs/employeebulk
        + : 1
        Metric or Method: add_employee_bulk
-   API test GET request: /camel/jaxrs/employeeall
+   API test GET request: /camel/fuse-rest/camel/jaxrs/employeeall
    Update and Test in Staging Environment 
    Test might fail as we haven't registered user yet, we can ignore that for now
    ```
@@ -136,7 +136,7 @@
    Call API
    ```
    Open API Gateway staging URL via browser, add path below with user key from #6:
-   /camel/jaxrs/employeeall?user_key=<user_key>
+   /camel/fuse-rest/camel/jaxrs/employeeall?user_key=<user_key>
    ```
    You should be able to get employee data response
 
