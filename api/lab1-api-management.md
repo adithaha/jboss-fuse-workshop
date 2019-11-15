@@ -152,6 +152,11 @@
    ```
 
 9. Call API through API Gateway  
+   Open browser, open link below:
+   
+   https://fuse-workshop-<user>-2445581864856.staging.gw.apicast.io/camel/jaxrs/employeeall?user_key=<user-key>
+   
+   <!--
    Go back to Admin Portal, note API Gateway URL
    ```
    Choose dropdown at top: fuse-workshop-<user>
@@ -164,4 +169,4 @@
    /camel/jaxrs/employeeall?user_key=<user_key>
    ```
    You should be able to get employee data response
-
+-->
