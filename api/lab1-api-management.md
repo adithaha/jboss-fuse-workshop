@@ -2,13 +2,13 @@
 ## LAB 1 - Integrate API
 
 
-3Scale admin URL: https://github.com/adithaha/workshop-agile-integration/blob/master/openshift-url.md
+3Scale admin URL: https://anugraha-admin.3scale.net
   
 1. Login into 3Scale admin portal
 2. (+) New API
    ```
-   Name: fuse-workshop-<name>
-   System Name: fuse-workshop-<name>
+   Name: fuse-workshop-<user>
+   System Name: fuse-workshop-<user>
    Add API
    ```
 3. Integration > Methods & Metrics 
@@ -32,30 +32,30 @@
    ```
 4. Integration > Configuration - add the base URL of your API and save the configuration.
    ```
-   Private Base URL: http://<fuse-json>
+   Private Base URL: https://fuse-rest-user99-fuse-workshop-user99.apps.be01.example.opentlc.com
    Mapping Rules:
      Delete Get /
      Add Mapping Rules:
        Verb: POST
-       Pattern: /camel/fuse-rest/camel/jaxrs/employee
+       Pattern: /camel/jaxrs/employee
        + : 1
        Metric or Method: add_employee
      Add Mapping Rules:
        Verb: GET
-       Pattern: /camel/fuse-rest/camel/jaxrs/employee/{id}
+       Pattern: /camel/jaxrs/employee/{id}
        + : 1
        Metric or Method: get_employee
      Add Mapping Rules:
        Verb: GET
-       Pattern: /camel/fuse-rest/camel/jaxrs/employeeall
+       Pattern: /camel/jaxrs/employeeall
        + : 1
        Metric or Method: get_employee_all
      Add Mapping Rules:
        Verb: POST
-       Pattern: /camel/fuse-rest/camel/jaxrs/employeebulk
+       Pattern: /camel/jaxrs/employeebulk
        + : 1
        Metric or Method: add_employee_bulk
-   API test GET request: /camel/fuse-rest/camel/jaxrs/employeeall
+   API test GET request: /camel/jaxrs/employeeall
    Update and Test in Staging Environment 
    Test might fail as we haven't registered user yet, we can ignore that for now
    ```
@@ -129,8 +129,30 @@
    Note the User Key eg. 4567d96a9a0d34b590d1b93f92397a79
    ```
 -->
+8. Subscribe API using existing developer
+   Go to developer portal, login using existing user (from yesterday demo) https://anugraha.3scale.net
+   ```
+   Tab Services
+   Subscribe to fuse-workshop-<user>
+   Click fuse-workshop-<user> - Applications - (+) Create Application
+     Application Plan: Choose - fuse-workshop-<name> - Basic 
+     Name: fuse-workshop-<user>-basic
+     Description: fuse-workshop-<user>-basic
+     Create Application
+   Note the User Key eg. 4567d96a9a0d34b590d1b93f92397a79
+   ```
+   Create application plan
+   ```
+   APPLICATIONS -> Create new applications -> select finto
+   Plan: choose Basic or Premium
+   Name: <user>-api
+   Description: <user>-api
+   Create Application
+   Note down your unique user key (eg. bb629d06ad6bf40c736a735a315836cba)
+   ```
+
 9. Call API through API Gateway  
-   Note API Gateway URL
+   Go back to Admin Portal, note API Gateway URL
    ```
    Choose dropdown at top: fuse-workshop-<user>
    Integration - Configuration
@@ -139,7 +161,7 @@
    Call API
    ```
    Open API Gateway staging URL via browser, add path below with user key from #6:
-   /camel/fuse-rest/camel/jaxrs/employeeall?user_key=<user_key>
+   /camel/jaxrs/employeeall?user_key=<user_key>
    ```
    You should be able to get employee data response
 
