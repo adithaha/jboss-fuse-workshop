@@ -6,7 +6,7 @@
 3Scale admin URL: https://anugraha-admin.3scale.net
   
 1. Login into 3Scale admin portal
-2. (+) New API
+2. (+) New API (trainer may have created this for you)
    ```
    Name: fuse-workshop-<user>
    System Name: fuse-workshop-<user>
