@@ -103,7 +103,9 @@
        Max. value: 30
        Create usage limit
     ```
-6. Create developer account 
+6. Subscriptions > Service Plans - Publish
+<!--
+7. Create developer account 
    ```
    Choose dropdown Audience
    Account - Listing - Create
@@ -113,7 +115,7 @@
      Organization: fuse-workshop-<user>
    ```    
 
-6. Register developer  
+8. Register developer  
    We will use the account to be registered with application plan  
    Register with Basic plan
    ```
@@ -126,7 +128,8 @@
      Create Application
    Note the User Key eg. 4567d96a9a0d34b590d1b93f92397a79
    ```
-7. Call API through API Gateway  
+-->
+9. Call API through API Gateway  
    Note API Gateway URL
    ```
    Choose dropdown at top: fuse-workshop-<user>
