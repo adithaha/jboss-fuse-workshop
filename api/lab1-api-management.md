@@ -163,7 +163,7 @@ Integration > Configuration > Promote to Production
    
 2. Upgrade to Premium plan  
    ```
-   APPLICATIONS - Click Application Plan
+   APPLICATIONS - Click your application plan
    Plan Basic > Review/Change > Premium > Request Plan Change
    You will need admin to change your plan
    ```
