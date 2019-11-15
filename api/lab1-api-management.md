@@ -160,8 +160,13 @@ Integration > Configuration > Promote to Production
    Create Application
    Note down your unique user key (eg. bb629d06ad6bf40c736a735a315836cba)
    ```
-   
-2. Upgrade to Premium plan  
+2. Call API through API Gateway  
+   Open browser, open link below, you should be able to get API response:
+   ```
+   https://fuse-workshop-<user>-2445581864856.production.gw.apicast.io/camel/jaxrs/employeeall?user_key=<user-key>
+   ```
+   You might want to try other method, some of them are disabled by Basic plan
+3. Upgrade to Premium plan  
    ```
    APPLICATIONS - Click your application plan
    Plan Basic > Review/Change > Premium > Request Plan Change
@@ -170,13 +175,13 @@ Integration > Configuration > Promote to Production
    ```
    Check your admin email, click link to upgrade developer plan to Premium
    ```
-
-
-3. Call API through API Gateway  
+4. Call API through API Gateway  
    Open browser, open link below, you should be able to get API response:
    ```
    https://fuse-workshop-<user>-2445581864856.production.gw.apicast.io/camel/jaxrs/employeeall?user_key=<user-key>
    ```
+   You might want to try all method, those should be enabled by Premium plan
+
    <!--
    Go back to Admin Portal, note API Gateway URL
    ```
