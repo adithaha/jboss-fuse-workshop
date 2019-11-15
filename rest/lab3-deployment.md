@@ -76,6 +76,7 @@ cd <fuse-rest>
 mvn clean
 oc start-build fuse-rest-<user> --from-dir=. --follow
 ```
+NOTE: Later if you want to redeploy application, you don't need to start all over again, instead can just do this procedure
 
 ### Deploy using jar from local client (SKIP THIS!)
 Source code: local
@@ -85,6 +86,7 @@ cd <fuse-rest>
 mvn clean package
 oc start-build fuse-rest-<user> --from-file=target/fuse-rest-1.0.0-SNAPSHOT.jar --follow
 ```
+NOTE: Later if you want to redeploy application, you don't need to start all over again, instead can just do this procedure
 
 ### Configuring parameter
 fuse-rest requires employee SOAP service as a backend. Assumed employeeWS is already set up, below are procedures to configure employeeWS settings. Since we are using Spring Boot, all parameters are configured via application.properties, and mapped to system environment. All we need to do is to configure system properties in application Deployment Config.
