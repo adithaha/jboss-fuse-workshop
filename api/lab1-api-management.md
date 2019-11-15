@@ -137,8 +137,8 @@ Integration > Configuration > Promote to Production
 
 ### Call API via API Gateway as a developer
 
-1. Subscribe API using existing developer
-   Go to developer portal, login using existing user (from yesterday demo) https://anugraha.3scale.net
+1. Subscribe API using existing developer  
+   Go to developer portal, login using existing user (from yesterday demo) https://anugraha.3scale.net. If you haven't registered yet, you can sign up using your email
    ```
    Tab Services
    Subscribe to fuse-workshop-<user>
