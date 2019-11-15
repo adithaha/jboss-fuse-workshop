@@ -2,6 +2,7 @@
 ## LAB 1 - Integrate API
 
 
+### Configure API Management
 3Scale admin URL: https://anugraha-admin.3scale.net
   
 1. Login into 3Scale admin portal
@@ -129,7 +130,10 @@
    Note the User Key eg. 4567d96a9a0d34b590d1b93f92397a79
    ```
 -->
-8. Subscribe API using existing developer
+
+### Call API via API Gateway as a developer
+
+1. Subscribe API using existing developer
    Go to developer portal, login using existing user (from yesterday demo) https://anugraha.3scale.net
    ```
    Tab Services
@@ -151,7 +155,7 @@
    Note down your unique user key (eg. bb629d06ad6bf40c736a735a315836cba)
    ```
 
-9. Call API through API Gateway  
+2. Call API through API Gateway  
    Open browser, open link below, you should be able to get API response:
    ```
    https://fuse-workshop-<user>-2445581864856.staging.gw.apicast.io/camel/jaxrs/employeeall?user_key=<user-key>
