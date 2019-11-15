@@ -152,10 +152,10 @@
    ```
 
 9. Call API through API Gateway  
-   Open browser, open link below:
-   
+   Open browser, open link below, you should be able to get API response:
+   ```
    https://fuse-workshop-<user>-2445581864856.staging.gw.apicast.io/camel/jaxrs/employeeall?user_key=<user-key>
-   
+   ```
    <!--
    Go back to Admin Portal, note API Gateway URL
    ```
