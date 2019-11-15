@@ -86,7 +86,9 @@
      System Name: premium
      Create Application Plan
    Publish
-   Click Premium - Metrics, Methods, Limits & Pricing Rules 
+   Click Premium
+   > Applications require approval
+   > Metrics, Methods, Limits & Pricing Rules 
      get_employee - Limits - New usage limit
        Period: Minute
        Max. value: 600
