@@ -105,6 +105,10 @@
        Create usage limit
     ```
 6. Subscriptions > Service Plans - Publish
+7. Promote to Production
+```
+Integration > Configuration > Promote to Production 
+```
 <!--
 7. Create developer account 
    ```
@@ -158,7 +162,7 @@
 2. Call API through API Gateway  
    Open browser, open link below, you should be able to get API response:
    ```
-   https://fuse-workshop-<user>-2445581864856.staging.gw.apicast.io/camel/jaxrs/employeeall?user_key=<user-key>
+   https://fuse-workshop-<user>-2445581864856.production.gw.apicast.io/camel/jaxrs/employeeall?user_key=<user-key>
    ```
    <!--
    Go back to Admin Portal, note API Gateway URL
