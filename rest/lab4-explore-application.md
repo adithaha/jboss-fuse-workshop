@@ -1,10 +1,10 @@
 
 ## LAB 4 - Explore Fuse Application
 
-Open JBoss Developer Studio application,  to work on fuse-soap project from lab3. If you haven't completed lab3, you can start with this project https://github.com/adithaha/jboss-fuse-workshop/raw/master/rest/solution/lab3/fuse-rest.zip and import into CodeReady Studio
+Open JBoss Developer Studio application,  to work on fuse-soap project from lab3. If you haven't completed lab3, you can start with this project https://github.com/adithaha/workshop-agile-integration/raw/master/rest/solution/lab3/fuse-rest.zip and import into CodeReady Studio
 
 #### Import project
-If you download fuse-soap.zip, follow procedure below
+Do this if you skip lab 3.
 1. Unzip fuse-rest.zip
 2. Open CodeReady Studio
 3. File - Import - type 'maven' - choose Existing Maven Project - Browse - Choose fuse-rest folder - check fuse-soap - finish
