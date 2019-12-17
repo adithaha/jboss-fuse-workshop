@@ -5,7 +5,7 @@ Open JBoss Developer Studio application,  to work on fuse-soap project from lab1
 
 #### Import project
 Do this if you skip lab 2.
-If you download fuse-soap.zip, follow procedure below
+
 1. Unzip fuse-soap.zip
 2. Open CodeReady Studio
 3. File - Import - type 'maven' - choose Existing Maven Project - Browse - Choose fuse-soap folder - check fuse-soap - finish
