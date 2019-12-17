@@ -60,7 +60,11 @@
    Update and Test in Staging Environment 
    Test might fail as we haven't registered user yet, we can ignore that for now
    ```
-5. Applications > Application Plan
+5. Publish default service plan
+   ```
+   Subscriptions > Service Plans > Default - Publish
+   ```
+6. Applications > Application Plan
    Create Basic plan
    ```
    Create Application Plan
@@ -106,8 +110,8 @@
        Max. value: 30
        Create usage limit
     ```
-6. Subscriptions > Service Plans - Publish
-7. Promote to Production
+7. Subscriptions > Service Plans - Publish
+8. Promote to Production
 ```
 Integration > Configuration > Promote to Production 
 ```
