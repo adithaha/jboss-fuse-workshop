@@ -28,7 +28,7 @@ or
 ```
 $ oc new-project fuse-workshop-<user>
 ```
-3. Create new OpenShift application. Use maven <repo> in https://github.com/adithaha/workshop-agile-integration/blob/master/openshift-url.md
+3. Create new OpenShift application. Replace maven repo with one in https://github.com/adithaha/workshop-agile-integration/blob/master/openshift-url.md
 
 Using local path
 ```
