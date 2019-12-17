@@ -19,7 +19,7 @@
    ```
    SERVICES -> 	Subscribe to fuse-workshop-<userx>
    ```
-1. Subscribe API using existing developer  
+5. Subscribe API using existing developer  
    ```
    APPLICATIONS -> Create new applications -> select fuse-workshop-<user>
    Plan: basic
@@ -29,19 +29,19 @@
    Note down your unique user key (eg. bb629d06ad6bf40c736a735a315836cba).
    ```
    
-2. Call employeall API
+6. Call get employeall API
    ```
    https://fuse-workshop-<user>-2445581864856.production.gw.apicast.io/camel/jaxrs/employeeall?user_key=<user-key>
    
    You should see correct response.
    ```
-2. Call employea API
+7. Call get employe API
    ```
    https://fuse-workshop-<user>-2445581864856.production.gw.apicast.io/camel/jaxrs/employee/1?user_key=<user-key>
    
    You should see Authentication failed response.
    ```
-3. Upgrade to Premium plan  
+8. Upgrade to Premium plan  
    ```
    APPLICATIONS - Click your application plan
    Plan Basic > Review/Change > Premium > Request Plan Change
@@ -52,8 +52,8 @@
    Check admin email to get upgrade request notification link.
    Change Plan - Premium - Change Plan
    ```
-9. Try calling get all API again using new plan, you should be able to see response.
-10. Review your usage
+10. Try calling get all API again using new plan, you should be able to see response.
+11. Review your usage
    ```
    Go to STATISTICS tab. You should be able to see your usage statistic.
    ```
