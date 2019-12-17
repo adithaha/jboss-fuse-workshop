@@ -1,9 +1,10 @@
 
 ## LAB 3 - Deployment
 
-Open JBoss Developer Studio application,  to work on fuse-soap project from lab1. If you haven't completed lab1, you can start with this project https://github.com/adithaha/jboss-fuse-workshop/raw/master/soap/solution/lab2/fuse-soap.zip and import into CodeReady Studio
+Open JBoss Developer Studio application,  to work on fuse-soap project from lab1. If you haven't completed lab1, you can start with this project https://github.com/adithaha/workshop-agile-integration/raw/master/soap/solution/lab2/fuse-soap.zip and import into CodeReady Studio
 
 #### Import project
+Do this if you skip lab 2.
 If you download fuse-soap.zip, follow procedure below
 1. Unzip fuse-soap.zip
 2. Open CodeReady Studio
