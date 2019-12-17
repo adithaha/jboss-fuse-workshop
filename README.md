@@ -72,11 +72,11 @@ install: Postman-win64-7.9.0-Setup.exe
 
 Start LAB:
 Fuse SOAP  
-2. https://github.com/adithaha/workshop-agile-integration/blob/master/soap/lab1-initiate-fuse-project.md
-3. https://github.com/adithaha/workshop-agile-integration/blob/master/soap/lab2-integrate.md
-4. https://github.com/adithaha/workshop-agile-integration/blob/master/soap/lab3-deployment.md
-5. https://github.com/adithaha/workshop-agile-integration/blob/master/soap/lab4-integrate-contd.md
-6. https://github.com/adithaha/workshop-agile-integration/blob/master/soap/lab5-explore-application.md
+2. https://github.com/adithaha/workshop-agile-integration/blob/master/soap/lab1-initiate-fuse-project.md  
+3. https://github.com/adithaha/workshop-agile-integration/blob/master/soap/lab2-integrate.md  
+4. https://github.com/adithaha/workshop-agile-integration/blob/master/soap/lab3-deployment.md  
+5. https://github.com/adithaha/workshop-agile-integration/blob/master/soap/lab4-integrate-contd.md  
+6. https://github.com/adithaha/workshop-agile-integration/blob/master/soap/lab5-explore-application.md  
 
 Fuse REST
 1. https://github.com/adithaha/workshop-agile-integration/blob/master/rest/lab1-initiate.md
