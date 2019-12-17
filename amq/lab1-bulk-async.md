@@ -189,3 +189,17 @@ cd <fuse-rest>
 mvn clean
 oc start-build fuse-rest-<name> --from-dir=. --follow
 ```
+
+
+ ### Configuring parameter
+
+ 1. Login to OpenShift Web Console via browser <openshift-url>
+ 2. Go to project fuse-workshop-<user>
+ 3. Choose Deployment Config fuse-rest - Environment tab - add environment parameter
+   ```
+   Name: EMPLOYEE_QUEUE | Value: amqp:queue:<user>EmployeeQueue
+   ```
+ 4. Save
+
+ Application will be redeployed with configured parameter.
+
