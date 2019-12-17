@@ -6,6 +6,7 @@ We will continue to work on fuse-rest project from REST lab. Create new addition
 Open JBoss Developer Studio application. Continue to work on fuse-rest project from JDG lab. If you haven't completed JDG lab, you can start with this project https://github.com/adithaha/jboss-fuse-workshop/raw/master/jdg/solution/lab1/fuse-rest.zip, import into CodeReady Studio, and do lab3 on https://github.com/adithaha/jboss-fuse-workshop/blob/master/rest/lab3-deployment.md
 
 ### Deploy JBoss AMQ Broker
+Skip this as trainer already prepared this for you
 
 1. Go to openshift web console, login with your user
 2. Go to project 
@@ -78,6 +79,7 @@ To:
 amq.user=amq
 amq.pass=amq
 amq.url=amqp://broker-amq-amqp:5672
+amq.employee.queue=amqp:queue:<user>EmployeeQueue
 ```
 
 5. Create addEmployeeBulk route in Camel Contexts - rest-springboot-context.xml. Click Design tab, drag and drop to create new Route
@@ -96,7 +98,7 @@ Routing - Split
 	Expression: simple
 	Expression: ${property.employeeList.employeeList}
 (inside split) Component - Direct
-	Uri: {{employee.queue}}
+	Uri: {{amq.employee.queue}}
 	Pattern: InOnly
 Transformation - Set Body
 	Expression: constant
@@ -108,7 +110,7 @@ Transformation - Set Body
 Routing - Route
 	ID: addEmployeeConsumer
 Component - Direct
-	Uri: {{employee.queue}}?concurrentConsumers=5
+	Uri: {{amq.employee.queue}}?concurrentConsumers=5
 Transformation - Convert Body To
 	Type: org.jboss.fuse.workshop.soap.Employee
 Component - Direct
@@ -156,13 +158,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Employee {
 ...
 ```
-10. For easy configuration, put AMQ queue on application.properties - src/main/resources - application.properties - source
-```
-...
-employee.queue=amqp:queue:employeeQueue
-...
-```
-
 10. Try your application
 ```
 Build: right click your fuse-rest project - run as - maven build - fuse-rest clean package - OK
@@ -194,15 +189,3 @@ cd <fuse-rest>
 mvn clean
 oc start-build fuse-rest-<name> --from-dir=. --follow
 ```
-
-### Configuring parameter
-
-1. Login to OpenShift Web Console via browser <openshift-url>
-2. Go to project fuse-workshop-<user>
-3. Choose Deployment Config fuse-rest - Environment tab - add environment parameter
-  ```
-  Name: EMPLOYEE_QUEUE | Value: amqp:queue:<user>EmployeeQueue
-  ```
-4. Save
-  
-Application will be redeployed with configured parameter.
