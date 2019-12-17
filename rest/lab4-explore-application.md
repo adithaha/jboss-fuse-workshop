@@ -18,7 +18,7 @@ oc get route
 Note the fuse-rest url  
 
 2. Open url from browser, add path /camel/api-docs
-3. Copy complete url path from browser, eg. http://fuse-rest-user1-fuse-workshop-user1.apps.1c68.example.opentlc.com/cxf/employeeWS?wsdl
+3. Copy complete url path from browser, eg. http://fuse-rest-user1-fuse-workshop-user1.apps.1c68.example.opentlc.com/camel/api-docs
 
 #### Prepare Postman testing tools
 1. Open Postman
