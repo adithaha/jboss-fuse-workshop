@@ -1,7 +1,7 @@
 
 ## LAB 4 - Explore Fuse Application
 
-Open JBoss Developer Studio application,  to work on fuse-soap project from lab3. If you haven't completed lab3, you can start with this project https://github.com/adithaha/workshop-agile-integration/raw/master/rest/solution/lab3/fuse-rest.zip and import into CodeReady Studio
+Open JBoss Developer Studio application,  to work on fuse-rest project from lab3. If you haven't completed lab3, you can start with this project https://github.com/adithaha/workshop-agile-integration/raw/master/rest/solution/lab2/fuse-rest.zip and import into CodeReady Studio, and deploy into openshift in lab 3.
 
 #### Import project
 Do this if you skip lab 3.
