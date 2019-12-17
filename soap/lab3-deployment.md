@@ -27,13 +27,13 @@ or
 ```
 $ oc new-project fuse-workshop-<user>
 ```
-3. Create new OpenShift application. Use <repo> in https://github.com/adithaha/workshop-agile-integration/blob/master/openshift-url.md
+3. Create new OpenShift application. Use maven <repo> in https://github.com/adithaha/workshop-agile-integration/blob/master/openshift-url.md
 
 Using local path
 ```
 $ oc new-app fuse7-java-openshift:1.2 --code=. --name=fuse-soap-<user> --strategy=source --build-env=MAVEN_MIRROR_URL=<repo>
 ```
-Ignore git error as we are not using git server
+Expect git error as we are not using git server
 
 OR
 
@@ -106,7 +106,7 @@ fuse-soap requires postgre database to put and get data. Assumed database is alr
 1. Login to OpenShift Web Console via browser <openshift-url>
 2. Go to project <project>
 3. Choose Deployment Config fuse-soap - Environment tab - add environment parameter  
-  Name: SPRING_DSEMPLOYEE_URL | Value: jdbc:postgresql://postgresql:5432/dsEmployee  
+  Name: SPRING_DSEMPLOYEE_URL | Value: jdbc:postgresql://postgresql.tools.svc.cluster.local:5432/dsEmployee  
   Name: SPRING_DSEMPLOYEE_USERNAME | Value: postgres  
   Name: SPRING_DSEMPLOYEE_PASSWORD | Value: postgres  
 4. Save
