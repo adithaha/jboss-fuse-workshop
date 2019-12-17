@@ -96,7 +96,7 @@ Routing - Split
 	Expression: simple
 	Expression: ${property.employeeList.employeeList}
 (inside split) Component - Direct
-	Uri: amqp:queue:employeeQueue
+	Uri: {{employee.queue}}
 	Pattern: InOnly
 Transformation - Set Body
 	Expression: constant
@@ -108,7 +108,7 @@ Transformation - Set Body
 Routing - Route
 	ID: addEmployeeConsumer
 Component - Direct
-	Uri: amqp:queue:employeeQueue?concurrentConsumers=5
+	Uri: {{employee.queue}}?concurrentConsumers=5
 Transformation - Convert Body To
 	Type: org.jboss.fuse.workshop.soap.Employee
 Component - Direct
@@ -156,6 +156,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Employee {
 ...
 ```
+10. For easy configuration, put AMQ queue on application.properties - src/main/resources - application.properties - source
+```
+...
+employee.queue=amqp:queue:employeeQueue
+...
+```
 
 10. Try your application
 ```
@@ -188,3 +194,15 @@ cd <fuse-rest>
 mvn clean
 oc start-build fuse-rest-<name> --from-dir=. --follow
 ```
+
+### Configuring parameter
+
+1. Login to OpenShift Web Console via browser <openshift-url>
+2. Go to project fuse-workshop-<user>
+3. Choose Deployment Config fuse-rest - Environment tab - add environment parameter
+  ```
+  Name: EMPLOYEE_QUEUE | Value: amqp:queue:<user>EmployeeQueue
+  ```
+4. Save
+  
+Application will be redeployed with configured parameter.
