@@ -1,5 +1,5 @@
 
-## LAB 3 - Try Developer Portal
+## LAB 2 - Try Developer Portal
 
 1. User registration
    ```
