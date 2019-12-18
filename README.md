@@ -87,14 +87,15 @@ Fuse REST
 AMQ Broker
 1. https://github.com/adithaha/workshop-agile-integration/blob/master/amq/lab1-bulk-async.md
 2. https://github.com/adithaha/workshop-agile-integration/blob/master/amq/lab2-try-amq.md
-
+<!--
 JDG
 1. https://github.com/adithaha/workshop-agile-integration/blob/master/jdg/lab1-using-cache.md
-
+-->
+<!--
 Fuse JSON
 1. https://github.com/adithaha/workshop-agile-integration/blob/master/json/lab1-initiate.md
 2. https://github.com/adithaha/workshop-agile-integration/blob/master/json/lab2-api-masking.md
 3. https://github.com/adithaha/workshop-agile-integration/blob/master/json/lab3-deployment.md
-
+-->
 3Scale
 1. https://github.com/adithaha/jboss-fuse-workshop/blob/master/api/lab1-api-management.md
