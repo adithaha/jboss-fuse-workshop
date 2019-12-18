@@ -58,7 +58,8 @@
        Metric or Method: add_employee_bulk
    API test GET request: /camel/jaxrs/employeeall
    Update and Test in Staging Environment 
-   Test might fail as we haven't registered user yet, we can ignore that for now
+   
+   Test will fail as we haven't registered user yet, we can ignore that for now
    ```
 5. Publish default service plan
    ```
