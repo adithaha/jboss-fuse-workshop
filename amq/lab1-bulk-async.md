@@ -198,6 +198,7 @@ oc start-build fuse-rest-<name> --from-dir=. --follow
  3. Choose Deployment Config fuse-rest - Environment tab - add environment parameter
    ```
    Name: EMPLOYEE_QUEUE | Value: amqp:queue:<user>EmployeeQueue
+   Name: AMQ_URL | amqp://broker-amq-amqp.tools.svc.cluster.local:5672
    ```
  4. Save
 
