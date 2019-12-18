@@ -78,8 +78,23 @@ Transformation - Set Body
 	- Expression: Simple
 	- Expression: null
 ```
-
-8. Configure Spring Boot to read generated camel xml - src/main/java - org.jboss.fuse.workshop.rest - Application.java
+8. We will remove unnecessary headers. Go to design.
+```
+In route addEmployee, insert below between _to1 and _setHeader1
+Transformation - Remove Headers
+	- Pattern: *
+```
+```
+In route getEmployee, insert below between _to2 and _setHeader2
+Transformation - Remove Headers
+	- Pattern: *
+```
+```
+In route getEmployeeAll, insert below between _to3 and _setHeader3
+Transformation - Remove Headers
+	- Pattern: *
+```
+9. Configure Spring Boot to read generated camel xml - src/main/java - org.jboss.fuse.workshop.rest - Application.java
 From:
 ```
 @ImportResource({"classpath:spring/camel-context.xml"})
@@ -88,9 +103,9 @@ To:
 ```
 @ImportResource({"classpath:spring/rest-springboot-context.xml"})
 ```
-9. Remove generated maven settings file - configuration - settings.xml - right click - Delete - OK
+10. Remove generated maven settings file - configuration - settings.xml - right click - Delete - OK
 
-10. Try your application
+11. Try your application
 ```
 Build: right click your fuse-rest project - run as - maven build.. - Goal: clean package - Run
 start fuse application: fuse-rest - src/main/java - org.jboss.fuse.workshop.rest - Application.java (right click) - run as - Java Application
