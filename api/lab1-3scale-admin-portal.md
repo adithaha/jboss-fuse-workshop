@@ -111,8 +111,7 @@
        Max. value: 30
        Create usage limit
     ```
-7. Subscriptions > Service Plans - Publish
-8. Promote to Production
+7. Promote to Production
 ```
 Integration > Configuration > Promote to Production 
 ```
