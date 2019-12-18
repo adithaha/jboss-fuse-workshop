@@ -1,6 +1,7 @@
 
 ## LAB 2 - Try Developer Portal
 
+3Scale developer portal URL: https://anugraha.3scale.net
 1. User registration
    ```
    Top right corner menu - Sign in - Sign up
