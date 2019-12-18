@@ -98,4 +98,5 @@ Fuse JSON
 3. https://github.com/adithaha/workshop-agile-integration/blob/master/json/lab3-deployment.md
 -->
 3Scale
-1. https://github.com/adithaha/jboss-fuse-workshop/blob/master/api/lab1-api-management.md
+1. https://github.com/adithaha/workshop-agile-integration/blob/master/api/lab1-3scale-admin-portal.md
+2. https://github.com/adithaha/workshop-agile-integration/blob/master/api/lab2-3scale-developer-portal.md
