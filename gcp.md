@@ -1,20 +1,24 @@
 
 # prepare maven
+```
 gsutil cp fuse-soap-1.0.0-SNAPSHOT.jar gs://nugraha-51412-gs/maven/
 gsutil cp fuse-rest-1.0.0-SNAPSHOT.jar gs://nugraha-51412-gs/maven/
-
+```
 # create network
+```
 gcloud compute networks create devnet --subnet-mode=custom
 gcloud compute networks subnets create subnet-us --network=devnet --region=us-central1 --range=10.130.1.0/24
 gcloud compute networks subnets create subnet-eu --network=devnet --region=europe-west4 --range=10.130.2.0/24
 
 gcloud compute networks list
-
+```
 # create firewall
+```
 gcloud compute firewall-rules create dev-allow-icmp-ssh-rdp --direction=INGRESS --priority=1000 --network=devnet --action=ALLOW --rules=icmp,tcp:22,tcp:3389 --source-ranges=0.0.0.0/0
 gcloud compute firewall-rules list --sort-by=NETWORK
-
+```
 # create vm fuse-soap
+```
 gcloud compute instances create fuse-soap --machine-type e2-medium --zone us-central1-a --network devnet --subnet subnet-us
 gcloud compute ssh fuse-soap --zone us-central1-a
 sudo apt-get update
@@ -23,14 +27,17 @@ mkdir fuse-soap
 cd fuse-soap
 gsutil cp gs://nugraha-51412-gs/maven/fuse-soap-1.0.0-SNAPSHOT.jar .
 nohup java -jar fuse-soap-1.0.0-SNAPSHOT.jar &
-
+```
 # startup-script
+```
 #! /bin/bash
 cd /home/nugraha/fuse-soap/
 sudo -u nugraha nohup java -jar fuse-soap-1.0.0-SNAPSHOT.jar &
 EOF
+```
 
 # create vm fuse-rest
+```
 gcloud compute instances create fuse-rest --machine-type e2-medium --zone us-central1-a --network devnet --subnet subnet-us
 gcloud compute ssh fuse-rest --zone us-central1-a
 sudo apt-get update
@@ -39,50 +46,65 @@ mkdir fuse-rest
 cd fuse-rest
 gsutil cp gs://nugraha-51412-gs/maven/fuse-rest-1.0.0-SNAPSHOT.jar .
 java -jar fuse-rest-1.0.0-SNAPSHOT.jar &
+```
 
 # startup-script
+```
 #! /bin/bash
 cd /home/nugraha/fuse-rest/
 sudo -u nugraha nohup java -jar fuse-rest-1.0.0-SNAPSHOT.jar &
 EOF
+```
 
 # create csql proxy
+```
 gcloud compute instances create cameldb-proxy --machine-type e2-medium --zone us-central1-a --network devnet --subnet subnet-us
 sudo apt-get update
 sudo apt install wget
 wget https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 -O cloud_sql_proxy
 chmod +x cloud_sql_proxy
 ./cloud_sql_proxy -instances=nugraha-51412:us-central1:cameldb=tcp:0.0.0.0:1234 -ip_address_types=PUBLIC
+```
 
 # startup-script
+```
 #! /bin/bash
 cd /home/nugraha
 sudo -u nugraha ./cloud_sql_proxy -instances=nugraha-51412:us-central1:cameldb=tcp:1234 -ip_address_types=PRIVATE &
 EOF
+```
 
 2104017785295
 
 
-#test
+# test
+```
 curl http://fuse-rest:8080/camel/jaxrs/employeeall
 curl --header "Content-Type: application/json"   --request POST   --data '{ "name": "adit", "address": "jakarta", "phoneList": [{ "phone" : "08119366661", "type" : "HP" }, { "phone" : "02112345676", "type" : "home" }]  }'   http://fuse-rest:8080/camel/jaxrs/employee
-
+```
 
 # delete vm
+```
 gcloud compute instances delete fuse-soap-template-1 --zone us-central1-a
-
+```
 -------------
 
 # create instance groups
+Create image based on existing
+```
 gcloud compute images create fuse-soap-image --source-disk=fuse-soap --source-disk-zone=us-central1-a --force
 gcloud compute images create fuse-rest-image --source-disk=fuse-rest --source-disk-zone=us-central1-a --force
-
+```
+Create instance templates
+```
 gcloud compute instance-templates create fuse-soap-template --machine-type=e2-micro --subnet=projects/nugraha-51412/regions/us-central1/subnetworks/subnet-us --metadata=startup-script=\#\!\ /bin/bash$'\n'cd\ /home/nugraha/fuse-soap/$'\n'sudo\ -u\ nugraha\ nohup\ java\ -jar\ fuse-soap-1.0.0-SNAPSHOT.jar\ \&$'\n'EOF --region=us-central1 --image=fuse-rest-image --boot-disk-size=10GB --boot-disk-type=pd-balanced --boot-disk-device-name=fuse-soap-template
 gcloud compute instance-templates create fuse-rest-template --machine-type=e2-micro --subnet=projects/nugraha-51412/regions/us-central1/subnetworks/subnet-us --metadata=startup-script=\#\!\ /bin/bash$'\n'cd\ /home/nugraha/fuse-rest/$'\n'sudo\ -u\ nugraha\ nohup\ java\ -jar\ fuse-rest-1.0.0-SNAPSHOT.jar\ \&$'\n'EOF --region=us-central1 --image=fuse-rest-image --boot-disk-size=10GB --boot-disk-type=pd-balanced --boot-disk-device-name=fuse-rest-template
-
+```
+Create instance group
+```
 gcloud compute instance-groups managed create fuse-soap-instance-group --base-instance-name=fuse-soap-instance-group --template=fuse-soap-template --size=2 --zones=us-central1-b,us-central1-c,us-central1-f --instance-redistribution-type=PROACTIVE --metadata=startup-script=\#\!\ /bin/bash$'\n'cd\ /home/nugraha/fuse-soap/$'\n'sudo\ -u\ nugraha\ nohup\ java\ -jar\ fuse-soap-1.0.0-SNAPSHOT.jar\ \&$'\n'EOF 
 gcloud compute instance-groups managed create fuse-rest-instance-group --base-instance-name=fuse-rest-instance-group --template=fuse-rest-template --size=2 --zones=us-central1-b,us-central1-c,us-central1-f --instance-redistribution-type=PROACTIVE --metadata=startup-script=\#\!\ /bin/bash$'\n'cd\ /home/nugraha/fuse-rest/$'\n'sudo\ -u\ nugraha\ nohup\ java\ -jar\ fuse-rest-1.0.0-SNAPSHOT.jar\ \&$'\n'EOF 
-
+```
 
 ---------
 
