@@ -90,6 +90,27 @@ nohup java -jar fuse-rest-1.0.0-SNAPSHOT.jar &
 EOF
 ```
 
+# With Docker
+On local/cloudshell
+```
+cd workspace/fuse-soap-docker
+gsutil cp gs://nugraha-51412-gs/maven/fuse-soap-1.0.0-SNAPSHOT.jar .
+vi Dockerfile
+```
+Dockerfile content
+```
+FROM openjdk:8-jdk-alpine
+COPY fuse-soap-1.0.0-SNAPSHOT.jar fuse-soap-1.0.0-SNAPSHOT.jar
+ENTRYPOINT ["java","-jar","fuse-soap-1.0.0-SNAPSHOT.jar"]
+```
+
+docker build -t fuse-soap .
+docker run --publish 8080:8080 fuse-soap
+
+docker tag fuse-soap gcr.io/nugraha-51412/fuse-soap
+docker push gcr.io/nugraha-51412/fuse-soap
+
+gcloud run deploy fuse-soap --image gcr.io/nugraha-51412/fuse-soap --platform managed --region=us-central1 --allow-unauthenticated
 
 
 2104017785295
