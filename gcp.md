@@ -51,6 +51,7 @@ sudo apt install default-jdk
 mkdir fuse-soap
 cd fuse-soap
 gsutil cp gs://nugraha-51412-gs/maven/fuse-soap-1.0.0-SNAPSHOT.jar .
+export SPRING_DSEMPLOYEE_URL=jdbc:postgresql://cameldb-proxy:1234/dsEmployee
 ```
 Start fuse-soap
 ```
@@ -59,8 +60,9 @@ nohup java -jar fuse-soap-1.0.0-SNAPSHOT.jar &
 startup-script
 ```
 #! /bin/bash
+export SPRING_DSEMPLOYEE_URL=jdbc:postgresql://cameldb-proxy:1234/dsEmployee
 cd /home/nugraha/fuse-soap/
-sudo -u nugraha nohup java -jar fuse-soap-1.0.0-SNAPSHOT.jar &
+nohup java -jar fuse-soap-1.0.0-SNAPSHOT.jar &
 EOF
 ```
 
@@ -84,7 +86,7 @@ startup-script
 #! /bin/bash
 export URL_EMPLOYEEWS="http://fuse-soap-instance-group-3h1g:8080/cxf/employeeWS"
 cd /home/nugraha/fuse-rest/
-sudo -u nugraha nohup java -jar fuse-rest-1.0.0-SNAPSHOT.jar &
+nohup java -jar fuse-rest-1.0.0-SNAPSHOT.jar &
 EOF
 ```
 
