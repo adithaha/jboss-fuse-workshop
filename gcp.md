@@ -56,7 +56,7 @@ Start fuse-soap
 ```
 nohup java -jar fuse-soap-1.0.0-SNAPSHOT.jar &
 ```
-# startup-script
+startup-script
 ```
 #! /bin/bash
 cd /home/nugraha/fuse-soap/
@@ -78,8 +78,7 @@ Start fuse-rest
 ```
 nohup java -jar fuse-rest-1.0.0-SNAPSHOT.jar &
 ```
-
-# startup-script
+startup-script
 ```
 #! /bin/bash
 cd /home/nugraha/fuse-rest/
