@@ -73,6 +73,7 @@ sudo apt install default-jdk
 mkdir fuse-rest
 cd fuse-rest
 gsutil cp gs://nugraha-51412-gs/maven/fuse-rest-1.0.0-SNAPSHOT.jar .
+export URL_EMPLOYEEWS="http://fuse-soap-instance-group-3h1g:8080/cxf/employeeWS"
 ```
 Start fuse-rest
 ```
@@ -81,6 +82,7 @@ nohup java -jar fuse-rest-1.0.0-SNAPSHOT.jar &
 startup-script
 ```
 #! /bin/bash
+export URL_EMPLOYEEWS="http://fuse-soap-instance-group-3h1g:8080/cxf/employeeWS"
 cd /home/nugraha/fuse-rest/
 sudo -u nugraha nohup java -jar fuse-rest-1.0.0-SNAPSHOT.jar &
 EOF
