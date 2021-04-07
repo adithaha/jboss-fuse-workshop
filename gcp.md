@@ -17,6 +17,31 @@ gcloud compute networks list
 gcloud compute firewall-rules create dev-allow-icmp-ssh-rdp --direction=INGRESS --priority=1000 --network=devnet --action=ALLOW --rules=icmp,tcp:22,tcp:3389 --source-ranges=0.0.0.0/0
 gcloud compute firewall-rules list --sort-by=NETWORK
 ```
+# create CloudSQL
+Create Cloud SQL
+```
+gcloud sql instances create cameld4 --database-version=POSTGRES_9_6 --cpu=2 --memory=4 --storage-type=SSD --storage-size=10gb --network=devnet --availability-type=zonal --zone=us-central1-b
+```
+Create csql proxy
+```
+gcloud compute instances create cameldb-proxy --machine-type e2-medium --zone us-central1-a --network devnet --subnet subnet-us
+sudo apt-get update
+sudo apt install wget
+wget https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 -O cloud_sql_proxy
+chmod +x cloud_sql_proxy
+```
+Start CSQL Proxy
+```
+./cloud_sql_proxy -instances=nugraha-51412:us-central1:cameldb=tcp:0.0.0.0:1234 -ip_address_types=PRIVATE &
+```
+startup-script
+```
+#! /bin/bash
+cd /home/nugraha
+sudo -u nugraha ./cloud_sql_proxy -instances=nugraha-51412:us-central1:cameldb=tcp:0.0.0.0:1234 -ip_address_types=PRIVATE &
+EOF
+```
+
 # create vm fuse-soap
 ```
 gcloud compute instances create fuse-soap --machine-type e2-medium --zone us-central1-a --network devnet --subnet subnet-us
@@ -26,6 +51,9 @@ sudo apt install default-jdk
 mkdir fuse-soap
 cd fuse-soap
 gsutil cp gs://nugraha-51412-gs/maven/fuse-soap-1.0.0-SNAPSHOT.jar .
+```
+Start fuse-soap
+```
 nohup java -jar fuse-soap-1.0.0-SNAPSHOT.jar &
 ```
 # startup-script
@@ -45,7 +73,10 @@ sudo apt install default-jdk
 mkdir fuse-rest
 cd fuse-rest
 gsutil cp gs://nugraha-51412-gs/maven/fuse-rest-1.0.0-SNAPSHOT.jar .
-java -jar fuse-rest-1.0.0-SNAPSHOT.jar &
+```
+Start fuse-rest
+```
+nohup java -jar fuse-rest-1.0.0-SNAPSHOT.jar &
 ```
 
 # startup-script
@@ -56,30 +87,18 @@ sudo -u nugraha nohup java -jar fuse-rest-1.0.0-SNAPSHOT.jar &
 EOF
 ```
 
-# create csql proxy
-```
-gcloud compute instances create cameldb-proxy --machine-type e2-medium --zone us-central1-a --network devnet --subnet subnet-us
-sudo apt-get update
-sudo apt install wget
-wget https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 -O cloud_sql_proxy
-chmod +x cloud_sql_proxy
-./cloud_sql_proxy -instances=nugraha-51412:us-central1:cameldb=tcp:0.0.0.0:1234 -ip_address_types=PUBLIC
-```
 
-# startup-script
-```
-#! /bin/bash
-cd /home/nugraha
-sudo -u nugraha ./cloud_sql_proxy -instances=nugraha-51412:us-central1:cameldb=tcp:1234 -ip_address_types=PRIVATE &
-EOF
-```
 
 2104017785295
 
 
 # test
+Get data
 ```
 curl http://fuse-rest:8080/camel/jaxrs/employeeall
+```
+Insert data
+```
 curl --header "Content-Type: application/json"   --request POST   --data '{ "name": "adit", "address": "jakarta", "phoneList": [{ "phone" : "08119366661", "type" : "HP" }, { "phone" : "02112345676", "type" : "home" }]  }'   http://fuse-rest:8080/camel/jaxrs/employee
 ```
 
